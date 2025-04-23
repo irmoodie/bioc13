@@ -2,6 +2,13 @@
 title: "Data analysis using R and RStudio"
 date: 2025-04-23
 draft: true
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
 execute:
   echo: true
   eval: false
