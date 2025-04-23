@@ -1,2 +1,6 @@
 /.quarto/
 /_site
+.DS_Store
+_extensions/.DS_Store
+exercises/.DS_Store
+slides/.DS_Store
