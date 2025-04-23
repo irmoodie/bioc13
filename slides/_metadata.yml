@@ -1,0 +1,18 @@
+author:
+  - name: Iain R. Moodie
+    affiliations: 
+      - BIOC13 - Ekologi 
+      - Department of Biology, Lund University
+format: 
+  live-revealjs:
+    fig-height: 5
+    fig-width: 5
+    fig-align: center
+    history: false
+webr:
+  cell-options:
+    autorun: false
+theme: slides.scss
+bibliography: ../references.bib
+citations-hover: true
+search: false

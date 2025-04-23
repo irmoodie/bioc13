@@ -1,0 +1,833 @@
+---
+title: "Introduction to statistical inference"
+draft: false
+date: 2025-04-23
+subtitle: "Lecture 1"
+webr:
+  packages:
+    - tidyverse
+    - infer
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+# Introduction {background-color="#61599d"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| eval: true
+library(tidyverse, quietly = TRUE)
+library(infer, quietly = TRUE)
+library(patchwork, quietly = TRUE)
+
+theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+```
+
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+options("readr.edition" = 1)
+
+theme_set(theme_bw(base_size = 20) + theme(aspect.ratio = 1))
+```
+
+## Introduction
+### Aim of this lecture
+
+- To explain the foundational ideas of statistical inference
+  - Focus on computational (instead of mathematical) statistical techniques
+  - Focus on applying these ideas to answer ecological questions
+
+## Introduction
+### Your focus should be on
+
+- The broad ideas ~~specific formulae~~
+- Statistics as a tool to answer interesting ecological questions
+
+# Populations and Samples {background-color="#61599d"}
+
+## Populations and Samples
+### The how and the why of statistics
+
+::: {.columns}
+::: {.column width="65%"}
+- We are often limited by how much data we can collect
+- We want to say something more general than the data we collect
+- Example:
+  - Measured the species diversity in 20 spruce plantations across Sweden
+  - Want to say something about species diversity in *all* spruce plantations (in Sweden)
+:::
+::: {.column width="35%"}
+![](images/michail-dementiev-tCyXRfxDGkw-unsplash.jpg){width="300"}
+:::
+:::
+
+## Populations and Samples
+### The how and the why of statistics
+
+::: {.columns}
+::: {.column width="65%"}
+- Cannot measure species diversity in every forest in Sweden
+- Instead, we collect a representative [**sample**]{style="color: #61599d;"} of data
+- Use the sample to draw conclusions about the [**population**]{style="color: #61599d;"}
+- Statistics allows us to approximate properties (e.g. mean species diversity) of entire populations from (usually) a single sample
+:::
+::: {.column width="35%"}
+![](images/michail-dementiev-tCyXRfxDGkw-unsplash.jpg){width="300"}
+:::
+:::
+
+## Populations and Samples
+### The how and the why of statistics
+
+::: {.callout-important icon="false"}
+## Population
+The totality of individual observations about which inferences are to be made, existing anywhere in the world or at least within a definitely specified sampling area limited in space and time [@sokal1995].
+:::
+
+::: {.callout-important icon="false"}
+## Sample
+A collection of individual observations selected by a specified procedure [@sokal1995].
+:::
+
+## Populations and Samples
+### The how and the why of statistics
+
+:::: columns
+::: {.column width="50%"}
+**Populations**
+
+- All the spruce (gran) trees in Skåne
+- All the blue tits (blåmes) in Sweden
+- All the genes in the common fruit fly (*Drosophila melanogaster*)
+- All the herring (sill) in the Baltic sea
+:::
+::: {.column width="50%"}
+**Samples**
+
+- 50 spruce trees in a forest in Skåne
+- 100 caught blue tits from nest boxes in Sweden
+- 20 genes from the *Drosophila melanogaster* genome
+- 1000 herring caught by a fishing boat off the coast of Karlskrona
+:::
+::::
+
+## Populations and Samples
+### The how and the why of statistics
+
+![](images/pop_samp_stat.svg){fig-align="center"}
+
+
+# Inference {background-color="#61599d"}
+
+## Inference
+### Using the sample to infer population parameters
+
+{{< countdown minutes=3 top=0 right=0 font-size="5rem" >}}
+
+For this example, our [**population**]{style="color: #61599d;"} will be all the fish in a small pond. The body length (mm) and sex of the fish are shown below:
+
+- Males:
+  - 96, 98, 112, 101, 101, 114, 104, 93, 95, 106
+- Females:
+  - 115, 104, 105, 101, 93, 121, 106, 77, 104, 94
+
+::: {.callout-important icon="false"}
+## Task
+In pairs, take a random [**sample**]{style="color: #61599d;"} (**n=3**) of males and females and calculate a mean for each. Subtract the means from each other ($\bar{x}_{male}-\bar{x}_{female}$).
+:::
+
+## Inference
+### Example
+
+I rolled a 10 sided dice 6 times:
+
+- select the 2nd, 1st and 6th male:
+  - 98, 96, 114 ($\bar{x}_{male} = \frac{98+96+114}{3} = 102.67$)
+- select the 3rd, 9th and 8th female:
+  - 105, 104, 77 ($\bar{x}_{female} = \frac{105+104+77}{3} = 95.33$)
+- $\bar{x}_{male}-\bar{x}_{female}=102.67-95.33=7.34$
+
+## Inference
+### Building a sampling distribution
+
+```{webr}
+data <- 
+  tibble(diff_in_means = c())
+
+ggplot(data, aes(x = diff_in_means)) +
+  geom_histogram(bins = 10)
+```
+
+## Inference
+### The sampling distribution
+
+```{r}
+#| fig-align: center
+set.seed(123) # For reproducibility
+data <- tibble(
+  diff_in_means = replicate(
+    10000,
+    {
+      males_sample <- sample(c(96, 98, 112, 101, 101, 114, 104, 93, 95, 106), 3, replace = FALSE)
+      females_sample <- sample(c(115, 104, 105, 101, 93, 121, 106, 77, 104, 94), 3, replace = FALSE)
+      mean(males_sample) - mean(females_sample)
+    }
+  )
+)
+samp_dist <-
+ggplot(data, aes(x = diff_in_means)) +
+  geom_histogram(bins = 40, aes(y = ..density..), fill = "grey50", color = "black") +
+  geom_density(color = "red", size = 1) +
+  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+samp_dist
+```
+
+## Inference
+### The sampling distribution
+
+- The distribution of observed statistics (e.g. difference in means) obtained through repeatedly **sampling** the population
+- Shows the range of statistics we can **observe** through sampling
+- Its central tendency gives us an idea about where the true **population** parameter value is
+- The sampling distribution is at the foundation of all of statistics!
+
+## Inference
+### The sampling distribution
+
+```{r}
+#| fig-align: center
+samp_dist +
+geom_vline(xintercept = 0, colour = "red", size = 1)
+```
+
+## Inference
+### The sampling distribution
+
+![](images/pop_samplingdist.svg){fig-align="center" fig-align="middle"}
+
+## Inference
+### The utility of the sampling distribution
+
+::: {.columns}
+::: {.column}
+```{r}
+samp_dist +
+shade_confidence_interval(endpoints = get_confidence_interval(data))
+```
+:::
+::: {.column}
+**Confidence intervals**
+
+- If we collect another sample of the same size, how much would the observed statistic vary?
+:::
+:::
+
+## Inference
+### The utility of the sampling distribution
+
+::: {.columns}
+::: {.column}
+```{r}
+samp_dist +
+ geom_vline(xintercept = 7.34, colour = "red", size = 2) +
+annotate("rect", xmin = 7.34, xmax = Inf, ymin = 0, ymax = Inf, alpha = 0.2, fill = "red")
+```
+:::
+::: {.column}
+**Hypothesis testing**
+
+- Is our result compatible with a specific hypothesis?
+
+:::
+:::
+
+## Inference
+### The sampling distribution
+
+- But we only (usually) collect **a single sample!**
+- A sampling distribution by definition requires many samples!
+- How can we get a sampling distribution?
+- Great question!
+
+# Bootstrap resampling {background-color="#61599d"}
+
+## Bootstrap resampling 
+### How to construct a sampling distribution from a single sample
+
+Sample of 6 males from the fish in the pond
+
+- Sample:
+  - 96, 98, 112, 101, 114, 106
+- Observed mean: 
+  - $\bar{x} = \frac{96 + 98 + 112 + 101 + 114}{5} = 104.2$
+- I want to show the range of observed means would also be plausible if I collected another sample
+  - But I can't / don't want to collect another sample! 
+
+## Bootstrap resampling 
+### How to construct a sampling distribution from a single sample
+
+- If we assume that my sample is representative of the populations
+  - collected randomly and without bias
+- We can resample the sample *with replacement* to create more "samples"
+  - Process known as "**Bootstrapping**"
+  - From English phrase: "To pull one's self up by their own bootstraps"
+  - Seems impossible?
+
+## Bootstrap resampling 
+### Generating a bootstrap sample
+
+{{< countdown minutes=3 top=0 right=0 font-size="5rem" >}}
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+
+::: {.callout-important icon="false"}
+## Task
+In pairs, resample *with replacement* (**n=6**) values from my sample to get a new "bootstrap sample", then calculate the mean.
+:::
+
+- Example: 
+  - Roll a dice 6 times: 4 2 1 4 2 3
+  - Bootstrap sample: 101, 98, 96, 101, 98, 112
+  - Bootstrap sample mean: 101
+
+## Bootstrap resampling 
+### Generating a bootstrap sampling distibution
+
+```{webr}
+data <- 
+  tibble(male_mean = c())
+
+ggplot(data, aes(x = male_mean)) +
+  geom_histogram(bins = 5)
+```
+
+## Bootstrap resampling 
+### Generating a bootstrap sampling distibution
+
+::: {.columns}
+::: {.column}
+```{r}
+
+sample_males <- tibble(body_length = c(96, 98, 112, 101, 114, 106))
+
+boot_dist <-
+  sample_males |>
+  specify(response = body_length) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean")
+
+visualize(boot_dist) + labs(x = "mean") +
+geom_vline(xintercept = 104.2, colour = "red", size = 2)
+```
+:::
+::: {.column}
+- Means from 1000 bootstrap samples
+- Observed mean (mean of original sample) in red
+- The observed mean is still our best guess at the true mean
+- Bootstrap sampling distribution allows us to quantify our uncertainty in the mean
+:::
+:::
+
+## Bootstrap resampling 
+### The bootstrap sampling distibution
+
+- If we use the bootstrap sampling distibution in place of the real sampling distribution, we can can use it to infer things about the original population.
+- The bootstrap method can be applied to any statistic you can calculate from a sample!
+
+## Bootstrap resampling 
+### The bootstrap sampling distibution
+
+![](images/bootstrap.svg){fig-align="center"}
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{\frac{\sum_{i}^n (x_i - \bar{x})^2}{n-1}}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{\frac{
+(96 - 104.2)^2 + (98 - 104.2)^2 + (112 - 104.2)^2 + \newline
+(101 - 104.2)^2 + (114 - 104.2)^2 + (106 - 104.2)^2
+}{6-1}}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{\frac{(-8.2)^2 + (-6.2)^2 + (7.8)^2 + (-3.2)^2 + (9.8)^2 + (1.8)^2}{5}}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{\frac{67.24 + 38.44 + 60.84 + 10.24 + 96.04 + 3.24}{5}}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{\frac{276.04}{5}}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = \sqrt{55.208}
+$$
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+- Original sample:
+  - 96, 98, 112, 101, 114, 106
+- Standard deviation is a measure of spread:
+
+$$
+s = 7.43 \text{mm}
+$$
+
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+::: {.columns}
+::: {.column}
+```{r}
+
+sample_males <- tibble(body_length = c(96, 98, 112, 101, 114, 106))
+
+boot_dist2 <-
+  sample_males |>
+  specify(response = body_length) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "sd")
+
+visualize(boot_dist2) + labs(x = "mean") +
+geom_vline(xintercept = 7.43, colour = "red", size = 2)
+```
+:::
+::: {.column}
+- Standard deviations from 1000 bootstrap samples
+- Observed SD (SD of original sample) in red
+- The observed SD is still our best guess at the true SD
+- Bootstrap sampling distribution allows us to quantify our uncertainty in the SD
+:::
+:::
+
+## Bootstrap resampling 
+### Works for any statistic!
+
+![](images/bootstrap.svg){fig-align="center"}
+
+
+# Quantifying sampling error {background-color="#61599d"}
+
+If we collected another sample of the same size, how much would our test statistic be likely to vary?
+
+## Quantifying sampling error
+### What range of observed statistics is plausible?
+
+- If we took another sample, it is unlikely that we would get exactly the same observed statistics
+- We want to quantify this (**sampling error**)
+- Problem: we (usually) only ever collect one sample
+- Solution: generate more samples using bootstrap resampling!
+
+## Quantifying sampling error
+### The standard error (SE)
+
+::: {.columns}
+::: {.column}
+```{r}
+visualize(boot_dist) + labs(x = "mean") +
+shade_confidence_interval(endpoints = tibble(lower_ci = 104.2 - 1.465938, upper_ci = 104.2 + 1.465938)) +
+geom_vline(xintercept = 104.2, colour = "red", size = 2)
+```
+:::
+::: {.column}
+- The standard error is the standard deviation of the sampling distribution
+- Use the bootstrap generated sampling distribution as our sampling distribution
+- Assumptions: your sampling distribution is approximately normally distributed (bell-curve)
+- If calculated with a bootstrap sampling distribution often written as $SE_{boot}=2.7$
+:::
+:::
+
+## Quantifying sampling error
+### The 95% confidence interval
+
+::: {.columns}
+::: {.column}
+```{r}
+visualize(boot_dist) + labs(x = "mean") +
+shade_confidence_interval(endpoints = get_confidence_interval(boot_dist, level = 0.95)) +
+geom_vline(xintercept = 104.2, colour = "red", size = 2)
+```
+:::
+::: {.column}
+- If we repeated our experiment many times and calculated a 95% CI each time, the 95% CI’s would include the “true” population value 95% of the time
+- Many methods to calculate:
+  - **Percentile method**: Middle 95% of the sampling distribution
+  - No assumptions, but requires a large (>30 >>14) sample size to be accurate
+:::
+:::
+
+## Quantifying sampling error
+### The 95% confidence interval
+
+::: {.columns}
+::: {.column}
+```{r}
+visualize(boot_dist) + labs(x = "mean") +
+shade_confidence_interval(endpoints = get_confidence_interval(boot_dist, level = 0.95)) +
+geom_vline(xintercept = 104.2, colour = "red", size = 2)
+```
+:::
+::: {.column}
+- Often reported after the observed statistic:
+  - Mean = 104 mm (95%CI: 99 - 110 mm)
+- Less strict definition: where we expect the true population parameter to be
+:::
+:::
+
+## Confidence intervals 
+### Using a bootstrap sampling distribution
+
+![](images/CI.svg){fig-align="center"}
+
+## Confidence intervals 
+### An example
+
+{{< countdown minutes=2 top=0 right=0 font-size="5rem" >}}
+
+*"Breakthrough Drug Reduces COVID-19 Hospitalizations by 12%!"*
+
+- A new antiviral drug reduced COVID-19 hospitalizations by 12% in a clinical trial involving 1,000 patients.
+- A new antiviral drug reduced COVID-19 hospitalizations by 12% (95% CI: -11 to 32%) in a clinical trial involving 1,000 patients.
+
+::: {.callout-important icon="false"}
+## Task
+Think for 30 seconds, then discuss in pairs or small groups for 1.5 minutes about the effect of including the confidence interval in the statement.
+:::
+
+# Hypothesis testing {background-color="#61599d"}
+
+- Is our sample compatible with a certain hypothesis?
+- If we collected another sample, could the conclusion have been different?
+
+## Hypothesis testing 
+### Is our sample compatible with a certain hypothesis?
+
+- More stricly: a method of statistical inference used to decide whether our sample provides sufficient evidence to *reject* a particular hypothesis
+- Used to answer the questions: 
+  - Could our results be just due to chance?
+  - If we collected another sample, could the conclusion have been different?
+
+## Hypothesis testing 
+### One part of one way of conducting science
+
+1. Make observations
+2. Formulate a hypothesis
+3. Design experiment (discuss)
+4. Conduct the experiment (obtain data)
+5. Analyze the data (is your data compatible with your hypothesis?)
+6. Formulate conclusion
+7. Synthesize results with other studies, and determine next steps
+
+## Hypothesis testing 
+### Back to the fish
+
+:::: {.columns}
+::: {.column width="60%"}
+- While watching a nature documentary, I hear that in many fish species, **females are often larger than males**. 
+  - I wonder if this is true of the fish in my pond (from the previous example)?
+  - I **hypothesise** that females will be bigger than males
+:::
+::: {.column width="40%"}
+![](images/da.jpg){width="300" fig-align="center"}
+:::
+::::
+
+## Hypothesis testing 
+### Back to the fish
+
+- Sample of males:
+  - 96, 112, 101, 101, 114, 104
+  - Mean = 104.67 mm
+- Sample of females:
+  - 115, 104, 105, 101, 93, 121
+  - Mean = 106.5 mm
+- Observed difference in means = 104.67 - 106.5 = -1.83 mm
+- In my sample, I observe that female fish are on average larger
+- Hypothesis confirmed?
+
+## Hypothesis testing 
+### Back to the fish
+
+- Not so fast!
+- Only sampled 12 fish in total
+- How probable would it be to collect a sample with such a difference in mean sizes *if* there was actually no difference in the population?
+- Do I have sufficient evidence against my **null hypothesis**
+  - There is no difference in mean size between males and females
+- Solution: need to compare my observed value against a sampling distribution of data collected assuming the null hypothesis is true
+  - **Null distribution**
+
+## Hypothesis testing 
+### Back to the fish
+
+::: {.columns}
+::: {.column width="60%"}
+- If null hypothesis is true:
+  - *Sex* column should have no predictive value for the *Body Length* column
+  - Randomly shuffling (**permuting**) *Sex* column should produce samples similar to observed sample
+:::
+::: {.column width="40%"}
+| Sex     | Body Length (mm) |
+|---------|------------------|
+| Male    | 96               |
+| Male    | 112              |
+| Male    | 101              |
+| Male    | 101              |
+| Male    | 114              |
+| Male    | 104              |
+| Female  | 115              |
+| Female  | 104              |
+| Female  | 105              |
+| Female  | 101              |
+| Female  | 93               |
+| Female  | 121              |
+:::
+:::
+
+## Hypothesis testing 
+### Back to the fish
+
+::: {.columns}
+::: {.column width="60%"}
+- If null hypothesis is false:
+  - *Sex* column has predictive value on *Body Length* column
+  - **Permuting** breaks the special arrangement that has predictive value
+  - Observed should be very different to values from permuting
+:::
+::: {.column width="40%"}
+| Sex     | Body Length (mm) |
+|---------|------------------|
+| Male    | 96               |
+| Male    | 112              |
+| Male    | 101              |
+| Male    | 101              |
+| Male    | 114              |
+| Male    | 104              |
+| Female  | 115              |
+| Female  | 104              |
+| Female  | 105              |
+| Female  | 101              |
+| Female  | 93               |
+| Female  | 121              |
+:::
+:::
+
+## Hypothesis testing 
+### Back to the fish
+
+::: {.columns}
+::: {.column width="60%"}
+- Null hypothesis: 
+  - There is no difference in body lengths between males and females
+- Observed difference in means = -1.83
+:::
+::: {.column width="40%"}
+| Sex     | Body Length (mm) |
+|---------|------------------|
+| Male    | 96               |
+| Male    | 112              |
+| Male    | 101              |
+| Male    | 101              |
+| Male    | 114              |
+| Male    | 104              |
+| Female  | 115              |
+| Female  | 104              |
+| Female  | 105              |
+| Female  | 101              |
+| Female  | 93               |
+| Female  | 121              |
+:::
+:::
+
+## Hypothesis testing 
+### Back to the fish
+
+::: {.columns}
+::: {.column width="60%"}
+- Null hypothesis: 
+  - There is no difference in body lengths between males and females
+- Observed difference in means = -1.83
+- Data simulated under the null hypothesis
+  - Permutated difference in means = -1.17
+:::
+::: {.column width="40%"}
+| Sex     | Body Length (mm) |
+|---------|------------------|
+| Female  | 96               |
+| Male    | 112              |
+| Female  | 101              |
+| Male    | 101              |
+| Female  | 114              |
+| Male    | 104              |
+| Male    | 115              |
+| Female  | 104              |
+| Male    | 105              |
+| Female  | 101              |
+| Male    | 93               |
+| Female  | 121              |
+:::
+:::
+
+## Hypothesis testing 
+### Generating a null distribution
+
+- We need to do this **permuting** procedure many times to generate enough samples to make a null distribution
+  - Sampling distribution from a model of the null hypothesis
+
+{{< countdown minutes=3 top=0 right=0 font-size="5rem" >}}
+
+::: {.callout-important icon="false"}
+## Task
+On the paper you have been given, **randomly** assign 6 of the rows male and 6 female, and calculate the mean difference in body length.
+:::
+
+## Hypothesis testing 
+### Generating a null distribution
+
+```{webr}
+null_dist <- 
+  tibble(diff_in_means = c())
+
+ggplot(null_dist, aes(x = diff_in_means)) +
+  geom_histogram(bins = 5) +
+  geom_vline(xintercept = -1.83, colour = "red")
+```
+
+## Hypothesis testing 
+### Generating a null distribution
+
+```{r}
+#| fig-align: center
+sample_fish <- 
+  tibble(
+    body_length = c(96, 112, 101, 101, 114, 104, 115, 104, 105, 101, 93, 121),
+    sex = rep(c("male", "female"), each = 6)
+    )
+
+null_dist <-
+  sample_fish |>
+  specify(response = body_length, explanatory = sex) |>
+  hypothesise(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("male", "female"))
+
+visualize(null_dist) + labs(x = "diff in mean")
+```
+
+## Hypothesis testing 
+### Comparing our observed statistic against the null distribution
+
+```{r}
+#| fig-align: center
+visualize(null_dist) + labs(x = "diff in mean") +
+geom_vline(xintercept = -1.83, colour = "red", size = 2)
+```
+
+## Hypothesis testing 
+### Comparing our observed statistic against the null distribution
+
+```{r}
+#| fig-align: center
+visualize(null_dist) + labs(x = "diff in mean") +
+  shade_p_value(obs_stat = -1.83, direction = "less")
+```
+
+## Hypothesis testing 
+### Comparing our observed statistic against the null distribution
+::: {.columns}
+::: {.column}
+```{r}
+#| fig-align: center
+visualize(null_dist) + labs(x = "diff in mean") +
+  shade_p_value(obs_stat = -1.83, direction = "less")
+```
+:::
+::: {.column}
+- p = 0.337
+- Probability of observing our original statistic, or one more extreme, assuming the null hypothesis is true
+
+{{< countdown minutes=1.5 top=0 right=0 font-size="5rem" >}}
+
+::: {.callout-important icon="false"}
+## Task
+Think for 30 seconds, then discuss for 1 minute. What should my conclusion be?
+:::
+
+:::
+:::
+
+## Hypothesis testing 
+### A framework
+
+![](images/hyptest.svg){fig-align="center"}
+
+## Take home points
+
+- Statistics is the practise of using a **sample** to infer things about a **population**
+- The distribution of observed statistics obtained through repeatedly sampling the population is called the **sampling distribution**
+- Since we often only take one sample, we can generate a sampling distribution using data from our sample via **bootstrapping**
+- **Confidence intervals** (the middle X% of the sampling distribution) answer the question: if we collected another sample of the same size, how much would our test statistic be likely to vary?
+- **Hypothesis testing** (comparing observed to a **null distribution**) answer the question: how compatible is the observed with our **null hypothesis**
+
+# Exercises {background-color="#61599d"}
+
+## Exercises
+
+- We will use R, a free statistics focused programming language to explore these ideas further
+- At the end you will have a set of tools you can apply to your own data!
+- Bring a computer running Windows, macOS or Linux
+  - Borrow from IT dept if you want to
+
+## Referenced materials
+
+

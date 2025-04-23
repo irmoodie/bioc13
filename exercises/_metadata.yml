@@ -1,0 +1,12 @@
+author:
+  - name: Iain R. Moodie
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+bibliography: ../references.bib
+csl: ../the-american-naturalist.csl
+citations-hover: true
