@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical inference for Ecologists – BIOC13 Statistics</title>
+<title>Additional resources – BIOC13 Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Statistical inference for Ecologists – BIOC13 Statistics">
-<meta property="og:description" content="BIOC13 VT25">
+<meta property="og:title" content="Additional resources – BIOC13 Statistics">
+<meta property="og:description" content="Materials for the Statistics section of BIOC13, VT25">
 <meta property="og:site_name" content="BIOC13 Statistics">
 </head>
 
@@ -81,9 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      BIOC13 Statistics
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help.html" class="sidebar-item-text sidebar-link">
+  <a href="./help.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Useful resources</span></a>
   </div>
 </li>
@@ -199,16 +197,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#help-with-implementing-your-statistical-methods" id="toc-help-with-implementing-your-statistical-methods" class="nav-link active" data-scroll-target="#help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</a></li>
+  <li><a href="#help-with-understanding-the-statistical-methods" id="toc-help-with-understanding-the-statistical-methods" class="nav-link" data-scroll-target="#help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</a></li>
+  <li><a href="#help-with-general-working-with-data-in-r" id="toc-help-with-general-working-with-data-in-r" class="nav-link" data-scroll-target="#help-with-general-working-with-data-in-r">Help with general working with data in R</a></li>
+  <li><a href="#advice-for-using-ai-tools-to-generate-code" id="toc-advice-for-using-ai-tools-to-generate-code" class="nav-link" data-scroll-target="#advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical inference for Ecologists</h1>
-<p class="subtitle lead">BIOC13 VT25</p>
+<h1 class="title">Additional resources</h1>
 </div>
 
 
@@ -225,10 +231,55 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Here you will find all the materials required for the statistics section of BIOC13.</p>
-<p>All course communication should take place on <a href="https://canvas.education.lu.se/courses/33420">LU Canvas</a>.</p>
+<p>In this section of the course, we have been using an R package called <code>infer</code> to perform randomisation and resampling based statisitcs. Since we have only had two days, we have not had a chance to go through examples of every sort of analysis you might want to do. However, the framework you have been using for calculating confidence intervals and hypothesis testing can be applied extrememly broadly, and you can likely use them to answer any ecological question you come up with on this course.</p>
+<p>Below I have linked you to some materials which should help with that.</p>
+<hr>
+<section id="help-with-implementing-your-statistical-methods" class="level3">
+<h3 class="anchored" data-anchor-id="help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</h3>
+<ul>
+<li>The <a href="https://infer.tidymodels.org/articles/infer.html">getting to know <code>infer</code> vignette</a></li>
+<li>This contains a walk through of some examples using <code>infer</code> with commentary, explaining things in detail.</li>
+<li>The <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html">full <code>infer</code> pipeline examples vignette</a>
+<ul>
+<li>This contains examples of almost every possible analysis with <code>infer</code>, but with limited commentary. If you know what you want to do, but can’t quite make it work, check this page.</li>
+</ul></li>
+<li>There are also <a href="https://infer.tidymodels.org/articles/">other articles on the <code>infer</code> website</a> that contain helpful examples.</li>
+</ul>
+</section>
+<section id="help-with-understanding-the-statistical-methods" class="level3">
+<h3 class="anchored" data-anchor-id="help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</h3>
+<ul>
+<li>The <a href="https://moderndive.com/v2/index.html">Statistical Inference with infer section of ModernDive (Ch. 7-10)</a> is a beginner friendly text that follows the style of statistical analysis we have been doing in this part of the course.</li>
+</ul>
+</section>
+<section id="help-with-general-working-with-data-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="help-with-general-working-with-data-in-r">Help with general working with data in R</h3>
+<ul>
+<li>For help with importing, data handling and basic plotting, the <a href="https://moderndive.com/v2/index.html">Data Science with tidyverse section of ModernDive</a> is a beginner friendly text that will have examples for most things you will want to do.
+<ul>
+<li>If something is not covered, check out <a href="https://r4ds.hadley.nz/">R for Data Science</a>.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="advice-for-using-ai-tools-to-generate-code" class="level3">
+<h3 class="anchored" data-anchor-id="advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</h3>
+<p>AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, try the following:</p>
+<p>Include the terms <code>tidyverse</code> and <code>infer</code> in your prompt:</p>
+<ul>
+<li><del>How can I test if the means of two groups are different in R?</del>
+<ul>
+<li>How can I test if the means of two groups are different in R with the <code>infer</code> package?</li>
+</ul></li>
+<li><del>How can I make a scatterplot in R?</del>
+<ul>
+<li>How can I make a scatterplot in R with <code>tidyverse</code>?</li>
+</ul></li>
+</ul>
+<p>For general statistics help, include the terms “randomisation based inference” or “resampling based inference” or “computational statistics”. These are the methods we have covered here, as opposed to more theory/mathematics based inference methods.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
