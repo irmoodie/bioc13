@@ -22,13 +22,25 @@ website:
       - section: "Introduction to R"
         contents:
           - href: exercises/02_intro_to_r.qmd
-            text: "1) Getting familiar with R"
+            text: "Getting familiar with R"
           - href: exercises/01_local_r.qmd
-            text: "2) Installation guide"
-      - section: "Introduction to inference"
+            text: "Installation guide"
+      - section: "Introduction to inference (Day 1)"
         contents:
           - href: slides/intro_to_inference.qmd
-            text: "Slides (Lecture 1)"
+            text: "Slides"
+          - href: exercises/03_inference.qmd
+            text: "Exercise"
+      - section: "Computational statistics (Day 2)"
+        contents:
+          - href: slides/computational_statistics.qmd
+            text: "Slides"
+          - href: exercises/04_statistics.qmd
+            text: "Exercise"
+      - section: "Help beyond the exercises"
+        contents:
+          - href: help.qmd
+            text: Useful resources
 
 format:
   html:

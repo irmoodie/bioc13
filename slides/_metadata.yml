@@ -16,3 +16,4 @@ theme: slides.scss
 bibliography: ../references.bib
 citations-hover: true
 search: false
+

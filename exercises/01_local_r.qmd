@@ -1,5 +1,12 @@
 ---
 title: "How to install R and RStudio"
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
 execute:
   echo: true
   eval: false

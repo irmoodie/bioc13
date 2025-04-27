@@ -1,7 +1,6 @@
 ---
 title: "Data analysis using R and RStudio"
 date: 2025-04-23
-draft: true
 format: 
   html:
     toc: true
@@ -99,7 +98,7 @@ Once downloaded, you should move it to your *working directory* folder for this 
 
 ## Setting up the RMarkdown document
 
-We will work with the RMarkdown file we generated at the start (that I called `exercise_4.Rmd`). 
+We will work with the RMarkdown file we generated at the start (that I called `exercise_1.Rmd`). 
 
 First, we should delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the `---`). You can do that as you would expect in any other text editor. Now we have our blank RMarkdown file, let's get started.
 
@@ -292,15 +291,59 @@ female_data <- #<1>
 
 Now we have the rows we are interested in, let's move on.
 
-### Calculating our observed statistic
+### Exploratory plot
+
+Often before we start any formal statistics, we want to plot our data.
+
+R has a built in method to make plots, but here I will use a different approach. Instead we will use `ggplot2`, a plotting package that is installed with `tidyverse`. `ggplot2` provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as *the grammer of graphics* (gg) [@wilkinsonGrammarGraphics2013].
+
+#### The grammer of graphics
+
+The grammer of graphics gives us a way to describe any plot. `ggplot2` then allows us to make that plot, using a layered approach to the grammer of graphics.
+
+Using this approach, we can say a statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects [@moderndive2025].
+
+Wow. What does that mean? Let's break it down.
+
+A `ggplot2` plot has three essential components:
+
+- `data`: the dataset that contains the variables you want to plot
+- `geom`: the geometric object you want to use to display your data (e.g. a point, a line, a bar).
+- `aes`: aesthetic attributes that you want to map to your geometric object. For example, the x and y location of a point geometry could be mapped to two variables in your dataset, and the colour of those points could be mapped to a third.
+
+As I said before, `ggplot2` uses a layered approach to the grammer of graphics. This makes it very easy to start contructing plots by putting together a "recipe" step-by-step. Let's walk through an example.
+
+---
+
+In our case, we want to plot `ovipositor_length_mm` for each `host_plant` group. One example might be a boxplot:
+
+![A description of the data a boxplot shows](images/boxplot_explanation.png)
+
+```{r}
+ggplot( 
+  data = female_data, #<1>
+  mapping = aes(x = host_plant, y = ovipositor_length_mm) #<2>
+  ) + #<3>
+  geom_boxplot() #<4>
+```
+1. Inside the `ggplot()` function, I specify the dataset as `female_data`
+2. I map the `host_plant` column to the x axis `aes`thetic and the `ovipositor_length_mm` to the y axis `aes`thetic.
+3. To add layers to a `ggplot()` object, we can use a `+`
+4. I add a boxplot `geom`etry, that will use the `aes`thetics I specified before.
+
+**Copy the code into a new code cell and run it**
+
+**Regarding our research question, what does the graph suggest to you?**
+
+### Calculating the observed statistic
 
 Our research question is:
 
 - Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
 
-Our question concerns a difference between two groups (`host_plant`). Let's start by exploring if there is a difference in the central tendancy of `ovipositor_length_mm` in the two groups. That is, does average `ovipositor_length_mm` differ between them?
+The question concerns a difference in a continuous variable between two groups (`host_plant`). Let's start by exploring if there is a difference in the central tendancy of `ovipositor_length_mm` in the two groups. That is, does average `ovipositor_length_mm` differ between them?
 
-A suitable statistic for this question could be a difference in means. Let's start with that.
+A suitable test statistic for this question could be a difference in means. Let's start with that.
 
 We are going to do that using the `infer` package we loaded at the start. `infer` is a statistics package that allows us to perform simulation based inferences without knowing a lot of computer code.
 
@@ -328,3 +371,131 @@ To see your observed statistic, simply print it by writing the name of the objec
 ```{r}
 obs_stat
 ```
+
+**Describe what this observed statistic tells us.**
+
+### Quantifying uncertainty
+
+If we took another sample, it is unlikely that we would get exactly the same observed statistic. We want to quantify that effect. In this exercise, we will use a 95% confidence interval.
+
+![A general approach to bootstrapping confidence intervals](../slides/images/CI.svg){fig-align="center"}
+
+We have already calculated our observed statistic, so let's generate a sampling distribution using bootstrapping.
+
+To do that in code, we write the following:
+
+```{r}
+boot_dist <- #<2>
+  female_data |> 
+  specify(response = ovipositor_length_mm, explanatory = host_plant) |>
+  generate(reps = 10000, type = "bootstrap") |> #<1>
+  calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
+```
+1. Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step, where we generate 10000 bootstrapped datasets, then calculate the diff in means for all of them.
+2. We assign this to a new object, called `boot_dist`
+
+**Use the code above in a new code cell to get a bootstrap sampling distribution**
+
+Again we can print it by just writing its name:
+
+```{r}
+boot_dist
+```
+
+`infer` has a helpful function to quickly see the distribution:
+
+```{r}
+visualize(boot_dist)
+```
+
+#### Confidence intervals
+
+We can use the percentile method to calculate a confidence interval. To do that we take the middle 95% of the bootstrapped sampling distribution. Again, `infer` has a helpful function to do this for us:
+
+```{r}
+conf_int <-
+  get_confidence_interval(boot_dist, level = 0.95, type = "percentile")
+```
+
+**Use the code above to calculate your confidence interval**
+
+Again, print the object to see the confidence intervals:
+
+```{r}
+conf_int
+```
+
+We can also visualise the confidence interval on our sampling distribution:
+
+```{r}
+visualize(boot_dist) +
+  shade_confidence_interval(endpoints = conf_int)
+```
+
+**Write a statement using your observed statistic and confidence intervals. How would you explain what a confidence interval is to someone who hasn't studied statistics?**
+
+### Hypothesis testing
+
+While our confidence interval gives us a pretty big clue, we can also formally test if flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+
+![](../slides/images/hyptest.svg){fig-align="center"}
+
+To do that we need to construct a null and alternative hypothesis.
+
+Null hypothesis:
+
+ - Posits that the explanatory variable we test does NOT affect our data
+ - We test the null hypothesis: sufficient evidence to reject it?
+
+Alternative hypothesis:
+
+- Opposite of the Null hypothesis (the explanatory variable affects our data)
+- We normally think in terms of an alternative hypothesis
+
+**State the null and alternative hypotheses in your document in text.**
+
+#### Generating data assuming the null hypothesis is true
+
+As we did in the lecture, we will use a shuffling or `permute` method of creating a sampling distribution compatible with our null hypothesis. 
+
+To do that with `infer`, the code looks like this:
+
+```{r}
+null_dist <- #<3>
+  female_data |> 
+  specify(response = ovipositor_length_mm, explanatory = host_plant) |>
+  hypothesise(null = "independence") |> #<1>
+  generate(reps = 10000, type = "permute") |> #<2>
+  calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
+```
+1. Again, the code looks very similar, but now we have added an extra `hypothesise()` step, where we declare our null hypothesis to be that the `response` and `explanatory` variables are independent of each other.
+2. We generate 10000 permutated datasets under this hypothesis, and calculate the statistic for each dataset
+3. Save as an object called `null_dist`
+
+**Use the code above in a new code cell to get a null distribution.**
+
+You can print by writing the name:
+
+```{r}
+null_dist
+```
+
+The same command as we used before for the bootstrap sampling distribution can be used to visualise your null distribution. **Use `visualise()` to show your null distribution.**
+
+You can also show your observed statistic on this distribution in a similar way to the confidence intervals. **Try adapting the following code to show your observed statistic on the graph:**
+
+```{r}
+shade_p_value(obs_stat)
+```
+
+If you are stuck, look at how the `shade_confidence_interval()` function is used.
+
+Finally, let's calculate the p-value. We will do a so-called "two-sided" test, which means we want to know if there is a difference in any direction:
+
+```{r}
+get_p_value(null_dist, obs_stat, direction = "two-sided")
+```
+
+**What is your conclusion?**
+
+**When you get to this stage, let me know and we will discuss your finding!**

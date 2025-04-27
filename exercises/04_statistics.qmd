@@ -1,0 +1,472 @@
+---
+title: "Computational methods of inference"
+date: 2025-04-25
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+Each time you start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `bioc13/exercise_2`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+
+Please ensure you have followed the step above before you start!
+
+# **Effect of fertilizer application on crop growth**
+
+Some researchers at Lund University want to understand the effectiveness of three fertilizers on promoting crop growth. To do that, they construct 7 x 7 experimental arrays of plant pots for each treatment (Figure 1). Each experimental array is kept in a seperate green house chamber (room). The control pots were filled with a standardised soil mixture. The treatment plots were filled with the same standardised soil mixture plus the addition of the fertilizer. Already germinated seedlings were randomly assigned to pots and planted. Plants were kept in the greenhouses, and watered regularly.
+
+![Figure 1: The layout of the experiment in the greenhouse chambers.](images/fert.png)
+
+After 30 days, the researchers used a knife to cut all of the plant's biomass that was above ground. Using an oven, they dried each plant for 24 hours before recording the mass in grams using a balance.
+
+The results of the experiment are stored in a `csv` file here: [Link to data.](https://github.com/irmoodie/teaching_datasets/blob/main/crop_growth/crop_growth.csv)
+
+Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+
+## Loading R packages
+
+If you installed the R packages from the last session, you do not need to reinstall them, only load them into our current R environment. We use the `library()` function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed "top to bottom", so this bit of code should come right at the start.
+
+**Make a code cell and use the `library()` function to load the `tidyverse` and `infer` packages:**
+
+```{r}
+library(tidyverse)
+library(infer)
+```
+
+## Loading your data
+
+We will now load the `crop_growth.csv` data file that you downloaded earlier.
+
+**Make another code cell. Load the `crop_growth.csv` data file using the `read_csv()` function and assign it to an object named `crop_data`.**
+
+```{r}
+crop_data <- read_csv("crop_growth.csv") #<1>
+```
+1. Be sure to use quote marks around the file name.
+
+## Explore the data
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. How many rows of data are in the dataset?
+2. What is the unit of observation in this dataset? In other words, what does each row represent?
+3. What populations (statistical use of the word) could we make inferences about using this data?
+4. What is the minimum and maximum `dry_mass_g` the researchers recorded?
+
+## Plot the data
+
+Below I have provided you with the base `ggplot()` function, but you need to add a `geom_` to it.
+
+```{r}
+crop_data |>
+  ggplot(aes(x = treatment, y = dry_mass_g)) #<1>
+```
+1. To add some geometry add a `+` to the end of this line, then copy the `geom_` onto the next line
+
+Some examples geometries could be:
+
+```{r}
+geom_boxplot()
+```
+
+```{r}
+geom_violin()
+```
+
+```{r}
+geom_jitter(width = 0.1)
+```
+
+Try them out. You can also add more than one `geom_` to a plot.
+
+## Calculating the observed statistic
+
+Our research question is:
+
+- Is there a difference in mean `dry_mass_g` between `treatment` groups?
+
+Since we have more than two groups, this sort of analysis is called an ANOVA (ANalysis Of VAriance). Specifically, it is a *one-way ANOVA*, as we are interested in the effect of *one* categorical variable (with >2 groups) on a continuous variable.
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. State the null and alternative hypothesis.
+2. What is the test statistic we use in an ANOVA?
+
+**In a new code cell, calculate the observed test statistic**
+
+::: {.callout-note collapse="true" icon="false"}
+#### Code hint
+```{r}
+obs_stat <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  calculate(stat = "______") #<3>
+
+obs_stat #<4>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. Calculate the observed statistic. To see the possible names you can use, write `?calculate` to open the help files for that function.
+4. Print the observe statistic to the console.
+:::
+
+## Calculating confidence intervals
+
+![A general approach to bootstrapping confidence intervals](../slides/images/CI.svg){fig-align="center"}
+
+There is absolutely nothing stopping you from calculating a cofidence interval for the statistic used in an ANOVA (try it if you want using code from the previous exercise), but in practise they can be hard to interpret. So for now, we will move straight to testing the null-hypothesis.
+
+## Testing against the null hypothesis
+
+![A general approach to hypothesis testing](../slides/images/hyptest.svg){fig-align="center"}
+
+### Generating a null distribution
+
+**In a new code cell, generate a null distribution using the code below:**
+
+```{r}
+null_dist <-
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  generate(reps = 10000, type = "permute") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the dataset.
+2. Specify which is your response and explanatory variable.
+3. Our hypothesis is that our response variable is independant of our explanatory variable.
+4. Simulate data using permuations. This may take a few seconds to minutes depending on your computer.
+5. From each of our simulated permutation samples, calculate the test statistic.
+
+### Compare your observed against the null
+
+**In a new code cell, plot the null distribution and the observed statistic using the code below:**
+
+```{r}
+null_dist |>
+  visualise(bins = 15) + #<1>
+  shade_p_value(obs_stat = obs_stat, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
+2. Plot your `observed_stat`, and specify that the direction should be greater. Our statistic is naturally bounded at 0.
+3. You can change the axis labels to make the plot more clear.
+
+### Calculate a p-value
+
+**In a new code cell, use your null distribution to calculate a p-value:**
+
+```{r}
+null_dist |>
+  get_p_value(obs_stat = obs_stat, direction = "greater")
+```
+
+## Writing your conclusions
+
+**In your RMarkdown document, using text below the code cell, answer the following question:**
+
+What are your conclusions? State them both clearly in terms of the research question and null hypothesis. How would you describe them to someone who does not know much about statistics?
+
+# **Has public opinion changed since the last election?**
+
+![](images/arnaud-jaegers-IBWJsMObnnU-unsplash.jpg){fig-align="center"}
+
+In the last general election, the red party recieved 38% of the vote, the blue party recieved 34% of the vote, the green party recieved 18% of the vote, the yellow party recieved 8% of the vote, and the purple party recieved 2%.
+
+| Party  | Vote Percentage in Last Election |
+|--------|----------------------------------|
+| Red    | 38%                             |
+| Blue   | 34%                             |
+| Green  | 18%                             |
+| Yellow | 8%                              |
+| Purple | 2%                              |
+
+
+In a recent opinion poll, 300 people were asked who they would vote tomorrow if there was an election. 
+
+The data from that opinion poll can be found [here](https://github.com/irmoodie/teaching_datasets/blob/main/poll_results/poll_results.csv).
+
+## Loading the data
+
+Download the data file. Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+
+**Make another code cell. Load the `poll_results.csv` data file using the `read_csv()` function and assign it to an object named `crop_data`.**
+
+```{r}
+poll_data <- read_csv("poll_results.csv") #<1>
+```
+1. Be sure to use quote marks around the file name.
+
+## Explore the data
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. How many rows of data are in the dataset?
+2. What is the unit of observation in this dataset? In other words, what does each row represent?
+3. What populations (statistical use of the word) could we make inferences about using this data?
+
+## Plot the data
+
+Try and figure out how you would use `ggplot()` and `geom_bar()` to plot this dataset. Use any resources you like!
+
+## Calculating the observed statistic
+
+The research question is:
+
+- Has public opinion changed since the last election?
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. State the null and alternative hypothesis.
+2. Use the slides to help you decide what statistic would help you answer this question. What test statistic will you use? Why?
+
+
+**In a new code cell, calculate the observed test statistic**
+
+```{r}
+obs_stat <- 
+  _____ |> #<1>
+  specify(response = _____) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "______" = ______, #<4>
+      "______" = ______,
+      "______" = ______,
+      "______" = ______,
+      "______" = ______
+    )
+   ) |>
+  calculate(stat = "______") #<5>
+
+obs_stat #<6>
+```
+1. The name of the dataset.
+2. Specify which is your response variable.
+3. The specific test statistic we want to use requires us to provide our null hypothesis. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
+4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
+5. Calculate the observed statistic. To see the possible names you can use, write `?calculate` to open the help files for that function.
+6. Print the observe statistic to the console.
+
+## Calculating confidence intervals
+
+Again, there is absolutely nothing stopping you from calculating a confidence interval for the statistic you used (try it if you want using code from the previous exercise), but in practise they can be hard to interpret. So for now, we will move straight to testing the null-hypothesis.
+
+## Testing against the null hypothesis
+
+![A general approach to hypothesis testing](../slides/images/hyptest.svg){fig-align="center"}
+
+### Generating a null distribution
+
+**In a new code cell, generate a null distribution using `"draw"` and the code below:**
+
+```{r}
+null_dist <-
+  _____ |> #<1>
+  specify(response = _____) |> #<2>
+  hypothesize(
+    null = "point", #<3>
+    p = c(
+      "______" = ______, #<4>
+      "______" = ______,
+      "______" = ______,
+      "______" = ______,
+      "______" = ______
+    )
+   ) |>
+   generate(reps = 10000, type = "draw") |> #<5>
+  calculate(stat = "______") #<6>
+```
+1. The name of the dataset.
+2. Specify your response variable.
+3. In this example, we want to know if the proportion of each group in the response variable is different from a hypothesised proportion, so we use `point`.
+4. Here we need to put in our expected or hypothesised proportions under the null hypothesis.
+5. Simulate data using `draw`
+6. From each of our simulated samples, calculate the test statistic.
+
+### Compare your observed against the null
+
+**In a new code cell, plot the null distribution and the observed statistic using the code below:**
+
+```{r}
+null_dist |>
+  visualise(bins = 15) + #<1>
+  shade_p_value(obs_stat = obs_stat, direction = "greater") + #<2>
+  labs(x = "______ statistic") #<3>
+```
+1. Pipe your `null_dist` object into `visualise()`. You can change the number of bins if you wish.
+2. Plot your `observed_stat`, and specify that the direction should be greater. Our statistic is naturally bounded at 0.
+3. You can change the axis labels to make the plot more clear.
+
+### Calculate a p-value
+
+**In a new code cell, use your null distribution to calculate a p-value:**
+
+```{r}
+null_dist |>
+  get_p_value(obs_stat = obs_stat, direction = "greater")
+```
+
+## Writing your conclusions
+
+**In your RMarkdown document, using text below the code cell, answer the following question:**
+
+What are your conclusions? State them both clearly in terms of the research question and null hypothesis. How would you describe them to someone who does not know much about statistics?
+
+# **Bergmann's rule**
+
+![](https://bugguide.net/images/cache/5HT/HXH/5HTHXHDH6H6ZMLAZMLNZXLGZ7LRR7LBZ9HJHXL9Z5L1Z4LJHIH8ZIHEZ0LVHPHHR5LEZGH5ZSL2ZHLGZSLAZ8LJH8L.jpg){fig-align="center"}
+
+The Atlantic marsh fiddler crab, _Minuca pugnax_, lives in salt marshes throughout the eastern coast of the United States. Historically, _M. pugnax_ were distributed from northern Florida to Cape Cod, Massachusetts, but like other species have expanded their range northward due to ocean warming.
+
+The `pie_crab.csv` dataset is from a study by Johnson and colleagues at the Plum Island Ecosystem Long Term Ecological Research site.
+
+You can download the dataset [here](https://github.com/irmoodie/teaching_datasets/blob/main/pie_crab/pie_crab.csv).
+
+Data sampling overview:
+
+- 13 marshes were sampled on the Atlantic coast of the United States in summer 2016
+- Spanning > 12 degrees of latitude, from northeast Florida to northeast Massachusetts
+- Between 25 and 37 adult male fiddler crabs were collected, and their carapace size (mm) recorded
+
+The dataset was collected to test Bergmann's rule:
+
+> One of the best-known patterns in biogeography is Bergmann’s rule. It predicts that organisms at higher latitudes are larger than ones at lower latitudes. Many organisms follow Bergmann’s rule, including insects, birds, snakes, marine invertebrates, and terrestrial and marine mammals (Johnson et al. 2019).
+
+## Loading the data
+
+Download the data file. Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+
+**Make another code cell. Load the `pie_crab.csv` data file using the `read_csv()` function and assign it to an object named `pie_crab`.**
+
+```{r}
+pie_crab <- read_csv("pie_crab.csv") #<1>
+```
+1. Be sure to use quote marks around the file name.
+
+## Explore the data
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. How many rows of data are in the dataset?
+2. What is the unit of observation in this dataset? In other words, what does each row represent?
+3. What populations (statistical use of the word) could we make inferences about using this data?
+
+## Plot the data
+
+Try and figure out how you would use `ggplot()` and `geom_point()` to plot `latitude` and `size` in this dataset. Use any resources you like!
+
+## Calculating the observed statistic
+
+The research question is:
+
+- Does _Minuca pugnax_ follow Bergmann's rule?
+
+**In your RMarkdown document, using text below the code cell, answer the following questions:**
+
+1. State the null and alternative hypothesis.
+2. Use the slides to help you decide what statistic would help you answer this question. What test statistic will you use? Why?
+
+**In a new code cell, calculate the observed test statistic**
+
+```{r}
+obs_stat <-
+  ______ |> #<1>
+  specify(______ ~ ______) |> #<2>
+  calculate(stat = "______") #<3>
+
+obs_stat #<4>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant`
+3. Calculate the observed statistic.
+4. Print the observe statistic to the console.
+
+## Calculating confidence intervals
+
+![A general approach to bootstrapping confidence intervals](../slides/images/CI.svg){fig-align="center"}
+
+This statistic lends itself well to interpretable confidence intervals.
+
+**In a new code cell, calculate the 95% CI for the test statistic**
+
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  generate(reps = ______, type = "______") |> #<3>
+  calculate(stat = "______") #<4>
+
+percentile_ci <- get_ci(______, type = "______", level = ______) #<5>
+
+percentile_ci #<6>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
+3. Decide how you will generate a datasets to use in your sampling distribution.
+4. Calculate the statistic for each sample to make a sampling distribution.
+5. Use your sampling distribution object to calculate the confidence internals
+6. Print the CI
+
+## Testing against the null hypothesis
+
+![A general approach to hypothesis testing](../slides/images/hyptest.svg){fig-align="center"}
+
+### Generating a null distribution
+
+**In a new code cell, generate a null distribution using the code below:**
+
+```{r}
+______ <-
+  ______ |>  #<1>
+  specify(______ ~ ______) |> #<2>
+  hypothesize(null = "______") |>#<3>
+  generate(reps = ______, type = "______") |> #<4>
+  calculate(stat = "______") #<5>
+```
+1. The name of the dataset.
+2. A formula in the form of `dependant ~ independant` (order does not matter for a correlation)
+3. What is your null hypothesis?
+4. Decide how you will generate a datasets under your null hypothesis to use in your null distribution.
+5. Calculate the statistic for each sample to make a sampling distribution.
+
+### Compare your observed against the null
+
+**In a new code cell, plot the null distribution and the observed statistic using the code below:**
+
+```{r}
+______ |>
+  visualise() + #<1>
+  shade_p_value(obs_stat = ______, direction = "______") + #<2>
+  labs(x = "______") #<3>
+```
+
+### Calculate a p-value
+
+**In a new code cell, use your null distribution to calculate a p-value:**
+
+```{r}
+______ |>
+  get_p_value(obs_stat = ______, direction = "______")
+```
+
+## Writing your conclusions
+
+**In your RMarkdown document, using text below the code cell, answer the following question:**
+
+What are your conclusions? State them both clearly in terms of the research question and null hypothesis. How would you describe them to someone who does not know much about statistics?

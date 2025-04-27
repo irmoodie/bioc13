@@ -1,0 +1,46 @@
+---
+title: "Additional resources"
+---
+
+In this section of the course, we have been using an R package called `infer` to perform randomisation and resampling based statisitcs. Since we have only had two days, we have not had a chance to go through examples of every sort of analysis you might want to do. However, the framework you have been using for calculating confidence intervals and hypothesis testing can be applied extrememly broadly, and you can likely use them to answer any ecological question you come up with on this course.
+
+Below I have linked you to some materials which should help with that.
+
+---
+
+### Help with implementing your statistical methods
+
+ - The [getting to know `infer` vignette](https://infer.tidymodels.org/articles/infer.html)
+  - This contains a walk through of some examples using `infer` with commentary, explaining things in detail.
+- The [full `infer` pipeline examples vignette](https://infer.tidymodels.org/articles/observed_stat_examples.html)
+  - This contains examples of almost every possible analysis with `infer`, but with limited commentary. If you know what you want to do, but can't quite make it work, check this page.
+- There are also [other articles on the `infer` website](https://infer.tidymodels.org/articles/) that contain helpful examples.
+
+### Help with understanding the statistical methods
+
+- The [Statistical Inference with infer section of ModernDive (Ch. 7-10)](https://moderndive.com/v2/index.html) is a  beginner friendly text that follows the style of statistical analysis we have been doing in this part of the course.
+
+### Help with general working with data in R
+
+- For help with importing, data handling and basic plotting, the [Data Science with tidyverse section of ModernDive](https://moderndive.com/v2/index.html) is a beginner friendly text that will have examples for most things you will want to do.
+  - If something is not covered, check out [R for Data Science](https://r4ds.hadley.nz/).
+
+---
+
+### Advice for using AI tools to generate code
+
+AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, try the following:
+
+Include the terms `tidyverse` and `infer` in your prompt:
+
+- ~~How can I test if the means of two groups are different in R?~~
+  - How can I test if the means of two groups are different in R with the `infer` package?
+- ~~How can I make a scatterplot in R?~~
+  - How can I make a scatterplot in R with `tidyverse`?
+
+
+For general statistics help, include the terms "randomisation based inference" or "resampling based inference" or "computational statistics". These are the methods we have covered here, as opposed to more theory/mathematics based inference methods.
+
+
+
+

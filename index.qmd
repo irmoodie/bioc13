@@ -6,3 +6,5 @@ subtitle: "BIOC13 VT25"
 Here you will find all the materials required for the statistics section of BIOC13.
 
 All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/33420).
+
+
