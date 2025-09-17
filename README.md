@@ -1,4 +1,4 @@
-My teaching materials for the statisitcs section of *BIOC13: Ekologi* at Lund University (both autumn and spring version), organised as a quarto website.
+My teaching materials for the statisitcs section of *BIOC13: Ekologi* at Lund University (both autumn and spring version), organised as a quarto website. At the end of each semester, the site is archived via GitHub releases.
 
 This quarto site uses [R for WebAssembly](https://github.com/r-wasm) to enable interactive teaching examples in a static website framework.
 
