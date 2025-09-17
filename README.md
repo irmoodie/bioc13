@@ -9,7 +9,6 @@ This quarto site uses [R for WebAssembly](https://github.com/r-wasm) to enable i
 ## Quarto extensions
 - [`quarto-countdown`](https://github.com/gadenbuie/countdown/tree/main/quarto)
 - [`quarto-live`](https://github.com/r-wasm/quarto-live)
-- [`attribution`](https://github.com/quarto-ext/attribution)
 
 # Usage
 
@@ -20,7 +19,6 @@ To build the site, install the required quarto extensions in the root directory 
 ```{bash}
 quarto add gadenbuie/countdown/quarto
 quarto add r-wasm/quarto-live
-quarto add quarto-ext/attribution
 ```
 
 You can then build the site, which is built in `/_site` folder:
