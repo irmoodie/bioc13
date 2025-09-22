@@ -1,6 +1,5 @@
 ---
 title: "Data analysis using R and RStudio"
-date: 2025-04-23
 format: 
   html:
     toc: true
@@ -21,7 +20,51 @@ You should be met by a scene that looks like this:
 
 ![A screenshot of a new RStudio installation on macOS.](images/04/rstudio_3.png)
 
-Rstudio is designed around a four panel layout. Currently you can see three of them. To reveal the fourth, go to *File* -> *New file* -> *R markdown..*. This will open an RMarkdown document, which is a form of coding "notebook", where you can mix text, images and code in the same document. We will use these sorts of documents extensively in this course. Give your document a title like "BIOC13 Exercise Session 1". You can put your name for author, and leave the rest as default for now. Click OK. Now your window should look something like this:
+## Important settings
+
+Before we go any further, we need to change some default settings in RStudio. If you know what you are doing and don't like these suggestions, feel free to ignore them. If this is your first time using RStudio, then please follow them carefully. It will make following along easier.
+
+::: {.callout-important appearance="default"}
+
+## Change the following settings
+
+**Go to *Tools* -> *Global Settings*, then:**
+
+1. Go to the *General* tab.
+    i) **Un-tick** "*Restore .RData into workspace at startup*"
+    ii) Set "*Save workspace to RData on exit:*" to *Never*.
+2. Go to the *Code* tab
+    i) **Tick** "*Use native pipe operator, l> (requires R 4.1+)*"
+3. Go to the *RMarkdown* tab
+    i) **Un-tick** "*Show output inline for all R Markdown documents*"
+
+While we are here, if you wanted to change the font size or theme, you can do that in the *Appearance* tab. RStudio also has screenreader support. You can enable that in the *Accessibility* tab.
+
+:::
+
+Great, now that's done, let's move on.
+
+## RStudio layout
+
+Rstudio is designed around a **four panel layout**. Currently you can see three of them. Follow the instructions to open an RMarkdown document, which will also reveal the fourth panel.
+
+::: {.callout-note appearance="default"}
+
+## How to open an RMarkdown document
+
+Go to ***File* -> *New file* -> *R markdown...***
+
+This will open a new window and you will be prompted to fill in some details about your new RMarkdown document. 
+
+1. Give your document a title, such as `"BIOC13 Exercise Session 1"`.
+2. Write your name as the author. 
+3. Leave the rest of the options as default for now, and click OK.
+
+:::
+
+This will open the RMarkdown document with some example text and code. If you followed the [Getting familiar with R](02_intro_to_r.qmd) set of execises, you're already familiar with Rmarkdown documents, as that page behaves exactly like one! They allow you to mix code "chunks" with text and images. Sort of like a powerful word document. We will use RMarkdown documents exclusively in this course. 
+
+Your screen should look like the screenshot below. Note we now have four panels.
 
 ![A screenshot of RStudio on macOS with an RMarkdown file open, and the panels labelled.](images/04/rstudio_4.png)
 
@@ -44,39 +87,58 @@ The RMarkdown document you opened has some example text and code. An RMarkdown d
 
 Notice at the top left of the *Source* panel, there are two buttons: *Source* and *Visual*. These allow you to switch betwee two views of the RMarkdown document. The *Source* view is what you are looking at, and it is the raw text document. You can also use the *Visual* view, which allows you to work in a WYSIWYG (what you see is what you get) view, similar to Microsoft Office or other text editors. This "renders" your markdown code for you while you write. It also gives you a series of menus to help you format text, which means you do not need to learn [how to write markdown code](https://rmarkdown.rstudio.com/authoring_basics.html) (although it is extremely simple, and you likely know some already).
 
-Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.
+::: {.callout-note appearance="default"}
 
-## Important settings
+## Try switching between the Source and Visual modes
 
-Before we go any further, we need to change some default settings in RStudio.
+Use the toggle to see the document in both views. Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.
 
-**Go to *Tools* -> *Global Settings*, then:**
-
-1. Go to the *General* tab.
-    i) **Un-tick** "*Restore .RData into workspace at startup*"
-    ii) Set "*Save workspace to RData on exit:*" to *Never*.
-2. Go to the *Code* tab
-    i) **Tick** "*Use native pipe operator, l> (requires R 4.1+)*"
-3. Go to the *RMarkdown* tab
-    i) **Un-tick** "*Show output inline for all R Markdown documents*"
-
-While we are here, if you wanted to change the font size or theme, you can do that in the *Appearance* tab.
-
-RStudio also has screenreader support. You can enable that in the *Accessibility* tab.
+:::
 
 ## Working directory
 
 **I strongly recommend you create a folder where you save all the work you do as part of this section of the course.** I also recommend you make this folder in a part of your computer that is **not** being synced with a cloud service (iCloud, OneDrive, Google Drive, Dropbox, etc). These services can cause issues with RStudio. You can always back up your work at the end of a session.
 
-Within your new course folder, I also want you to **make a new folder for each exercise we do**. This will make it very easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question. For example, this is exercise 4, so my main folder might be called `bioc13`, and within that folder I might make a folder called `exercise_1`.
+::: {.callout-note appearance="default"}
 
-We now want to set our *working directory* to this `bioc13/exercise_1` folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise. To set the working directory using RStudio, go to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise. You should do this at the start of each exercise.
+## Make a folder for the statistics section of BIOC13
+
+Generally this is easier outside of RStudio.
+
+1. Make a folder for the statistics section of BIOC13.
+2. Make a folder within that folder for this exercise.
+
+For example, this is exercise 1, so my main folder might be called `bioc13`, and within that folder I might make a folder called `exercise_1`.
+
+:::
+
+You should **make a new folder for each exercise we do**. This will make it easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question.
+
+We now want to set our *working directory* to this `bioc13/exercise_1` folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise. 
+
+::: {.callout-note appearance="default"}
+
+## Set your working directory
+
+Within RStudio go to ***Session* -> *Set working directory* -> *Choose directory***, then navigate to the folder you just made for this exercise.
+
+:::
 
 Notice that now in your *Output* pane, in the *files* tab, you can see the contents of your folder (which is probably nothing currently). Let's change that.
 
 ## Saving your document
 
-Let's save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect. Go to *File* -> *Save*, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g. `exercise_1.Rmd`). The file should have appeared in your *Output* pane, with the extension `.Rmd`.
+Let's save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect.
+
+::: {.callout-note appearance="default"}
+
+## Saving a document
+
+Go to ***File* -> *Save***, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g. `exercise_1.Rmd`).
+
+:::
+
+The file should have appeared in your *Output* pane, with the extension `.Rmd`.
 
 Let's move onto working with some data!
 
