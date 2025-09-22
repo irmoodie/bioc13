@@ -1,10 +1,12 @@
 ---
 title: "Statistical inference for Ecologists"
-subtitle: "BIOC13 VT25"
+subtitle: "BIOC13 Autumn 2025 (HT 25)"
 ---
 
 Here you will find all the materials required for the statistics section of BIOC13.
 
-All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/33420).
+All course communication should take place on [LU Canvas](https://canvas.education.lu.se/courses/36302).
+
+For access to materials from previous semesters, see the [releases on GitHub](https://github.com/irmoodie/bioc13).
 
 
