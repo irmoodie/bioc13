@@ -2,27 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://irmoodie.github.io/bioc13/help.html</loc>
-    <lastmod>2025-04-26T08:27:38.403Z</lastmod>
+    <lastmod>2025-09-29T11:38:21.717Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/bioc13/exercises/04_statistics.html</loc>
     <lastmod>2025-04-25T10:58:08.515Z</lastmod>
   </url>
   <url>
-    <loc>https://irmoodie.github.io/bioc13/exercises/01_local_r.html</loc>
-    <lastmod>2025-04-26T08:28:01.765Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/bioc13/slides/intro_to_inference.html</loc>
-    <lastmod>2025-04-23T07:45:16.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://irmoodie.github.io/bioc13/index.html</loc>
-    <lastmod>2025-04-26T08:27:43.456Z</lastmod>
+    <loc>https://irmoodie.github.io/bioc13/exercises/03_inference_extra.html</loc>
+    <lastmod>2025-09-29T11:38:21.716Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/bioc13/slides/computational_statistics.html</loc>
     <lastmod>2025-04-25T08:05:36.390Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/bioc13/index.html</loc>
+    <lastmod>2025-09-29T11:38:21.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/bioc13/slides/intro_to_inference.html</loc>
+    <lastmod>2025-09-29T11:38:21.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://irmoodie.github.io/bioc13/exercises/01_local_r.html</loc>
+    <lastmod>2025-04-26T08:28:01.765Z</lastmod>
   </url>
   <url>
     <loc>https://irmoodie.github.io/bioc13/exercises/02_intro_to_r.html</loc>
@@ -30,6 +34,6 @@
   </url>
   <url>
     <loc>https://irmoodie.github.io/bioc13/exercises/03_inference.html</loc>
-    <lastmod>2025-04-23T10:50:38.306Z</lastmod>
+    <lastmod>2025-09-29T11:38:21.716Z</lastmod>
   </url>
 </urlset>

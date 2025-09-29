@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.7.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Iain R. Moodie">
-<meta name="dcterms.date" content="2025-04-23">
 
-<title>Data analysis using R and RStudio – BIOC13 Statistics</title>
+<title>Exercise 1: Data analysis using R – BIOC13 Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,8 +22,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,15 +85,16 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7a2a6ad7b10b9f00ed395f223be6c340.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-723b771237f1900da4361526b46ab816.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -152,7 +153,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Data analysis using R and RStudio – BIOC13 Statistics">
+<meta property="og:title" content="Exercise 1: Data analysis using R – BIOC13 Statistics">
 <meta property="og:description" content="Materials for the Statistics section of BIOC13, VT25">
 <meta property="og:image" content="https://irmoodie.github.io/bioc13/exercises/images/04/rstudio_3.png">
 <meta property="og:site_name" content="BIOC13 Statistics">
@@ -160,7 +161,7 @@ window.Quarto = {
 <meta property="og:image:width" content="4320">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -169,7 +170,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference.html">Exercise</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference.html">Exercises</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,7 +236,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/03_inference.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Exercise</span></a>
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises (extra)</span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +265,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/04_statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercise</span></a>
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -292,18 +299,20 @@ window.Quarto = {
   <ul>
   <li><a href="#welcome-to-rstudio" id="toc-welcome-to-rstudio" class="nav-link active" data-scroll-target="#welcome-to-rstudio">Welcome to <em>RStudio</em></a>
   <ul class="collapse">
-  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link" data-scroll-target="#rmarkdown">RMarkdown</a></li>
   <li><a href="#important-settings" id="toc-important-settings" class="nav-link" data-scroll-target="#important-settings">Important settings</a></li>
+  <li><a href="#rstudio-layout" id="toc-rstudio-layout" class="nav-link" data-scroll-target="#rstudio-layout">RStudio layout</a></li>
+  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link" data-scroll-target="#rmarkdown">RMarkdown</a></li>
   <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">Working directory</a></li>
   <li><a href="#saving-your-document" id="toc-saving-your-document" class="nav-link" data-scroll-target="#saving-your-document">Saving your document</a></li>
   </ul></li>
-  <li><a href="#data-handling-plotting-and-analysis-in-r" id="toc-data-handling-plotting-and-analysis-in-r" class="nav-link" data-scroll-target="#data-handling-plotting-and-analysis-in-r">Data handling, plotting and analysis in R</a>
+  <li><a href="#a-walkthrough-analysis" id="toc-a-walkthrough-analysis" class="nav-link" data-scroll-target="#a-walkthrough-analysis">A walkthrough analysis</a>
   <ul class="collapse">
-  <li><a href="#setting-up-the-rmarkdown-document" id="toc-setting-up-the-rmarkdown-document" class="nav-link" data-scroll-target="#setting-up-the-rmarkdown-document">Setting up the RMarkdown document</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#getting-everything-setup" id="toc-getting-everything-setup" class="nav-link" data-scroll-target="#getting-everything-setup">Getting everything setup</a></li>
   <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages">Installing R packages</a></li>
   <li><a href="#creating-code-cells" id="toc-creating-code-cells" class="nav-link" data-scroll-target="#creating-code-cells">Creating code cells</a></li>
   <li><a href="#loading-r-packages" id="toc-loading-r-packages" class="nav-link" data-scroll-target="#loading-r-packages">Loading R packages</a></li>
-  <li><a href="#adding-headings-and-text" id="toc-adding-headings-and-text" class="nav-link" data-scroll-target="#adding-headings-and-text">Adding headings and text</a></li>
+  <li><a href="#writing-text-alongside-code" id="toc-writing-text-alongside-code" class="nav-link" data-scroll-target="#writing-text-alongside-code">Writing text alongside code</a></li>
   <li><a href="#importing-data-into-r" id="toc-importing-data-into-r" class="nav-link" data-scroll-target="#importing-data-into-r">Importing data into R</a></li>
   <li><a href="#exploring-data" id="toc-exploring-data" class="nav-link" data-scroll-target="#exploring-data">Exploring data</a></li>
   <li><a href="#answering-a-research-question" id="toc-answering-a-research-question" class="nav-link" data-scroll-target="#answering-a-research-question">Answering a research question</a>
@@ -321,9 +330,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference.html">Exercise</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference.html">Exercises</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data analysis using R and RStudio</h1>
+<h1 class="title">Exercise 1: Data analysis using R</h1>
 </div>
 
 
@@ -337,12 +346,6 @@ window.Quarto = {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 23, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -354,7 +357,20 @@ window.Quarto = {
 
 <section id="welcome-to-rstudio" class="level1">
 <h1>Welcome to <em>RStudio</em></h1>
-<p><strong>Launch RStudio.</strong> It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Open RStudio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just like you would any other program on your computer, open RStudio (not R!).</p>
+<p>It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.</p>
+</div>
+</div>
 <p>You should be met by a scene that looks like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -362,34 +378,19 @@ window.Quarto = {
 <figcaption>A screenshot of a new RStudio installation on macOS.</figcaption>
 </figure>
 </div>
-<p>Rstudio is designed around a four panel layout. Currently you can see three of them. To reveal the fourth, go to <em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>. This will open an RMarkdown document, which is a form of coding “notebook”, where you can mix text, images and code in the same document. We will use these sorts of documents extensively in this course. Give your document a title like “BIOC13 Exercise Session 1”. You can put your name for author, and leave the rest as default for now. Click OK. Now your window should look something like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/04/rstudio_4.png" class="img-fluid figure-img"></p>
-<figcaption>A screenshot of RStudio on macOS with an RMarkdown file open, and the panels labelled.</figcaption>
-</figure>
-</div>
-<ol type="1">
-<li><strong>Source</strong>: This is where we edit code related documents. Anything you want to be able to save should be written here.</li>
-<li><strong>Console</strong>: the console is where R lives. This is where any command you write in the source pane and run will be sent to be executed.</li>
-<li><strong>Environments</strong>: this panel shows you objects loaded into R. For example, if you were to assign a value to an object (e.g.<code>x &lt;- 1</code>), then it would appear here.</li>
-<li><strong>Output</strong>: this panel has many functions, but is commonly used to navigate files, show plots, show a rendered RMarkdown file or to read the R help documentation.</li>
-</ol>
-<section id="rmarkdown" class="level2">
-<h2 class="anchored" data-anchor-id="rmarkdown">RMarkdown</h2>
-<p>RMarkdown is a file format for making dynamic documents with R. It combines plain text with embedded R code chunks that are run when the document is rendered, allowing you to include results <em>and</em> your R code directly in the document. This makes it a powerful tool for creating reproducible analyses, which are extremely important in science.</p>
-<p>The RMarkdown document you opened has some example text and code. An RMarkdown document consists of three main parts:</p>
-<ol type="1">
-<li><p><strong>YAML Header</strong>: This section, enclosed by <code>---</code> at the beginning and end, contains metadata about the document, such as the title, author, date, and output format.</p></li>
-<li><p><strong>Text</strong>: You can write plain text using Markdown syntax to format it. Markdown is a lightweight markup language with plain text formatting syntax, which is easy to read and write.</p></li>
-<li><p><strong>Code Chunks</strong>: These are sections of R code enclosed by triple backticks and <code>{r}</code>. You can click the green arrow to run all the code in a code chunk, or run each line of code using the <em>Run</em> button, or by using <code>Ctrl+Enter</code> (Windows) or Cmd+Enter (macOS)When the document is rendered, the code is executed, and the results are included in the output.</p></li>
-</ol>
-<p>Notice at the top left of the <em>Source</em> panel, there are two buttons: <em>Source</em> and <em>Visual</em>. These allow you to switch betwee two views of the RMarkdown document. The <em>Source</em> view is what you are looking at, and it is the raw text document. You can also use the <em>Visual</em> view, which allows you to work in a WYSIWYG (what you see is what you get) view, similar to Microsoft Office or other text editors. This “renders” your markdown code for you while you write. It also gives you a series of menus to help you format text, which means you do not need to learn <a href="https://rmarkdown.rstudio.com/authoring_basics.html">how to write markdown code</a> (although it is extremely simple, and you likely know some already).</p>
-<p>Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.</p>
-</section>
 <section id="important-settings" class="level2">
 <h2 class="anchored" data-anchor-id="important-settings">Important settings</h2>
-<p>Before we go any further, we need to change some default settings in RStudio.</p>
+<p>Before we go any further, we need to change some default settings in RStudio. If you know what you are doing and don’t like these suggestions, feel free to ignore them. If this is your first time using RStudio, then please follow them carefully. It will make following along easier.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Change the following settings
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Go to <em>Tools</em> -&gt; <em>Global Settings</em>, then:</strong></p>
 <ol type="1">
 <li>Go to the <em>General</em> tab.
@@ -406,90 +407,249 @@ window.Quarto = {
 <li><strong>Un-tick</strong> “<em>Show output inline for all R Markdown documents</em>”</li>
 </ol></li>
 </ol>
-<p>While we are here, if you wanted to change the font size or theme, you can do that in the <em>Appearance</em> tab.</p>
-<p>RStudio also has screenreader support. You can enable that in the <em>Accessibility</em> tab.</p>
+<p>While we are here, if you wanted to change the font size or theme, you can do that in the <em>Appearance</em> tab. RStudio also has screenreader support. You can enable that in the <em>Accessibility</em> tab.</p>
+</div>
+</div>
+<p>Great, now that’s done, let’s move on.</p>
+</section>
+<section id="rstudio-layout" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-layout">RStudio layout</h2>
+<p>Rstudio is designed around a <strong>four panel layout</strong>. Currently you can see three of them. Follow the instructions to open an RMarkdown document, which will also reveal the fourth panel.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How to open an RMarkdown document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Go to <strong><em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown…</em></strong></p>
+<p>This will open a new window and you will be prompted to fill in some details about your new RMarkdown document.</p>
+<ol type="1">
+<li>Give your document a title, such as <code>"BIOC13 Exercise Session 1"</code>.</li>
+<li>Write your name as the author.</li>
+<li>Leave the rest of the options as default for now, and click OK.</li>
+</ol>
+</div>
+</div>
+<p>This will open the RMarkdown document with some example text and code. If you followed the <a href="../exercises/02_intro_to_r.html">Getting familiar with R</a> set of execises, you’re already familiar with Rmarkdown documents, as that page behaves exactly like one! They allow you to mix code “chunks” with text and images. Sort of like a powerful word document. We will use RMarkdown documents exclusively in this course.</p>
+<p>Your screen should look like the screenshot below. Note we now have four panels.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/04/rstudio_4.png" class="img-fluid figure-img"></p>
+<figcaption>A screenshot of RStudio on macOS with an RMarkdown file open, and the panels labelled.</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><strong>Source</strong>: This is where we edit code related documents. Anything you want to be able to save should be written here.</li>
+<li><strong>Console</strong>: the console is where R lives. This is where any command you write in the source pane and run will be sent to be executed.</li>
+<li><strong>Environments</strong>: this panel shows you objects loaded into R. For example, if you were to assign a value to an object (e.g.<code>x &lt;- 1</code>), then it would appear here.</li>
+<li><strong>Output</strong>: this panel has many functions, but is commonly used to navigate files, show plots, show a rendered RMarkdown file or to read the R help documentation.</li>
+</ol>
+</section>
+<section id="rmarkdown" class="level2">
+<h2 class="anchored" data-anchor-id="rmarkdown">RMarkdown</h2>
+<p>RMarkdown is a file format for making dynamic documents with R. It combines plain text with embedded R code chunks that are run when the document is rendered, allowing you to include results <em>and</em> your R code directly in the document. This makes it a powerful tool for creating reproducible analyses, which are extremely important in science.</p>
+<p>The RMarkdown document you opened has some example text and code. An RMarkdown document consists of three main parts:</p>
+<ol type="1">
+<li><p><strong>YAML Header</strong>: This section, enclosed by <code>---</code> at the beginning and end, contains metadata about the document, such as the title, author, date, and output format.</p></li>
+<li><p><strong>Text</strong>: You can write plain text using Markdown syntax to format it. Markdown is a lightweight markup language with plain text formatting syntax, which is easy to read and write.</p></li>
+<li><p><strong>Code Chunks</strong>: These are sections of R code enclosed by triple backticks and <code>{r}</code>. You can click the green arrow to run all the code in a code chunk, or run each line of code using the <em>Run</em> button, or by using <code>Ctrl+Enter</code> (Windows) or Cmd+Enter (macOS)When the document is rendered, the code is executed, and the results are included in the output.</p></li>
+</ol>
+<p>Notice at the top left of the <em>Source</em> panel, there are two buttons: <em>Source</em> and <em>Visual</em>. These allow you to switch betwee two views of the RMarkdown document. The <em>Source</em> view is what you are looking at, and it is the raw text document. You can also use the <em>Visual</em> view, which allows you to work in a WYSIWYG (what you see is what you get) view, similar to Microsoft Office or other text editors. This “renders” your markdown code for you while you write. It also gives you a series of menus to help you format text, which means you do not need to learn <a href="https://rmarkdown.rstudio.com/authoring_basics.html">how to write markdown code</a> (although it is extremely simple, and you likely know some already).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try switching between the Source and Visual modes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the toggle to see the document in both views. Which ever view you prefer (and you can switch as often as you like), the code part stays the same. It is primarily there for editing the text around your code.</p>
+</div>
+</div>
 </section>
 <section id="working-directory" class="level2">
 <h2 class="anchored" data-anchor-id="working-directory">Working directory</h2>
 <p><strong>I strongly recommend you create a folder where you save all the work you do as part of this section of the course.</strong> I also recommend you make this folder in a part of your computer that is <strong>not</strong> being synced with a cloud service (iCloud, OneDrive, Google Drive, Dropbox, etc). These services can cause issues with RStudio. You can always back up your work at the end of a session.</p>
-<p>Within your new course folder, I also want you to <strong>make a new folder for each exercise we do</strong>. This will make it very easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question. For example, this is exercise 4, so my main folder might be called <code>bioc13</code>, and within that folder I might make a folder called <code>exercise_1</code>.</p>
-<p>We now want to set our <em>working directory</em> to this <code>bioc13/exercise_1</code> folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise. To set the working directory using RStudio, go to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise. You should do this at the start of each exercise.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Make a folder for the statistics section of BIOC13
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Generally this is easier outside of RStudio.</p>
+<ol type="1">
+<li>Make a folder for the statistics section of BIOC13.</li>
+<li>Make a folder within that folder for this exercise.</li>
+</ol>
+<p>For example, this is exercise 1, so my main folder might be called <code>bioc13</code>, and within that folder I might make a folder called <code>exercise_1</code>.</p>
+</div>
+</div>
+<p>You should <strong>make a new folder for each exercise we do</strong>. This will make it easy for you to stay organsied and submit work you do to me for feedback. It also makes your code reproducible by simply sending someone the contents of the folder in question.</p>
+<p>We now want to set our <em>working directory</em> to this <code>bioc13/exercise_1</code> folder. A working directory is the directory (folder) in a file system where a user is currently working. It is the default location where all your R code will be executed and where files are read from or written to unless specified otherwise.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Set your working directory
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Within RStudio go to <strong><em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em></strong>, then navigate to the folder you just made for this exercise.</p>
+</div>
+</div>
 <p>Notice that now in your <em>Output</em> pane, in the <em>files</em> tab, you can see the contents of your folder (which is probably nothing currently). Let’s change that.</p>
 </section>
 <section id="saving-your-document" class="level2">
 <h2 class="anchored" data-anchor-id="saving-your-document">Saving your document</h2>
-<p>Let’s save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect. Go to <em>File</em> -&gt; <em>Save</em>, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g.&nbsp;<code>exercise_1.Rmd</code>). The file should have appeared in your <em>Output</em> pane, with the extension <code>.Rmd</code>.</p>
+<p>Let’s save this example RMarkdown document that RStudio has made for us. You do that exactly how you might expect.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saving a document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Go to <strong><em>File</em> -&gt; <em>Save</em></strong>, or use the floppy disc icon. Ensure you save it in your working directory with a descriptive name (e.g.&nbsp;<code>exercise_1.Rmd</code>).</p>
+</div>
+</div>
+<p>The file should have appeared in your <em>Output</em> pane, with the extension <code>.Rmd</code>.</p>
 <p>Let’s move onto working with some data!</p>
+<hr>
 </section>
 </section>
-<section id="data-handling-plotting-and-analysis-in-r" class="level1">
-<h1>Data handling, plotting and analysis in R</h1>
+<section id="a-walkthrough-analysis" class="level1">
+<h1>A walkthrough analysis</h1>
 <p>Today we will work with a dataset called <code>tephritis_phenotype.csv</code>. The dataset comes from a study conducted at Lund University by <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span>.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>The dataset describes morphological measurements (lengths, widths of different body parts) of the fly <em>Tephritis conura</em>. This species has specialised to utilise two different host plants (<code>host_plant</code>), <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em>, and formed stable “host races”. Individuals of both host races were collected in both sympatry (where both <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em> host plants co-occur) and allopatry (where only one <em>Cirsium</em> species occurs) (<code>patry</code>) from eight different populations in northern Europe (<code>region</code>) from both sides of the Baltic sea (<code>baltic</code>). Individuals were measured after having been hatched in a common lab environment. One female and one male (<code>sex</code>) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/04/nilsson2024.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1 from <span class="citation" data-cites="nilsson2024">Nilsson et al. (<a href="#ref-nilsson2024" role="doc-biblioref">2024</a>)</span>: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum</figcaption>
+<figcaption>Figure 1 from <span class="citation" data-cites="nilsson2024">Nilsson et al. (<a href="#ref-nilsson2024" role="doc-biblioref">2024</a>)</span>: Sampling design, host plants, and traits investigated. a. Parallel sampling of allopatric and sympatric populations of the two host races of <em>T. conura</em> flies east and west of the Baltic. CH denotes the <em>C. heterophyllum</em> host race and CO denotes the <em>C. oleraceum</em> host race. b. Size measurements of <em>T. conura</em>. c.&nbsp;The ancestral host plant, <em>C. heterophyllum</em>. d.&nbsp;The derived host plant, <em>C. oleraceum</em></figcaption>
 </figure>
 </div>
-<blockquote class="blockquote">
-<p>The dataset describes morphological measurements of the dipteran <em>Tephritis conura</em>. This species has specialised to utilise two different host plants (<code>host_plant</code>), <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em>, and thereby formed stable host races. Individuals of both host races were collected in both sympatry (where both <em>Cirsium heterophyllum</em> and <em>C. oleraceum</em> host plants co-occur) and allopatry (where only one <em>Cirsium</em> species occurs) (<code>patry</code>) from eight different populations in northern Europe (<code>region</code>) from both sides of the Baltic sea (<code>baltic</code>). Individuals were measured after having been hatched in a common lab environment. One female and one male (<code>sex</code>) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Measured traits included wing length (<code>wing_length_mm</code>), wing width (<code>wing_width_mm</code>), melanised percentage cover (<code>melanized_percent</code>), body length (<code>body_length_mm</code>) and ovipositor length (<code>ovipositor_length_mm</code>). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.</p>
-</blockquote>
-<p>You can download the dataset <a href="https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype_clean/tephritis_phenotype.csv">here</a>.</p>
+<p>Measured traits included the length of a wing (<code>wing_length_mm</code>), the width of a wing (<code>wing_width_mm</code>), the amount of the wing that was melanised (<code>melanized_percent</code>), the length of the body (<code>body_length_mm</code>) and the length of the ovipositor (<code>ovipositor_length_mm</code>).</p>
+</section>
+<section id="getting-everything-setup" class="level2">
+<h2 class="anchored" data-anchor-id="getting-everything-setup">Getting everything setup</h2>
+<p>Before we conduct the analysis, we need to download the dataset and move it to our working directory.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Download the dataset
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can download the dataset called <code>tephritis_phenotype.csv</code> from <a href="https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype_clean/tephritis_phenotype.csv">here</a>.</p>
 <p><img src="images/04/download_github.png" class="img-fluid" style="width:50.0%"></p>
-<p>Once downloaded, you should move it to your <em>working directory</em> folder for this exercise before continuing.</p>
-<section id="setting-up-the-rmarkdown-document" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-the-rmarkdown-document">Setting up the RMarkdown document</h2>
-<p>We will work with the RMarkdown file we generated at the start (that I called <code>exercise_1.Rmd</code>).</p>
-<p>First, we should delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the <code>---</code>). You can do that as you would expect in any other text editor. Now we have our blank RMarkdown file, let’s get started.</p>
+<p>Once downloaded, you should <strong>move it to your <em>working directory</em> folder for this exercise before continuing</strong>.</p>
+</div>
+</div>
+<p>Next, let’s clean up our document.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cleaning up the RMarkdown document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the RMarkdown file we generated at the start (that I called <code>exercise_1.Rmd</code>):</p>
+<ol type="1">
+<li>Delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the <code>---</code>). You can do that as you would expect in any other text editor.</li>
+</ol>
+</div>
+</div>
+<p>Now we have our blank RMarkdown file, let’s get started.</p>
 </section>
 <section id="installing-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
 <p>In this exercise, we will use the <code>tidyverse</code> package, and the <code>infer</code> package. To install them you need to use the <code>install.packages()</code> function. Since we only need to do this once per computer, we should run this function directly in the <em>Console</em> panel.</p>
-<p><strong>Type or copy the install function into the <em>console</em>, and press enter to run:</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Install the R packages on your computer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Type or copy the install function into the <strong>console</strong>, and press enter to run:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"infer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/04/rstudio_install.png" class="img-fluid"></p>
 <p>From now on, we won’t write things directly in the <em>Console</em>, and instead write code in the RMarkdown document in the <em>Source</em> panel, which we then “Run” and send the <em>Console</em>.</p>
+</div>
+</div>
 </section>
 <section id="creating-code-cells" class="level2">
 <h2 class="anchored" data-anchor-id="creating-code-cells">Creating code cells</h2>
 <p>Code cells are where we write code in an RMarkdown document. This allows use to write normal text outside these sections.</p>
-<p><strong>In your <em>Source</em> panel, in the RMarkdown document, add a R code cell.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Make a code cell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In your <strong>Source</strong> panel, in the RMarkdown document, add a R code cell. This is done in different ways depending on if you are using the visual view or the source view:</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Visual view
+How to make a code cell in <em>Visual</em> view
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>To do that in the <em>Visual view</em> (where the text is rendered), go to <em>Insert</em> -&gt; <em>Executable Cell</em> -&gt; <em>R</em>.</p>
+<p>Go to <em>Insert</em> -&gt; <em>Executable Cell</em> -&gt; <em>R</em>.</p>
 <p><img src="images/04/rstudio_visual_codecell.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Source view
+How to make a code cell in <em>Source</em> view
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>To do that in the <em>Source view</em> (where we see just plain text), we use three back-ticks (<code>```</code>) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets <code>{r}</code>.</p>
+<p>Use three back-ticks (<code>```</code>) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets <code>{r}</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -497,15 +657,30 @@ Source view
 </div>
 </div>
 <p>In both views, you can also use the shortcut <em>Shift-Alt-I</em> or <em>Shift-Command-I</em>.</p>
+</div>
+</div>
 </section>
 <section id="loading-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-r-packages">Loading R packages</h2>
-<p>After installing an R package, we need to load it into our current R environment. We use the <code>library()</code> function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed “top to bottom”, so this bit of code should come right at the start.</p>
-<p><strong>Inside that code cell you just made, use the <code>library()</code> function to load the <code>tidyverse</code> and <code>infer</code> packages:</strong></p>
-<p>(To run code in the <em>Source</em> panel, you can click on the line you want to run, and then press the “Run” button. Or you can also use the keyboard shortcut <code>Ctrl+Enter</code> or <code>Cmd+Return</code>.)</p>
+<p>After installing an R package, we need to tell R that we want to use the package in this document. We use the <code>library()</code> function to do that.</p>
+<p>R code should always be executed “top to bottom”, so this bit of code should come right at the start.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tell R that we want to use the packages we just installed
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Inside that code cell you just made, use the <code>library()</code> function to load the <code>tidyverse</code> and <code>infer</code> packages:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then run the code. (To run code in the <em>Source</em> panel, you can click on the line you want to run, and then press the “Run” button. Or you can also use the keyboard shortcut <code>Ctrl+Enter</code> or <code>Cmd+Return</code>.)</p>
+</div>
 </div>
 <p>If that worked, you will get a message that reads something similar to:</p>
 <div class="cell">
@@ -513,7 +688,7 @@ Source view
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -522,14 +697,14 @@ Source view
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<p>This message tells us which packages were loaded by the <code>tidyverse</code> package, and which functions from base R (the functions that come with R by default) have been overwritten by the <code>tidyverse</code> packages. Not all packages produce a message when they are loaded (for example, <code>infer</code> did not).</p>
+<p>Not all packages produce a message when they are loaded (for example, <code>infer</code> did not).</p>
 </section>
-<section id="adding-headings-and-text" class="level2">
-<h2 class="anchored" data-anchor-id="adding-headings-and-text">Adding headings and text</h2>
-<p>Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, the exam (open book), the group project, or later in your studies.</p>
+<section id="writing-text-alongside-code" class="level2">
+<h2 class="anchored" data-anchor-id="writing-text-alongside-code">Writing text alongside code</h2>
+<p>Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, or later in your studies.</p>
 <p>Along side normal text, you can structure an RMarkdown document using headings.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -538,7 +713,7 @@ Visual view
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Change the type of text you are typing in the menu at the top:</p>
 <p><img src="images/04/rstudio_visual_heading.png" class="img-fluid"></p>
@@ -546,7 +721,7 @@ Visual view
 </div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -555,7 +730,7 @@ Source view
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Use <code>#</code>s to indicate the level of the heading:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Heading level 1</span></span>
@@ -574,18 +749,29 @@ persica,1.2,12
 persica,1.5,18
 banksiae,2.4,3
 banksiae,1.7,8</code></pre>
-<p><code>.csv</code> files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text (unlike an <code>.xlsx</code> file from Microsoft Excel, for example).</p>
-<p><strong>Make another code cell.</strong></p>
-<p><strong>Load the <code>tephritis_phenotype.csv</code> data file using the <code>read_csv()</code> function and assign it to an object named <code>tephritis_data</code>.</strong></p>
+<p><code>.csv</code> files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Load the data into R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will load the <code>tephritis_phenotype.csv</code> data file using the <code>read_csv()</code> function and assign it to an object named <code>tephritis_data</code>. To do that, <strong>first make a new code cell</strong>, then within it write:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tephritis_phenotype.csv"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>tephritis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tephritis_phenotype.csv"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Be sure to use quote marks around the file name.</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="1">Be sure to use quote marks around the file name.</span>
 </dd>
 </dl>
+</div>
+</div>
 </div>
 </div>
 <p>If that worked, you should get the following message with some information about the data:</p>
@@ -603,25 +789,52 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 </div>
 <p>This has loaded a copy of the data from <code>tephritis_phenotype.csv</code> into R. Notice that the object <code>tephritis_data</code> has also appeared in the <em>Environment</em> panel.</p>
 <p><img src="images/04/rstudio_load_data.png" class="img-fluid"></p>
-<p><strong>Click on the object <code>tephritis_data</code> with your mouse.</strong> This will open the dataset using the RStudio function <code>View()</code> (which if you look in your console, you will see it has just run). This allows you to view the dataset as a table, like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+View the data in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To view the data, click on the object <code>tephritis_data</code> in the <em>Environment</em> panel with your mouse.</p>
+<p>This allows you to view the dataset like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.</p>
+</div>
+</div>
 </section>
 <section id="exploring-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-data">Exploring data</h2>
-<p>Let’s use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. <strong>Make a new code cell, and write the following:</strong></p>
+<p>Let’s use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Print the data to the console
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new code cell, and write the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tephritis_data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tephritis_data)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We can also just simply write <code>tephritis_data</code> without the print statement, and we would get the same output.</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="1">We can also just simply write <code>tephritis_data</code> without the print statement, and we would get the same output.</span>
 </dd>
 </dl>
 </div>
 </div>
+</div>
+</div>
+<p>Let’s unpack what has appeared in your console:</p>
 <ul>
-<li>The first line of the output is telling us what sort of data is in the object. In this case, its a <code>tibble</code>. Tibbles are dataframes that act more like how we expect tables to act. They come from the <code>tibble</code> R package, which is installed with the <code>tidyverse</code> package.</li>
-<li>That same line tells us the number of rows (<code>583</code>) and number of columns (<code>10</code>).</li>
+<li>The first line of the output is telling us what sort of data is in the object. In this case, its a <code>tibble</code>, a way of storing data in a table/spreadsheet format.</li>
+<li>That same line tells us the number of rows (<code>583</code>) and number of columns (<code>10</code>) in the table.</li>
 <li>The next line tell us the variable types.</li>
 <li>Then the first 10 rows of the dataframe have been printed, along with the column (variable) names at the top.</li>
 <li>Below that, we get two important pieces of information, denoted by the small <code>ℹ</code> symbol:
@@ -629,49 +842,99 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 <li>The first <code>ℹ</code> tells us how many rows are not being shown here. Since by default 10 are shown, <span class="math inline">\(583-10=573\)</span>.</li>
 <li>The second <code>ℹ</code> tells us how many columns (variables) are not being shown here, as there was not enough room to print them.</li>
 </ul></li>
-<li>We can also see that some rows have <code>NA</code> values (not applicable). This is the symbol R uses for no data present.</li>
+<li>We can also see that some rows have <code>NA</code> values (not applicable). This is the symbol R uses to say no data present.</li>
 </ul>
-<p>We can also use <code>glimpse()</code> for an alternative view:</p>
+<p>Let’s use a few other ways of viewing our data in the console:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Take a glimpse at the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new code cell, and write the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tephritis_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>glimpse()</code> transposes the dataframe, with columns now running down the page. This view means we can see all the variables.</li>
 </ul>
-<p>You can also use the <code>summary()</code> function:</p>
+</div>
+</div>
+<p>You can also use <code>summary()</code> to calculate some useful summary statistics of the dataset as a whole:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculate some summary statistics of your dataset
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new code cell, and write the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tephritis_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>In your RMarkdown document, using text below the code cell, answer the following questions:</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Answer the following questions in text in your RMarkdown document. Use what you have learned from exploring the data so far, and the background to the study:</p>
 <ol type="1">
 <li>What is the unit of observation in this dataset? In other words, what does each row represent?</li>
 <li>What populations (statistical use of the word) could we make inferences about using this data?</li>
 <li>Are there any <code>NA</code> values in the dataset? In which variable(s) and why might this be?</li>
 </ol>
+</div>
+</div>
 </section>
 <section id="answering-a-research-question" class="level2">
 <h2 class="anchored" data-anchor-id="answering-a-research-question">Answering a research question</h2>
-<p>One of the questions that <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span> were interested in was if there has been any morphological divergence between the host races of these flies. In other words, do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in some predictable way?</p>
+<p>One of the questions that <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span> were interested in was if there has been any morphological (size of body parts) divergence between the host races of these flies. In other words, do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in some predictable way?</p>
 <p>Let’s use the variable <code>ovipositor_length_mm</code> to explore this research question.</p>
 <section id="filtering-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="filtering-the-dataset">Filtering the dataset</h3>
 <p>First, we should <code>filter()</code> our dataset to only contain females (as only females have an ovipositor). <code>filter()</code> is a function that let’s us write conditional statements that only allow rows that meet those conditions to “filter” through. For example, we can use <code>filter()</code> to only allow rows where <code>sex == "female"</code> to filter through, thereby creating a new dataset of just female flies.</p>
-<p><strong>Make a new code cell, and write the following:</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Filter the dataset
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make a new code cell, and write the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>female_data <span class="ot">&lt;-</span></span>
-<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  tephritis_data <span class="sc">|&gt;</span> </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>female_data <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>  tephritis_data <span class="sc">|&gt;</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-15-3" class="code-annotation-target"><a href="#annotated-cell-15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">I assigned the new dataset to a new object, called <code>female_data</code>.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">I assigned the new dataset to a new object, called <code>female_data</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="2">Inside the <code>filter()</code> function, I can write any conditional statement.</span>
+<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="2">Inside the <code>filter()</code> function, I say which rows should be allowed through the filter.</span>
 </dd>
 </dl>
+</div>
+</div>
 </div>
 </div>
 <p>Now we have the rows we are interested in, let’s move on.</p>
@@ -679,20 +942,25 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 <section id="exploratory-plot" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-plot">Exploratory plot</h3>
 <p>Often before we start any formal statistics, we want to plot our data.</p>
-<p>R has a built in method to make plots, but here I will use a different approach. Instead we will use <code>ggplot2</code>, a plotting package that is installed with <code>tidyverse</code>. <code>ggplot2</code> provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as <em>the grammer of graphics</em> (gg) <span class="citation" data-cites="wilkinsonGrammarGraphics2013">(<a href="#ref-wilkinsonGrammarGraphics2013" role="doc-biblioref">Wilkinson 2013</a>)</span>.</p>
-<section id="the-grammer-of-graphics" class="level4">
-<h4 class="anchored" data-anchor-id="the-grammer-of-graphics">The grammer of graphics</h4>
-<p>The grammer of graphics gives us a way to describe any plot. <code>ggplot2</code> then allows us to make that plot, using a layered approach to the grammer of graphics.</p>
-<p>Using this approach, we can say a statistical graphic is a <code>mapping</code> of <code>data</code> variables to <code>aes</code>thetic attributes of <code>geom</code>etric objects <span class="citation" data-cites="moderndive2025">(<a href="#ref-moderndive2025" role="doc-biblioref">Chester et al. 2025</a>)</span>.</p>
-<p>Wow. What does that mean? Let’s break it down.</p>
+<p>R has a built in method to make plots, but here we will use a different approach. Instead we will use <code>ggplot2</code>, a plotting package that is installed with <code>tidyverse</code>. <code>ggplot2</code> provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as <em>the grammer of graphics</em> <span class="citation" data-cites="wilkinsonGrammarGraphics2013">(<a href="#ref-wilkinsonGrammarGraphics2013" role="doc-biblioref">Wilkinson 2013</a>)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The grammer of graphics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The grammer of graphics gives us a way to describe any plot.</p>
 <p>A <code>ggplot2</code> plot has three essential components:</p>
 <ul>
 <li><code>data</code>: the dataset that contains the variables you want to plot</li>
 <li><code>geom</code>: the geometric object you want to use to display your data (e.g.&nbsp;a point, a line, a bar).</li>
 <li><code>aes</code>: aesthetic attributes that you want to map to your geometric object. For example, the x and y location of a point geometry could be mapped to two variables in your dataset, and the colour of those points could be mapped to a third.</li>
 </ul>
-<p>As I said before, <code>ggplot2</code> uses a layered approach to the grammer of graphics. This makes it very easy to start contructing plots by putting together a “recipe” step-by-step. Let’s walk through an example.</p>
-<hr>
+<p><code>ggplot2</code> uses a layered approach to the grammer of graphics. This makes it very easy to start contructing plots by putting together a “recipe” step-by-step. Let’s walk through an example.</p>
 <p>In our case, we want to plot <code>ovipositor_length_mm</code> for each <code>host_plant</code> group. One example might be a boxplot:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -701,35 +969,50 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> female_data,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> host_plant, <span class="at">y =</span> ovipositor_length_mm)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-9-5" class="code-annotation-target"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-2" class="code-annotation-target"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> female_data,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-3" class="code-annotation-target"><a href="#annotated-cell-16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> host_plant, <span class="at">y =</span> ovipositor_length_mm)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-16-4" class="code-annotation-target"><a href="#annotated-cell-16-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-16-5" class="code-annotation-target"><a href="#annotated-cell-16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="1">Inside the <code>ggplot()</code> function, I specify the dataset as <code>female_data</code></span>
+<span data-code-cell="annotated-cell-16" data-code-lines="2" data-code-annotation="1">Inside the <code>ggplot()</code> function, I specify the dataset as <code>female_data</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="2">I map the <code>host_plant</code> column to the x axis <code>aes</code>thetic and the <code>ovipositor_length_mm</code> to the y axis <code>aes</code>thetic.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="3" data-code-annotation="2">I map the <code>host_plant</code> column to the x axis <code>aes</code>thetic and the <code>ovipositor_length_mm</code> to the y axis <code>aes</code>thetic.</span>
 </dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="3">To add layers to a <code>ggplot()</code> object, we can use a <code>+</code></span>
+<span data-code-cell="annotated-cell-16" data-code-lines="4" data-code-annotation="3">To add layers to a <code>ggplot()</code> object, we can use a <code>+</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="4">I add a boxplot <code>geom</code>etry, that will use the <code>aes</code>thetics I specified before.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="5" data-code-annotation="4">I add a boxplot <code>geom</code>etry, that will use the <code>aes</code>thetics I specified before.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p><strong>Copy the code into a new code cell and run it</strong></p>
-<p><strong>Regarding our research question, what does the graph suggest to you?</strong></p>
-</section>
+<p>Copy the code into a new code cell and run it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What does the graph tell you? Is there a difference between the host races? Write your answer in your RMarkdown document.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="calculating-the-observed-statistic" class="level3">
 <h3 class="anchored" data-anchor-id="calculating-the-observed-statistic">Calculating the observed statistic</h3>
@@ -738,168 +1021,371 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 <li>Do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</li>
 </ul>
 <p>The question concerns a difference in a continuous variable between two groups (<code>host_plant</code>). Let’s start by exploring if there is a difference in the central tendancy of <code>ovipositor_length_mm</code> in the two groups. That is, does average <code>ovipositor_length_mm</code> differ between them?</p>
-<p>A suitable test statistic for this question could be a difference in means. Let’s start with that.</p>
-<p>We are going to do that using the <code>infer</code> package we loaded at the start. <code>infer</code> is a statistics package that allows us to perform simulation based inferences without knowing a lot of computer code.</p>
-<p>To use <code>infer</code> to calculate an observed statistic, we use the following approach:</p>
+<p>A suitable statistic that captures our question could be a <strong>difference in means</strong>.</p>
+<p><span class="math display">\[
+\bar{x}_{\text{heterophyllum}} - \bar{x}_{\text{oleraceum}}
+\]</span></p>
+<p>We are going to do that using the <code>infer</code> package we loaded at the start.</p>
+<p>To use <code>infer</code> to calculate an observed statistic, we use the approach we covered in the lecture:</p>
 <p><img src="../slides/images/obs.svg" class="img-fluid"></p>
 <p>In code, that looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>obs_stat <span class="ot">&lt;-</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-10-4" class="code-annotation-target"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>obs_stat <span class="ot">&lt;-</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="1">Using the dataset we just made, we pipe <code>|&gt;</code> it into the next line.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Using the dataset we just made, we pipe <code>|&gt;</code> it into the next line.</span>
 </dd>
-<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="2">We <code>specify()</code> which columns we are interested in, and which is our response variable, and which is our explanatory variable. In this case, we want to explain <code>ovipositor_length_mm</code> using <code>host_plant</code>, and express that as a <code>"diff in means"</code>.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="2">We <code>specify()</code> which columns we are interested in, and which is our response variable, and which is our explanatory variable. In this case, we want to explain <code>ovipositor_length_mm</code> using <code>host_plant</code>, and express that as a <code>"diff in means"</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="4" data-code-annotation="3">We <code>calculate()</code> our chosen statisitc <code>"diff in means"</code>, and we say that the subtraction should be <code>"heterophyllum"</code> minus <code>"oleraceum"</code>.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="3">We <code>calculate()</code> our chosen statisitc <code>"diff in means"</code>, and we say that the subtraction should be <code>"heterophyllum"</code> minus <code>"oleraceum"</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="4">We assign this to a new object called <code>obs_stat</code>.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="4">We assign this to a new object called <code>obs_stat</code>.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p><strong>Use the code above in a new code cell to calculate the observed statistic.</strong></p>
-<p>To see your observed statistic, simply print it by writing the name of the object:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculate the observed test statistic
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the code above in a new code cell to calculate the observed statistic.</p>
+<p>To see your observed statistic, simply print it by writing the name of the object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Describe what this observed statistic tells us.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Describe in words what this observed statistic tells us. Is there a difference in mean ovipositor length? If so, which host race is bigger, and by how much?</li>
+<li>Does it make sense given the graph you made earlier?</li>
+</ol>
+<p>Write your answer in your RMarkdown document.</p>
+</div>
+</div>
 </section>
 <section id="quantifying-uncertainty" class="level3">
 <h3 class="anchored" data-anchor-id="quantifying-uncertainty">Quantifying uncertainty</h3>
-<p>If we took another sample, it is unlikely that we would get exactly the same observed statistic. We want to quantify that effect. In this exercise, we will use a 95% confidence interval.</p>
+<p>If we took another sample (that is, if we repeated the field work that <span class="citation" data-cites="nilsson2022">Nilsson et al. (<a href="#ref-nilsson2022" role="doc-biblioref">2022</a>)</span> did), it is unlikely that we would get exactly the same observed statistic, just due to chance. We want to quantify this effect. In this exercise, we will use a 95% confidence interval to do that.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../slides/images/CI.svg" class="img-fluid figure-img"></p>
-<figcaption>A general approach to bootstrapping confidence intervals</figcaption>
+<figcaption>A general approach to bootstrapping confidence intervals.</figcaption>
 </figure>
 </div>
 <p>We have already calculated our observed statistic, so let’s generate a sampling distribution using bootstrapping.</p>
+<p>Recall from the lecture that a bootstrap sample is generated from the original dataset by resampling (randomly selecting rows) it with replacement (we can select the same row more than once). To complete one bootstrap sample, we resample with replacement until we have the same number of rows of data that were in our original dataset.</p>
+<p>We then calculate our observed statistic using the bootstrap sample. This can then be repeated many times to construct a <strong>sampling distribution</strong>, which show the range of statistics we think it would be possible to observe, if we had actually sampled our population again.</p>
 <p>To do that in code, we write the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a>boot_dist <span class="ot">&lt;-</span></span>
-<span id="annotated-cell-12-2"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span> </span>
-<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-4" class="code-annotation-target"><a href="#annotated-cell-12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="4" data-code-annotation="1">Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step, where we generate 10000 bootstrapped datasets, then calculate the diff in means for all of them.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="1">Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step, where we generate 10000 bootstrapped datasets, then calculate the diff in means for all of them.</span>
 </dd>
-<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="2">We assign this to a new object, called <code>boot_dist</code></span>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="2">We assign this to a new object, called <code>sampling_dist</code></span>
 </dd>
 </dl>
 </div>
 </div>
-<p><strong>Use the code above in a new code cell to get a bootstrap sampling distribution</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Simulate and visualize a sampling distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the code above in a new code cell to get a bootstrap sampling distribution.</p>
 <p>Again we can print it by just writing its name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>boot_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sampling_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>infer</code> has a helpful function to quickly see the distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(sampling_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What does the output of <code>visualize(sampling_dist)</code> show? How would you describe it to a friend who is not in this class?</li>
+</ol>
+<p>Write your answer in your RMarkdown document.</p>
+</div>
 </div>
 <section id="confidence-intervals" class="level4">
 <h4 class="anchored" data-anchor-id="confidence-intervals">Confidence intervals</h4>
-<p>We can use the percentile method to calculate a confidence interval. To do that we take the middle 95% of the bootstrapped sampling distribution. Again, <code>infer</code> has a helpful function to do this for us:</p>
+<p>We can use the percentile method to calculate a confidence interval. To do that we take the middle 95% of the bootstrapped sampling distribution. Again, <code>infer</code> has a helpful function to do this for us.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculate a 95% confidence interval
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the code below in a new code cell to calculate your confidence interval.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>conf_int <span class="ot">&lt;-</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(boot_dist, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(sampling_dist, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Use the code above to calculate your confidence interval</strong></p>
 <p>Again, print the object to see the confidence intervals:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conf_int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also visualise the confidence interval on our sampling distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(sampling_dist) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Write a statement using your observed statistic and confidence intervals. How would you explain what a confidence interval is to someone who hasn’t studied statistics?</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using our original research question:</p>
+<blockquote class="blockquote">
+<p>Do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</p>
+</blockquote>
+<p>Write a statement to address our original research question using your observed statistic and confidence intervals.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="hypothesis-testing" class="level3">
 <h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h3>
-<p>While our confidence interval gives us a pretty big clue, we can also formally test if flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</p>
+<p>While our confidence interval is one way to address this question, we can also address it through “null hypothesis testing”. A null hypothesis test tests if flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code> more so than is expected by chance.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../slides/images/hyptest.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>To do that we need to construct a null and alternative hypothesis.</p>
-<p>Null hypothesis:</p>
-<ul>
-<li>Posits that the explanatory variable we test does NOT affect our data</li>
-<li>We test the null hypothesis: sufficient evidence to reject it?</li>
-</ul>
-<p>Alternative hypothesis:</p>
-<ul>
-<li>Opposite of the Null hypothesis (the explanatory variable affects our data)</li>
-<li>We normally think in terms of an alternative hypothesis</li>
-</ul>
-<p><strong>State the null and alternative hypotheses in your document in text.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Constructing a null hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A null hypothesis posits that the explanatory variable we test does NOT affect our data. We then test if our data is sufficiently different from the null hypothesis such that we can reject it.</p>
+<p>A null hypothesis does not have be defined by a “zero effect”.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Constructing an alternative hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Opposite of the Null hypothesis (the explanatory variable affects our data). We normally think in terms of an alternative hypothesis</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using our original research question:</p>
+<blockquote class="blockquote">
+<p>Do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</p>
+</blockquote>
+<p>Write a null and alternative hypotheses in your document in text.</p>
+</div>
+</div>
 <section id="generating-data-assuming-the-null-hypothesis-is-true" class="level4">
 <h4 class="anchored" data-anchor-id="generating-data-assuming-the-null-hypothesis-is-true">Generating data assuming the null hypothesis is true</h4>
 <p>As we did in the lecture, we will use a shuffling or <code>permute</code> method of creating a sampling distribution compatible with our null hypothesis.</p>
 <p>To do that with <code>infer</code>, the code looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-18"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-18-1" class="code-annotation-target"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span></span>
-<span id="annotated-cell-18-2"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span> </span>
-<span id="annotated-cell-18-3"><a href="#annotated-cell-18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-4" class="code-annotation-target"><a href="#annotated-cell-18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-5" class="code-annotation-target"><a href="#annotated-cell-18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-18-6"><a href="#annotated-cell-18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  female_data <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-18" data-code-lines="4" data-code-annotation="1">Again, the code looks very similar, but now we have added an extra <code>hypothesise()</code> step, where we declare our null hypothesis to be that the <code>response</code> and <code>explanatory</code> variables are independent of each other.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="1">Again, the code looks very similar, but now we have added an extra <code>hypothesise()</code> step, where we declare our null hypothesis to be that the <code>response</code> and <code>explanatory</code> variables are independent of each other.</span>
 </dd>
-<dt data-target-cell="annotated-cell-18" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-18" data-code-lines="5" data-code-annotation="2">We generate 10000 permutated datasets under this hypothesis, and calculate the statistic for each dataset</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="2">We generate 10000 permutated datasets under this hypothesis, and calculate the statistic for each dataset</span>
 </dd>
-<dt data-target-cell="annotated-cell-18" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-18" data-code-lines="1" data-code-annotation="3">Save as an object called <code>null_dist</code></span>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="3">Save as an object called <code>null_dist</code></span>
 </dd>
 </dl>
 </div>
 </div>
-<p><strong>Use the code above in a new code cell to get a null distribution.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Simulate and visualize a null distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the code above in a new code cell to simulate a null distribution.</p>
 <p>You can print by writing the name:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>null_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The same command as we used before for the bootstrap sampling distribution can be used to visualise your null distribution. <strong>Use <code>visualise()</code> to show your null distribution.</strong></p>
-<p>You can also show your observed statistic on this distribution in a similar way to the confidence intervals. <strong>Try adapting the following code to show your observed statistic on the graph:</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shade_p_value</span>(obs_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The same command as we used before for the bootstrap sampling distribution can be used to visualise your null distribution. Use <code>visualise()</code> to show your null distribution.</p>
 </div>
-<p>If you are stuck, look at how the <code>shade_confidence_interval()</code> function is used.</p>
-<p>Finally, let’s calculate the p-value. We will do a so-called “two-sided” test, which means we want to know if there is a difference in any direction:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_p_value</span>(null_dist, obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>What is your conclusion?</strong></p>
-<p><strong>When you get to this stage, let me know and we will discuss your finding!</strong></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Answer these questions in your document:</p>
+<ol type="1">
+<li>What is shown when you <code>visualise()</code> the null distribution? What does that graph represent?</li>
+</ol>
+<p>Answer in a way that an ecology student who is not in this class could understand.</p>
+</div>
+</div>
+</section>
+<section id="visualising-and-calculating-a-p-value" class="level4">
+<h4 class="anchored" data-anchor-id="visualising-and-calculating-a-p-value">Visualising and calculating a p-value</h4>
+<p>Recall that we want to answer the following question:</p>
+<blockquote class="blockquote">
+<p>Are flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code> more so than is expected by chance?</p>
+</blockquote>
+<p>To help answer it, we can calculate and visualise a p-value, which is a probability of observing our original statistic, or one more extreme, assuming the null hypothesis is true.</p>
+<p>Using our null distribution, we can take our definition above, and simple count the number of times we found an <em>absolute</em> difference in mean as great (or greater than) our observed test statistic, and divide that by the total number of statistics in our null distribution:</p>
+<p><span class="math display">\[
+p = \frac{\text{Number of times } |\text{null statistic}| \geq |\text{observed statistic}|}{\text{Total number of null statistics}}
+\]</span></p>
+<p>This is a two-sided p-value.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calculate and visualise the p-value
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, calculate the p-value using the code below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-24"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-24-1"><a href="#annotated-cell-24-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-24-2" class="code-annotation-target"><a href="#annotated-cell-24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-24" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-24" data-code-lines="2" data-code-annotation="1">Since we did not have a reason to think one particular host race would be bigger, we use a two-sided hypothesis test.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can also visualise the p-value on the null distribution, to get a better idea of where that value comes from:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualise</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With reference to your null and alternative hypotheses:</p>
+<ol type="1">
+<li>Do you reject or fail to reject your null hypothesis?</li>
+<li>Does your conclusion align with what you found using the confidence interval approach?</li>
+<li>Summarise the difference in the type of question being answered when performing a null hypothesis test, vs using a confidence interval.</li>
+</ol>
+<p><strong>When you get to this stage, let the teacher know so that we can discuss your findings!</strong></p>
+</div>
+</div>
+<p>End of exercise.</p>
 
 
 
@@ -909,9 +1395,6 @@ dbl (5): body_length_mm, ovipositor_length_mm, wing_length_mm, wing_width_mm...
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-moderndive2025" class="csl-entry" role="listitem">
-Chester, I., A. K. Kim, and A. Valdivia. 2025. <a href="https://moderndive.com/v2/">Statistical <span>Inference</span> via <span>Data Science</span>: <span>A ModernDive</span> into <span>R</span> and the <span>Tidyverse</span></a> (2nd ed.).
-</div>
 <div id="ref-nilsson2024" class="csl-entry" role="listitem">
 Nilsson, K. J., M. Tsuboi, Ø. H. Opedal, and A. Runemark. 2024. <a href="https://doi.org/10.1007/s11692-024-09634-7">Colonization of a <span>Novel Host Plant Reduces Phenotypic Variation</span></a>. Evolutionary Biology 51:269–282.
 </div>
@@ -923,241 +1406,247 @@ Wilkinson, L. 2013. <a href="https://books.google.com?id=ZiwLCAAAQBAJ">The <span
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp(/^(?:http:|https:)\\/\\/irmoodie\\.com\\/custom/);
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp(/^(?:http:|https:)\\/\\/irmoodie\\.com\\/custom/);
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1165,185 +1654,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

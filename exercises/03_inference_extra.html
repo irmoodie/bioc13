@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Iain R. Moodie">
 
-<title>Additional resources – BIOC13 Statistics</title>
+<title>Exercise 1: Bonus problems – BIOC13 Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +21,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-723b771237f1900da4361526b46ab816.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-723b771237f1900da4361526b46ab816.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -68,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Additional resources – BIOC13 Statistics">
+<meta property="og:title" content="Exercise 1: Bonus problems – BIOC13 Statistics">
 <meta property="og:description" content="Materials for the Statistics section of BIOC13, VT25">
 <meta property="og:site_name" content="BIOC13 Statistics">
 </head>
@@ -82,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference_extra.html">Exercises (extra)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -97,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">BIOC13 Statistics</a> 
+      <a href="../">BIOC13 Statistics</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -118,13 +154,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/02_intro_to_r.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/02_intro_to_r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting familiar with R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/01_local_r.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/01_local_r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installation guide</span></a>
   </div>
 </li>
@@ -141,19 +177,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/intro_to_inference.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/intro_to_inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/03_inference.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/03_inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercises (extra)</span></a>
   </div>
 </li>
@@ -170,13 +206,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/computational_statistics.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/computational_statistics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/04_statistics.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/04_statistics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -193,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help.html" class="sidebar-item-text sidebar-link active">
+  <a href="../help.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful resources</span></a>
   </div>
 </li>
@@ -209,25 +245,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#help-with-implementing-your-statistical-methods" id="toc-help-with-implementing-your-statistical-methods" class="nav-link active" data-scroll-target="#help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</a></li>
-  <li><a href="#help-with-understanding-the-statistical-methods" id="toc-help-with-understanding-the-statistical-methods" class="nav-link" data-scroll-target="#help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</a></li>
-  <li><a href="#help-with-general-working-with-data-in-r" id="toc-help-with-general-working-with-data-in-r" class="nav-link" data-scroll-target="#help-with-general-working-with-data-in-r">Help with general working with data in R</a></li>
-  <li><a href="#advice-for-using-ai-tools-to-generate-code" id="toc-advice-for-using-ai-tools-to-generate-code" class="nav-link" data-scroll-target="#advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link active" data-scroll-target="#plotting">Plotting</a>
+  <ul class="collapse">
+  <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The grammer of graphics</a></li>
+  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference_extra.html">Exercises (extra)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Additional resources</h1>
+<h1 class="title">Exercise 1: Bonus problems</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Iain R. Moodie </p>
+          </div>
+  </div>
     
   
     
@@ -238,57 +281,93 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this section of the course, we have been using an R package called <code>infer</code> to perform randomisation and resampling based statisitcs. Since we have only had two days, we have not had a chance to go through examples of every sort of analysis you might want to do. However, the framework you have been using for calculating confidence intervals and hypothesis testing can be applied extrememly broadly, and you can likely use them to answer any ecological question you come up with on this course.</p>
-<p>Below I have linked you to some materials which should help with that.</p>
-<hr>
-<section id="help-with-implementing-your-statistical-methods" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</h3>
+<p>All the exercises below use the <code>tephritis_phenotype.csv</code> dataset from the main exercise. This exercise is not mandatory, but will allow you to practise what we covered in the first exercise.</p>
+<section id="plotting" class="level1">
+<h1>Plotting</h1>
+<section id="the-grammer-of-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="the-grammer-of-graphics">The grammer of graphics</h2>
+<p>The grammer of graphics gives us a way to describe any plot.</p>
+<p>A <code>ggplot2</code> plot has three essential components:</p>
 <ul>
-<li>The <a href="https://infer.tidymodels.org/articles/infer.html">getting to know <code>infer</code> vignette</a></li>
-<li>This contains a walk through of some examples using <code>infer</code> with commentary, explaining things in detail.</li>
-<li>The <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html">full <code>infer</code> pipeline examples vignette</a>
+<li><code>data</code>: the dataset that contains the variables you want to plot</li>
+<li><code>geom</code>: the geometric object you want to use to display your data:
 <ul>
-<li>This contains examples of almost every possible analysis with <code>infer</code>, but with limited commentary. If you know what you want to do, but can’t quite make it work, check this page.</li>
+<li><code>geom_point()</code></li>
+<li><code>geom_jitter()</code></li>
+<li><code>geom_boxplot()</code></li>
+<li><code>geom_violin()</code></li>
+<li><code>geom_bar()</code></li>
+<li><code>geom_col()</code></li>
 </ul></li>
-<li>There are also <a href="https://infer.tidymodels.org/articles/">other articles on the <code>infer</code> website</a> that contain helpful examples.</li>
-</ul>
-</section>
-<section id="help-with-understanding-the-statistical-methods" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</h3>
+<li><code>aes</code>: aesthetic attributes that you want to map to your geometric object:
 <ul>
-<li>The <a href="https://moderndive.com/v2/index.html">Statistical Inference with infer section of ModernDive (Ch. 7-10)</a> is a beginner friendly text that follows the style of statistical analysis we have been doing in this part of the course.</li>
-</ul>
-</section>
-<section id="help-with-general-working-with-data-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-general-working-with-data-in-r">Help with general working with data in R</h3>
-<ul>
-<li>For help with importing, data handling and basic plotting, the <a href="https://moderndive.com/v2/index.html">Data Science with tidyverse section of ModernDive</a> is a beginner friendly text that will have examples for most things you will want to do.
-<ul>
-<li>If something is not covered, check out <a href="https://r4ds.hadley.nz/">R for Data Science</a>.</li>
+<li><code>x</code></li>
+<li><code>y</code></li>
+<li><code>fill</code></li>
+<li><code>colour</code></li>
+<li><code>shape</code></li>
+<li><code>size</code></li>
 </ul></li>
 </ul>
-<hr>
+<p><code>ggplot2</code> uses a layered approach to the grammer of graphics. This makes it easy to start contructing plots by putting together a “recipe” step-by-step.</p>
+<p>To find out what a function does do, try using them, or search the helpfiles in the <em>Outputs</em> panel. You can also, for any function, search for the helpfile by writing <code>?function_name</code>. E.g., if you wanted to know what <code>geom_jitter()</code> does, you could run the command <code>?geom_jitter</code>, and the helpfile will open.</p>
+<p>You can also consult the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf"><code>ggplot2</code> “cheatsheet”</a> for help.</p>
+<p><code>ggplot2</code> allows for extensive customisation of your plots. For example, you might want to change the labels of the axis, or give your plot a title. You can do that using the <code>labs()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Name of my x variable"</span>, <span class="at">y =</span> <span class="st">"Name of my Y variable"</span>, <span class="at">title =</span> <span class="st">"My awesome plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also change the <code>theme</code> of your plot. <code>ggplot2</code> has many built in themes. A full list can be found <a href="https://ggplot2-book.org/themes#sec-themes">here</a>. For my fake example, I could change the theme to <code>theme_classic()</code> like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try it out on your plots. What theme do you prefer best?</p>
+<p>In general, <code>ggplot2</code> is a very widely used plotting package, so finding examples of what you want to do will not be hard. Use search engines, AI tools, the <a href="https://ggplot2-book.org"><code>ggplot2</code> book</a>, etc. If you see it on your plot, you can probably change it.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Make a graph that shows the variable <code>body_length_mm</code> for each <code>sex</code> using a box plot.</li>
+<li>Make a graph that shows the relationship between <code>body_length_mm</code> and <code>wing_length_mm</code>. Change the colour to show <code>sex</code>.</li>
+<li>Make a graph that uses violin plots to show <code>melanized_percent</code> for each <code>region</code>.</li>
+<li>Use a bar chart to show the number of flies from each side of the <code>baltic</code>. Split each bar by <code>host_plant</code>.</li>
+</ol>
+</div>
+</div>
 </section>
-<section id="advice-for-using-ai-tools-to-generate-code" class="level3">
-<h3 class="anchored" data-anchor-id="advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</h3>
-<p>AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, at the end of your question, paste the following text:</p>
-<blockquote class="blockquote">
-<p>Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.</p>
-</blockquote>
-<p>For example, if I prompt ChatGPT with:</p>
-<blockquote class="blockquote">
-<p>How do I do an anova in R?</p>
-</blockquote>
-<p>I get this: <a href="https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be">https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be</a></p>
-<p>But if I add the prompt text above and instead use:</p>
-<blockquote class="blockquote">
-<p>How do I do an anova in R? Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.</p>
-</blockquote>
-<p>I get this: <a href="https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5">https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5</a></p>
-<p>The second answer is much more helpful for this course.</p>
-<p>For general statistics help, include the terms “randomisation based inference” or “resampling based inference” or “computational statistics”. These are the methods we have covered here, as opposed to more mathematical based inference methods.</p>
+<section id="statistics" class="level2">
+<h2 class="anchored" data-anchor-id="statistics">Statistics</h2>
+<p>Use what we covered in the lecture, exercise and the <a href="help.qmd">help files</a> to investigate the following questions:</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Research questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>In many insect species, females are on average larger than males. Is this also the case in <em>Tephritis conura</em>? Use a null hypothesis test to answer this question.</li>
+<li>Is there a difference in the amount of melanization on the wings between the two host races?</li>
+<li>Is there a difference in the proportion of flies that utilize the <em>Cirsium heterophyllum</em> host plant on each side of the Baltic sea?</li>
+</ol>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
