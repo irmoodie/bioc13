@@ -30,13 +30,15 @@ website:
           - href: slides/intro_to_inference.qmd
             text: "Slides"
           - href: exercises/03_inference.qmd
-            text: "Exercise"
+            text: "Exercises"
+          - href: exercises/03_inference_extra.qmd
+            text: "Exercises (extra)"
       - section: "Computational statistics (Day 2)"
         contents:
           - href: slides/computational_statistics.qmd
             text: "Slides"
           - href: exercises/04_statistics.qmd
-            text: "Exercise"
+            text: "Exercises"
       - section: "Help beyond the exercises"
         contents:
           - href: help.qmd

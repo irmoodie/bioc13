@@ -1,0 +1,91 @@
+---
+title: "Exercise 1: Bonus problems"
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+All the exercises below use the `tephritis_phenotype.csv` dataset from the main exercise. This exercise is not mandatory, but will allow you to practise what we covered in the first exercise.
+
+# Plotting
+
+## The grammer of graphics
+
+The grammer of graphics gives us a way to describe any plot.
+
+A `ggplot2` plot has three essential components:
+
+- `data`: the dataset that contains the variables you want to plot
+- `geom`: the geometric object you want to use to display your data:
+  - `geom_point()`
+  - `geom_jitter()`
+  - `geom_boxplot()`
+  - `geom_violin()`
+  - `geom_bar()`
+  - `geom_col()`
+- `aes`: aesthetic attributes that you want to map to your geometric object:
+  - `x`
+  - `y`
+  - `fill`
+  - `colour`
+  - `shape`
+  - `size`
+
+`ggplot2` uses a layered approach to the grammer of graphics. This makes it easy to start contructing plots by putting together a "recipe" step-by-step.
+
+To find out what a function does do, try using them, or search the helpfiles in the *Outputs* panel. You can also, for any function, search for the helpfile by writing `?function_name`. E.g., if you wanted to know what `geom_jitter()` does, you could run the command `?geom_jitter`, and the helpfile will open.
+
+You can also consult the [`ggplot2` "cheatsheet"](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf) for help.
+
+`ggplot2` allows for extensive customisation of your plots. For example, you might want to change the labels of the axis, or give your plot a title. You can do that using the `labs()` function:
+
+```{r}
+ggplot(example_data, aes(x = variable_1, y = variable_2)) +
+geom_points() +
+labs(x = "Name of my x variable", y = "Name of my Y variable", title = "My awesome plot")
+```
+
+You can also change the `theme` of your plot. `ggplot2` has many built in themes. A full list can be found [here](https://ggplot2-book.org/themes#sec-themes). For my fake example, I could change the theme to `theme_classic()` like this:
+
+```{r}
+ggplot(example_data, aes(x = variable_1, y = variable_2)) +
+geom_points() +
+theme_classic()
+```
+
+Try it out on your plots. What theme do you prefer best?
+
+In general, `ggplot2` is a very widely used plotting package, so finding examples of what you want to do will not be hard. Use search engines, AI tools, the [`ggplot2` book](https://ggplot2-book.org), etc. If you see it on your plot, you can probably change it.
+
+::: {.callout-tip icon="false"}
+
+## Problems
+
+1. Make a graph that shows the variable `body_length_mm` for each `sex` using a box plot.
+2. Make a graph that shows the relationship between `body_length_mm` and `wing_length_mm`. Change the colour to show `sex`.
+3. Make a graph that uses violin plots to show `melanized_percent` for each `region`.
+4. Use a bar chart to show the number of flies from each side of the `baltic`. Split each bar by `host_plant`.
+ 
+:::
+
+## Statistics
+
+Use what we covered in the lecture, exercise and the [help files](help.qmd) to investigate the following questions:
+
+::: {.callout-tip icon="false"}
+
+## Research questions
+
+1. In many insect species, females are on average larger than males. Is this also the case in *Tephritis conura*? Use a null hypothesis test to answer this question.
+3. Is there a difference in the amount of melanization on the wings between the two host races?
+2. Is there a difference in the proportion of flies that utilize the *Cirsium heterophyllum* host plant on each side of the Baltic sea?
+
+:::
+

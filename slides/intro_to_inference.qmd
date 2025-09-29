@@ -1,7 +1,7 @@
 ---
 title: "Introduction to statistical inference"
 draft: false
-date: 2025-04-23
+date: 2025-09-30
 subtitle: "Lecture 1"
 webr:
   packages:

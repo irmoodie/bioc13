@@ -1,5 +1,5 @@
 ---
-title: "Data analysis using R and RStudio"
+title: "Exercise 1: Data analysis using R"
 format: 
   html:
     toc: true
@@ -14,7 +14,15 @@ execute:
 
 # Welcome to *RStudio*
 
-**Launch RStudio.** It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.
+::: {.callout-note appearance="default"}
+
+## Open RStudio
+
+Just like you would any other program on your computer, open RStudio (not R!).
+
+It should detect your R installation automatically, but if not, a window will open asking you to select it. If R does not appear here, I suggest you restart your computer first.
+
+:::
 
 You should be met by a scene that looks like this:
 
@@ -142,33 +150,59 @@ The file should have appeared in your *Output* pane, with the extension `.Rmd`.
 
 Let's move onto working with some data!
 
-# Data handling, plotting and analysis in R
+---
+
+# A walkthrough analysis
 
 Today we will work with a dataset called `tephritis_phenotype.csv`. The dataset comes from a study conducted at Lund University by @nilsson2022.
 
-![Figure 1 from @nilsson2024: Sampling design, host plants, and traits investigated. a Parallel sampling of allopatric and sympatric populations of the two host races of T. conura flies east and west of the Baltic. CH denotes the C. heterophyllum host race and CO denotes the C. oleraceum host race. b Size measurements of T. conura. c The ancestral host plant, C. heterophyllum. d The derived host plant, C. oleraceum](images/04/nilsson2024.png)
+## Background
 
-> The dataset describes morphological measurements of the dipteran *Tephritis conura*. This species has specialised to utilise two different host plants (`host_plant`), *Cirsium heterophyllum* and *C. oleraceum*, and thereby formed stable host races. Individuals of both host races were collected in both sympatry (where both *Cirsium heterophyllum* and *C. oleraceum* host plants co-occur) and allopatry (where only one *Cirsium* species occurs) (`patry`) from eight different populations in northern Europe (`region`) from both sides of the Baltic sea (`baltic`). Individuals were measured after having been hatched in a common lab environment. One female and one male (`sex`) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.
+The dataset describes morphological measurements (lengths, widths of different body parts) of the fly *Tephritis conura*. This species has specialised to utilise two different host plants (`host_plant`), *Cirsium heterophyllum* and *C. oleraceum*, and formed stable "host races". Individuals of both host races were collected in both sympatry (where both *Cirsium heterophyllum* and *C. oleraceum* host plants co-occur) and allopatry (where only one *Cirsium* species occurs) (`patry`) from eight different populations in northern Europe (`region`) from both sides of the Baltic sea (`baltic`). Individuals were measured after having been hatched in a common lab environment. One female and one male (`sex`) from each bud was measured. The authors took magnified photographs of each individual, and of the wings of each individual.
 
-> Measured traits included wing length (`wing_length_mm`), wing width (`wing_width_mm`), melanised percentage cover (`melanized_percent`), body length (`body_length_mm`) and ovipositor length (`ovipositor_length_mm`). Body length and wing measurements were collected by measuring images digitally. Wing melanisation was measured using an automated script, which quantified how many pixels of the wing was melanised.
+![Figure 1 from @nilsson2024: Sampling design, host plants, and traits investigated. a. Parallel sampling of allopatric and sympatric populations of the two host races of *T. conura* flies east and west of the Baltic. CH denotes the *C. heterophyllum* host race and CO denotes the *C. oleraceum* host race. b. Size measurements of *T. conura*. c. The ancestral host plant, *C. heterophyllum*. d. The derived host plant, *C. oleraceum*](images/04/nilsson2024.png)
 
-You can download the dataset [here](https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype_clean/tephritis_phenotype.csv).
+Measured traits included the length of a wing (`wing_length_mm`), the width of a wing (`wing_width_mm`), the amount of the wing that was melanised (`melanized_percent`), the length of the body (`body_length_mm`) and the length of the ovipositor (`ovipositor_length_mm`).
+
+## Getting everything setup
+
+Before we conduct the analysis, we need to download the dataset and move it to our working directory.
+
+::: {.callout-note appearance="default"}
+
+## Download the dataset
+
+You can download the dataset called `tephritis_phenotype.csv` from [here](https://github.com/irmoodie/teaching_datasets/blob/main/tephritis_phenotype_clean/tephritis_phenotype.csv).
 
 ![](images/04/download_github.png){width=50%}
 
-Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+Once downloaded, you should **move it to your *working directory* folder for this exercise before continuing**.
 
-## Setting up the RMarkdown document
+:::
 
-We will work with the RMarkdown file we generated at the start (that I called `exercise_1.Rmd`). 
+Next, let's clean up our document.
 
-First, we should delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the `---`). You can do that as you would expect in any other text editor. Now we have our blank RMarkdown file, let's get started.
+::: {.callout-note appearance="default"}
+
+## Cleaning up the RMarkdown document
+
+Using the RMarkdown file we generated at the start (that I called `exercise_1.Rmd`):
+
+1. Delete all the code and text that RStudio automatically generated, except the YAML header (the text at the start between the `---`). You can do that as you would expect in any other text editor.
+
+:::
+
+Now we have our blank RMarkdown file, let's get started.
 
 ## Installing R packages
 
 In this exercise, we will use the `tidyverse` package, and the `infer` package. To install them you need to use the `install.packages()` function. Since we only need to do this once per computer, we should run this function directly in the *Console* panel.
 
-**Type or copy the install function into the *console*, and press enter to run:**
+::: {.callout-note appearance="default"}
+
+## Install the R packages on your computer
+
+Type or copy the install function into the **console**, and press enter to run:
 ```{r}
 install.packages("tidyverse")
 install.packages("infer")
@@ -178,23 +212,30 @@ install.packages("infer")
 
 From now on, we won't write things directly in the *Console*, and instead write code in the RMarkdown document in the *Source* panel, which we then "Run" and send the *Console*.
 
+:::
+
+
 ## Creating code cells
 
 Code cells are where we write code in an RMarkdown document. This allows use to write normal text outside these sections.
 
-**In your *Source* panel, in the RMarkdown document, add a R code cell.**
+::: {.callout-note appearance="default"}
+
+## Make a code cell
+
+In your **Source** panel, in the RMarkdown document, add a R code cell. This is done in different ways depending on if you are using the visual view or the source view:
 
 ::: {.callout-note collapse="true" icon="false"}
-### Visual view
-To do that in the *Visual view* (where the text is rendered), go to *Insert* -> *Executable Cell* -> *R*.
+### How to make a code cell in *Visual* view
+Go to *Insert* -> *Executable Cell* -> *R*.
 
 ![](images/04/rstudio_visual_codecell.png)
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
-### Source view
+### How to make a code cell in *Source* view
 
-To do that in the *Source view* (where we see just plain text), we use three back-ticks (```` ``` ````) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets `{r}`.
+Use three back-ticks (```` ``` ````) to mark the start and end of a code cell. Additionally at the start, we declare the language used by enclosing it in two curly brackets `{r}`.
 
 ```` markdown
 ```{{r}}
@@ -205,18 +246,29 @@ To do that in the *Source view* (where we see just plain text), we use three bac
 
 In both views, you can also use the shortcut *Shift-Alt-I* or *Shift-Command-I*.
 
+:::
+
 ## Loading R packages
 
-After installing an R package, we need to load it into our current R environment. We use the `library()` function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed "top to bottom", so this bit of code should come right at the start.
+After installing an R package, we need to tell R that we want to use the package in this document. We use the `library()` function to do that. 
 
-**Inside that code cell you just made, use the `library()` function to load the `tidyverse` and `infer` packages:**
+R code should always be executed "top to bottom", so this bit of code should come right at the start.
 
-(To run code in the *Source* panel, you can click on the line you want to run, and then press the "Run" button. Or you can also use the keyboard shortcut `Ctrl+Enter` or `Cmd+Return`.)
+::: {.callout-note appearance="default"}
+
+## Tell R that we want to use the packages we just installed
+
+Inside that code cell you just made, use the `library()` function to load the `tidyverse` and `infer` packages:
 
 ```{r}
 library(tidyverse)
 library(infer)
 ```
+
+Then run the code. (To run code in the *Source* panel, you can click on the line you want to run, and then press the "Run" button. Or you can also use the keyboard shortcut `Ctrl+Enter` or `Cmd+Return`.)
+
+:::
+
 
 If that worked, you will get a message that reads something similar to:
 
@@ -227,11 +279,11 @@ library(tidyverse)
 library(infer)
 ```
 
-This message tells us which packages were loaded by the `tidyverse` package, and which functions from base R (the functions that come with R by default) have been overwritten by the `tidyverse` packages. Not all packages produce a message when they are loaded (for example, `infer` did not).
+Not all packages produce a message when they are loaded (for example, `infer` did not).
 
-## Adding headings and text
+## Writing text alongside code
 
-Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, the exam (open book), the group project, or later in your studies.
+Anywhere outside a code cell you can write normal text. In this course, you might find it helpful to write yourself notes alongside your code, so that you can come back to your notes during other exercises, or later in your studies.
 
 Along side normal text, you can structure an RMarkdown document using headings.
 
@@ -268,16 +320,20 @@ banksiae,2.4,3
 banksiae,1.7,8
 ```
 
-`.csv` files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text (unlike an `.xlsx` file from Microsoft Excel, for example).
+`.csv` files are especially suited to storing data that can be used across a wide variety of programmes, as everything is stored as plain text.
 
-**Make another code cell.** 
+::: {.callout-note appearance="default"}
 
-**Load the `tephritis_phenotype.csv` data file using the `read_csv()` function and assign it to an object named `tephritis_data`.**
+## Load the data into R
+
+We will load the `tephritis_phenotype.csv` data file using the `read_csv()` function and assign it to an object named `tephritis_data`. To do that, **first make a new code cell**, then within it write:
 
 ```{r}
 tephritis_data <- read_csv("tephritis_phenotype.csv") #<1>
 ```
 1. Be sure to use quote marks around the file name.
+
+:::
 
 If that worked, you should get the following message with some information about the data:
 
@@ -292,48 +348,94 @@ This has loaded a copy of the data from `tephritis_phenotype.csv` into R. Notice
 
 ![](images/04/rstudio_load_data.png)
 
-**Click on the object `tephritis_data` with your mouse.** This will open the dataset using the RStudio function `View()` (which if you look in your console, you will see it has just run). This allows you to view the dataset as a table, like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.
+::: {.callout-note appearance="default"}
+
+## View the data in R
+
+To view the data, click on the object `tephritis_data` in the *Environment* panel with your mouse.
+
+This allows you to view the dataset like you would in a spreadsheet software like Microsoft Excel. Note however, there is no way to edit the data in this view. This is by design. Any editing of the data needs to be done in the RMarkdown document with code. That way, you can keep a record of any edits you make, without touching the original data file.
+
+:::
+
 
 ## Exploring data
 
-Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. **Make a new code cell, and write the following:**
+Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. 
+
+
+::: {.callout-note appearance="default"}
+
+## Print the data to the console
+
+Make a new code cell, and write the following:
 
 ```{r}
 print(tephritis_data) #<1>
 ```
 1. We can also just simply write `tephritis_data` without the print statement, and we would get the same output.
 
-- The first line of the output is telling us what sort of data is in the object. In this case, its a `tibble`. Tibbles are dataframes that act more like how we expect tables to act. They come from the `tibble` R package, which is installed with the `tidyverse` package.
-- That same line tells us the number of rows (`583`) and number of columns (`10`).
+
+:::
+
+Let's unpack what has appeared in your console:
+
+- The first line of the output is telling us what sort of data is in the object. In this case, its a `tibble`, a way of storing data in a table/spreadsheet format.
+- That same line tells us the number of rows (`583`) and number of columns (`10`) in the table.
 - The next line tell us the variable types.
 - Then the first 10 rows of the dataframe have been printed, along with the column (variable) names at the top.
 - Below that, we get two important pieces of information, denoted by the small `ℹ` symbol:
   - The first `ℹ` tells us how many rows are not being shown here. Since by default 10 are shown, $583-10=573$.
   - The second `ℹ` tells us how many columns (variables) are not being shown here, as there was not enough room to print them.
-- We can also see that some rows have `NA` values (not applicable). This is the symbol R uses for no data present.
+- We can also see that some rows have `NA` values (not applicable). This is the symbol R uses to say no data present.
 
-We can also use `glimpse()` for an alternative view:
+Let's use a few other ways of viewing our data in the console:
+
+::: {.callout-note appearance="default"}
+
+## Take a glimpse at the data
+
+Make a new code cell, and write the following:
+
 ```{r}
 glimpse(tephritis_data)
 ```
 
 - `glimpse()` transposes the dataframe, with columns now running down the page. This view means we can see all the variables.
 
-You can also use the `summary()` function:
+:::
+
+You can also use `summary()` to calculate some useful summary statistics of the dataset as a whole:
+
+
+::: {.callout-note appearance="default"}
+
+## Calculate some summary statistics of your dataset
+
+Make a new code cell, and write the following:
 
 ```{r}
 summary(tephritis_data)
 ```
 
-**In your RMarkdown document, using text below the code cell, answer the following questions:**
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+Answer the following questions in text in your RMarkdown document. Use what you have learned from exploring the data so far, and the background to the study:
 
 1. What is the unit of observation in this dataset? In other words, what does each row represent?
 2. What populations (statistical use of the word) could we make inferences about using this data?
 3. Are there any `NA` values in the dataset? In which variable(s) and why might this be?
 
+:::
+
+
 ## Answering a research question
 
-One of the questions that @nilsson2022 were interested in was if there has been any morphological divergence between the host races of these flies. In other words, do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in some predictable way?
+One of the questions that @nilsson2022 were interested in was if there has been any morphological (size of body parts) divergence between the host races of these flies. In other words, do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in some predictable way?
 
 Let's use the variable `ovipositor_length_mm` to explore this research question.
 
@@ -341,7 +443,11 @@ Let's use the variable `ovipositor_length_mm` to explore this research question.
 
 First, we should `filter()` our dataset to only contain females (as only females have an ovipositor). `filter()` is a function that let's us write conditional statements that only allow rows that meet those conditions to "filter" through. For example, we can use `filter()` to only allow rows where `sex == "female"` to filter through, thereby creating a new dataset of just female flies.
 
-**Make a new code cell, and write the following:**
+::: {.callout-note appearance="default"}
+
+## Filter the dataset
+
+Make a new code cell, and write the following:
 
 ```{r}
 female_data <- #<1>
@@ -349,7 +455,9 @@ female_data <- #<1>
   filter(sex == "female") #<2>
 ```
 1. I assigned the new dataset to a new object, called `female_data`.
-2. Inside the `filter()` function, I can write any conditional statement.
+2. Inside the `filter()` function, I say which rows should be allowed through the filter.
+
+:::
 
 Now we have the rows we are interested in, let's move on.
 
@@ -357,15 +465,14 @@ Now we have the rows we are interested in, let's move on.
 
 Often before we start any formal statistics, we want to plot our data.
 
-R has a built in method to make plots, but here I will use a different approach. Instead we will use `ggplot2`, a plotting package that is installed with `tidyverse`. `ggplot2` provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as *the grammer of graphics* (gg) [@wilkinsonGrammarGraphics2013].
+R has a built in method to make plots, but here we will use a different approach. Instead we will use `ggplot2`, a plotting package that is installed with `tidyverse`. `ggplot2` provides a clear and simple way to customise your plots. It is based in a data visualisation theory known as *the grammer of graphics* [@wilkinsonGrammarGraphics2013].
 
-#### The grammer of graphics
 
-The grammer of graphics gives us a way to describe any plot. `ggplot2` then allows us to make that plot, using a layered approach to the grammer of graphics.
+::: {.callout-note appearance="default"}
 
-Using this approach, we can say a statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects [@moderndive2025].
+## The grammer of graphics
 
-Wow. What does that mean? Let's break it down.
+The grammer of graphics gives us a way to describe any plot.
 
 A `ggplot2` plot has three essential components:
 
@@ -373,9 +480,7 @@ A `ggplot2` plot has three essential components:
 - `geom`: the geometric object you want to use to display your data (e.g. a point, a line, a bar).
 - `aes`: aesthetic attributes that you want to map to your geometric object. For example, the x and y location of a point geometry could be mapped to two variables in your dataset, and the colour of those points could be mapped to a third.
 
-As I said before, `ggplot2` uses a layered approach to the grammer of graphics. This makes it very easy to start contructing plots by putting together a "recipe" step-by-step. Let's walk through an example.
-
----
+`ggplot2` uses a layered approach to the grammer of graphics. This makes it very easy to start contructing plots by putting together a "recipe" step-by-step. Let's walk through an example.
 
 In our case, we want to plot `ovipositor_length_mm` for each `host_plant` group. One example might be a boxplot:
 
@@ -393,9 +498,17 @@ ggplot(
 3. To add layers to a `ggplot()` object, we can use a `+`
 4. I add a boxplot `geom`etry, that will use the `aes`thetics I specified before.
 
-**Copy the code into a new code cell and run it**
+Copy the code into a new code cell and run it.
 
-**Regarding our research question, what does the graph suggest to you?**
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+1. What does the graph tell you? Is there a difference between the host races? Write your answer in your RMarkdown document.
+
+:::
 
 ### Calculating the observed statistic
 
@@ -405,11 +518,16 @@ Our research question is:
 
 The question concerns a difference in a continuous variable between two groups (`host_plant`). Let's start by exploring if there is a difference in the central tendancy of `ovipositor_length_mm` in the two groups. That is, does average `ovipositor_length_mm` differ between them?
 
-A suitable test statistic for this question could be a difference in means. Let's start with that.
+A suitable statistic that captures our question could be a **difference in means**.
 
-We are going to do that using the `infer` package we loaded at the start. `infer` is a statistics package that allows us to perform simulation based inferences without knowing a lot of computer code.
+$$
+\bar{x}_{\text{heterophyllum}} - \bar{x}_{\text{oleraceum}}
+$$
 
-To use `infer` to calculate an observed statistic, we use the following approach:
+
+We are going to do that using the `infer` package we loaded at the start.
+
+To use `infer` to calculate an observed statistic, we use the approach we covered in the lecture:
 
 ![](../slides/images/obs.svg)
 
@@ -426,60 +544,100 @@ obs_stat <- #<4>
 3. We `calculate()` our chosen statisitc `"diff in means"`, and we say that the subtraction should be `"heterophyllum"` minus `"oleraceum"`.
 4. We assign this to a new object called `obs_stat`.
 
-**Use the code above in a new code cell to calculate the observed statistic.**
+::: {.callout-note appearance="default"}
 
-To see your observed statistic, simply print it by writing the name of the object:
+## Calculate the observed test statistic
+
+Use the code above in a new code cell to calculate the observed statistic.
+
+To see your observed statistic, simply print it by writing the name of the object.
 
 ```{r}
 obs_stat
 ```
 
-**Describe what this observed statistic tells us.**
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+1. Describe in words what this observed statistic tells us. Is there a difference in mean ovipositor length? If so, which host race is bigger, and by how much?
+2. Does it make sense given the graph you made earlier?
+
+Write your answer in your RMarkdown document.
+
+:::
 
 ### Quantifying uncertainty
 
-If we took another sample, it is unlikely that we would get exactly the same observed statistic. We want to quantify that effect. In this exercise, we will use a 95% confidence interval.
+If we took another sample (that is, if we repeated the field work that @nilsson2022 did), it is unlikely that we would get exactly the same observed statistic, just due to chance. We want to quantify this effect. In this exercise, we will use a 95% confidence interval to do that.
 
-![A general approach to bootstrapping confidence intervals](../slides/images/CI.svg){fig-align="center"}
+![A general approach to bootstrapping confidence intervals.](../slides/images/CI.svg){fig-align="center"}
 
-We have already calculated our observed statistic, so let's generate a sampling distribution using bootstrapping.
+We have already calculated our observed statistic, so let's generate a sampling distribution using bootstrapping. 
+
+Recall from the lecture that a bootstrap sample is generated from the original dataset by resampling (randomly selecting rows) it with replacement (we can select the same row more than once). To complete one bootstrap sample, we resample with replacement until we have the same number of rows of data that were in our original dataset. 
+
+We then calculate our observed statistic using the bootstrap sample. This can then be repeated many times to construct a **sampling distribution**, which show the range of statistics we think it would be possible to observe, if we had actually sampled our population again.
 
 To do that in code, we write the following:
 
 ```{r}
-boot_dist <- #<2>
+sampling_dist <- #<2>
   female_data |> 
   specify(response = ovipositor_length_mm, explanatory = host_plant) |>
   generate(reps = 10000, type = "bootstrap") |> #<1>
   calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
 ```
 1. Notice how this is almost identical to the code we used to get the observed statistic, but we have one extra step, where we generate 10000 bootstrapped datasets, then calculate the diff in means for all of them.
-2. We assign this to a new object, called `boot_dist`
+2. We assign this to a new object, called `sampling_dist`
 
-**Use the code above in a new code cell to get a bootstrap sampling distribution**
+::: {.callout-note appearance="default"}
+
+## Simulate and visualize a sampling distribution
+
+Use the code above in a new code cell to get a bootstrap sampling distribution.
 
 Again we can print it by just writing its name:
 
 ```{r}
-boot_dist
+sampling_dist
 ```
 
 `infer` has a helpful function to quickly see the distribution:
 
 ```{r}
-visualize(boot_dist)
+visualize(sampling_dist)
 ```
+
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+1. What does the output of `visualize(sampling_dist)` show? How would you describe it to a friend who is not in this class?
+
+Write your answer in your RMarkdown document.
+
+:::
+
 
 #### Confidence intervals
 
-We can use the percentile method to calculate a confidence interval. To do that we take the middle 95% of the bootstrapped sampling distribution. Again, `infer` has a helpful function to do this for us:
+We can use the percentile method to calculate a confidence interval. To do that we take the middle 95% of the bootstrapped sampling distribution. Again, `infer` has a helpful function to do this for us.
+
+::: {.callout-note appearance="default"}
+
+## Calculate a 95% confidence interval
+
+Use the code below in a new code cell to calculate your confidence interval.
 
 ```{r}
 conf_int <-
-  get_confidence_interval(boot_dist, level = 0.95, type = "percentile")
+  get_confidence_interval(sampling_dist, level = 0.95, type = "percentile")
 ```
-
-**Use the code above to calculate your confidence interval**
 
 Again, print the object to see the confidence intervals:
 
@@ -490,31 +648,61 @@ conf_int
 We can also visualise the confidence interval on our sampling distribution:
 
 ```{r}
-visualize(boot_dist) +
+visualize(sampling_dist) +
   shade_confidence_interval(endpoints = conf_int)
 ```
 
-**Write a statement using your observed statistic and confidence intervals. How would you explain what a confidence interval is to someone who hasn't studied statistics?**
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+Using our original research question:
+
+> Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+
+Write a statement to address our original research question using your observed statistic and confidence intervals.
+
+:::
 
 ### Hypothesis testing
 
-While our confidence interval gives us a pretty big clue, we can also formally test if flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+While our confidence interval is one way to address this question, we can also address it through "null hypothesis testing". A null hypothesis test tests if flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm` more so than is expected by chance.
 
 ![](../slides/images/hyptest.svg){fig-align="center"}
 
 To do that we need to construct a null and alternative hypothesis.
 
-Null hypothesis:
+::: {.callout-note appearance="default"}
 
- - Posits that the explanatory variable we test does NOT affect our data
- - We test the null hypothesis: sufficient evidence to reject it?
+## Constructing a null hypothesis
 
-Alternative hypothesis:
+A null hypothesis posits that the explanatory variable we test does NOT affect our data. We then test if our data is sufficiently different from the null hypothesis such that we can reject it.
 
-- Opposite of the Null hypothesis (the explanatory variable affects our data)
-- We normally think in terms of an alternative hypothesis
+A null hypothesis does not have be defined by a "zero effect".
 
-**State the null and alternative hypotheses in your document in text.**
+:::
+
+::: {.callout-note appearance="default"}
+
+## Constructing an alternative hypothesis
+
+Opposite of the Null hypothesis (the explanatory variable affects our data). We normally think in terms of an alternative hypothesis
+
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+Using our original research question:
+
+> Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+
+Write a null and alternative hypotheses in your document in text.
+
+:::
 
 #### Generating data assuming the null hypothesis is true
 
@@ -534,7 +722,11 @@ null_dist <- #<3>
 2. We generate 10000 permutated datasets under this hypothesis, and calculate the statistic for each dataset
 3. Save as an object called `null_dist`
 
-**Use the code above in a new code cell to get a null distribution.**
+::: {.callout-note appearance="default"}
+
+## Simulate and visualize a null distribution
+
+Use the code above in a new code cell to simulate a null distribution.
 
 You can print by writing the name:
 
@@ -542,22 +734,71 @@ You can print by writing the name:
 null_dist
 ```
 
-The same command as we used before for the bootstrap sampling distribution can be used to visualise your null distribution. **Use `visualise()` to show your null distribution.**
+The same command as we used before for the bootstrap sampling distribution can be used to visualise your null distribution. Use `visualise()` to show your null distribution.
 
-You can also show your observed statistic on this distribution in a similar way to the confidence intervals. **Try adapting the following code to show your observed statistic on the graph:**
+:::
+
+::: {.callout-tip icon="false"}
+
+## Questions
+
+Answer these questions in your document:
+
+1. What is shown when you `visualise()` the null distribution? What does that graph represent?
+
+Answer in a way that an ecology student who is not in this class could understand.
+
+:::
+
+#### Visualising and calculating a p-value
+
+Recall that we want to answer the following question:
+
+> Are flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm` more so than is expected by chance?
+
+To help answer it, we can calculate and visualise a p-value, which is a probability of observing our original statistic, or one more extreme, assuming the null hypothesis is true.
+
+Using our null distribution, we can take our definition above, and simple count the number of times we found an *absolute* difference in mean as great (or greater than) our observed test statistic, and divide that by the total number of statistics in our null distribution:
+
+$$
+p = \frac{\text{Number of times } |\text{null statistic}| \geq |\text{observed statistic}|}{\text{Total number of null statistics}}
+$$
+
+This is a two-sided p-value.
+
+::: {.callout-note appearance="default"}
+
+## Calculate and visualise the p-value
+
+In a new code cell, calculate the p-value using the code below:
 
 ```{r}
-shade_p_value(obs_stat)
+null_dist |>
+  get_p_value(obs_stat, direction = "two-sided") #<1>
 ```
+1. Since we did not have a reason to think one particular host race would be bigger, we use a two-sided hypothesis test.
 
-If you are stuck, look at how the `shade_confidence_interval()` function is used.
-
-Finally, let's calculate the p-value. We will do a so-called "two-sided" test, which means we want to know if there is a difference in any direction:
+We can also visualise the p-value on the null distribution, to get a better idea of where that value comes from:
 
 ```{r}
-get_p_value(null_dist, obs_stat, direction = "two-sided")
+visualise(null_dist) +
+  shade_p_value(obs_stat, direction = "two-sided")
 ```
 
-**What is your conclusion?**
+:::
 
-**When you get to this stage, let me know and we will discuss your finding!**
+::: {.callout-tip icon="false"}
+
+## Questions
+
+With reference to your null and alternative hypotheses:
+
+1. Do you reject or fail to reject your null hypothesis?
+2. Does your conclusion align with what you found using the confidence interval approach?
+3. Summarise the difference in the type of question being answered when performing a null hypothesis test, vs using a confidence interval.
+
+**When you get to this stage, let the teacher know so that we can discuss your findings!**
+
+:::
+
+End of exercise.

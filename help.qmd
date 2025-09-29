@@ -29,17 +29,25 @@ Below I have linked you to some materials which should help with that.
 
 ### Advice for using AI tools to generate code
 
-AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, try the following:
+AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, at the end of your question, paste the following text:
 
-Include the terms `tidyverse` and `infer` in your prompt:
+> Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.
 
-- ~~How can I test if the means of two groups are different in R?~~
-  - How can I test if the means of two groups are different in R with the `infer` package?
-- ~~How can I make a scatterplot in R?~~
-  - How can I make a scatterplot in R with `tidyverse`?
+For example, if I prompt ChatGPT with:
 
+> How do I do an anova in R?
 
-For general statistics help, include the terms "randomisation based inference" or "resampling based inference" or "computational statistics". These are the methods we have covered here, as opposed to more theory/mathematics based inference methods.
+I get this: [https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be](https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be)
+
+But if I add the prompt text above and instead use:
+
+> How do I do an anova in R? Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.
+
+I get this: [https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5](https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5)
+
+The second answer is much more helpful for this course.
+
+For general statistics help, include the terms "randomisation based inference" or "resampling based inference" or "computational statistics". These are the methods we have covered here, as opposed to more mathematical based inference methods.
 
 
 
