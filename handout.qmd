@@ -1,0 +1,27 @@
+---
+title: Common statistical tests and their `infer` equivilents
+author: Iain R. Moodie
+bibliography: references.bib
+citations-hover: true
+draft: true
+---
+
+I have taught the students resampling based statistics, as opposed to the kind of statistics one might find in @sokal1995. For an introductory text that argues well for this approach, see @cobbIntroductoryStatisticsCourse2007.
+
+# Null hypothesis testing
+
+The students learn this framework for null hypothesis testing.
+
+![A generalised form that captures all null hypothesis tests in a randomisation/resampling framework.](slides/images/hyptest.svg)
+
+They use the `specify()`, `hypothesise()`, `generate()` and `calculate()` functions from the `infer` R package for all statistics. These four functions all them to recreate resampling based versions any of the common tests that you would find in e.g. @sokal1995, by describing what they want the test to do.
+
+Students are told the names of equivilent tests, but the focus is not placed in them. Below is a set of examples intended to help teachers on the rest of BIOC13 help guide students in their statistics.
+
+## 1-sample t-test
+
+A 1 sample t-test seeks to test if an observed mean is different from a hypothesised mean.
+
+Students learn to use 
+
+

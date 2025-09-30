@@ -244,7 +244,7 @@ Use three back-ticks (```` ``` ````) to mark the start and end of a code cell. A
 ````
 :::
 
-In both views, you can also use the shortcut *Shift-Alt-I* or *Shift-Command-I*.
+In both views, you can also use the shortcut *Shift-Alt-I* or *Option-Command-I*.
 
 :::
 
@@ -361,7 +361,7 @@ This allows you to view the dataset like you would in a spreadsheet software lik
 
 ## Exploring data
 
-Let's use a few more functions to get a better understanding of the dataset. You may remember these from Exercise 2. 
+Let's use a few more functions to get a better understanding of the dataset.
 
 
 ::: {.callout-note appearance="default"}
@@ -381,11 +381,11 @@ print(tephritis_data) #<1>
 Let's unpack what has appeared in your console:
 
 - The first line of the output is telling us what sort of data is in the object. In this case, its a `tibble`, a way of storing data in a table/spreadsheet format.
-- That same line tells us the number of rows (`583`) and number of columns (`10`) in the table.
+- That same line tells us the number of rows (`579`) and number of columns (`10`) in the table.
 - The next line tell us the variable types.
 - Then the first 10 rows of the dataframe have been printed, along with the column (variable) names at the top.
 - Below that, we get two important pieces of information, denoted by the small `ℹ` symbol:
-  - The first `ℹ` tells us how many rows are not being shown here. Since by default 10 are shown, $583-10=573$.
+  - The first `ℹ` tells us how many rows are not being shown here. Since by default 10 are shown, $579-10=569$.
   - The second `ℹ` tells us how many columns (variables) are not being shown here, as there was not enough room to print them.
 - We can also see that some rows have `NA` values (not applicable). This is the symbol R uses to say no data present.
 
