@@ -1,0 +1,91 @@
+---
+title: "More statistics exercises (extra)"
+date: 2025-10-02
+format: 
+  html:
+    toc: true
+    theme: [cosmo, brand, ../styles.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+execute:
+  echo: true
+  eval: false
+---
+
+# Get RStudio setup
+
+::: {.callout-note appearance="default"}
+
+## Each time you start a new exercise, you should:
+
+1. Make a new folder in your course folder for the exercise (e.g. `bioc13/day_2_extra`)
+2. Open RStudio
+    - If you haven't closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.
+3. Set your working directory by going to *Session* -> *Set working directory* -> *Choose directory*, then navigate to the folder you just made for this exercise.
+4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*). Give it a clear title.
+5. Create a new code cell, and load the `tidyverse` and `infer` packages using `library()`.
+
+:::
+
+
+# **How does diet and temperature influence tobacco hornworms**
+
+![By Daniel Schwen - Own work, CC BY-SA 4.0, [https://commons.wikimedia.org/w/index.php?curid=11470387](https://commons.wikimedia.org/w/index.php?curid=11470387)](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tobacco_Hornworm_1.jpg/1080px-Tobacco_Hornworm_1.jpg)
+
+## Background
+
+Insect colouration mediated by melanization can assist in dealing with environmental temperatures. However, melanin synthesis can be costly and depends on the ability of insects to acquire enough energy and nutrients from their diets. Due to the increased plant C:N ratio associated with elevated CO2 concentrations, insect herbivores' melanization could be limited by the amount of nitrogen they acquire from their host plants.
+
+To investigate how diet C:N impacts the potential colour response to temperature, the authors used *Manduca sexta* caterpillars reared at different combinations of temperatures and diet C:N ratios, and measured pupal mass and development time (performance metrics) and colour morphology.
+
+Soon after eclosion, *Manduca sexta* larvae were reared under two `temperature` conditions (`"18C"`, `"27C"`) and two `diet_quality` treatments (`"low"` or `"high"` nitrogen content). The authors measured `pupal_mass_g` and `development_time` as performance metrics. They also photographed the 5th instar larvae before the wandering stage and measured color as mean colour (`red_mean`, `blue_mean`, `green_mean`) and luminance (`luminance_mean`) values across the larvae. The experiment was repeated over two different `year`s.
+
+## The dataset
+
+The results of the experiment are stored in a `csv` file here: [Link to data.](https://github.com/irmoodie/teaching_datasets/blob/main/tobacco_hornworms/tobacco_hornworms.csv)
+
+Once downloaded, you should move it to your *working directory* folder for this exercise before continuing.
+
+
+## Loading the data into R
+
+::: {.callout-note appearance="default"}
+
+## Load the data
+
+In a new code cell, use `read_csv()` to load the data into R. Assign it to an object.
+
+:::
+
+## Explore the dataset
+
+To get a better understanding of the dataset before you continue, use functions from previous exercises to explore the dataset, calculate summary statistics and make quick and basic plots.
+
+## The research question
+
+In this exercise, you need to address the research question:
+
+- How do `diet_quality` and `temperature` influence performance and colouration in *Manduca sexta*.
+
+By the end, you need to be able to answer the following questions:
+
+::: {.callout-tip}
+
+## Questions
+
+1. What effect did `temperature` have on performance and colouration in *Manduca sexta*?
+2. What effect did `diet_quality` have on performance and colouration in *Manduca sexta*?
+3. Was the effect of `temperature` and `diet_quality` additive, or do they interact?
+
+:::
+
+You must use statistical methods in the `infer` package to answer these questions. Both null hypothesis testing and confidence intervals are applicable methods.
+
+::: {.callout-note collapse="true"}
+
+## Hint
+
+To analyze the data, consider using the `fit()` function from the `infer` package. Use the examples from the `infer` website and find ones that fits what you want to do.
+
+:::
