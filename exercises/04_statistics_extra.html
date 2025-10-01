@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Iain R. Moodie">
+<meta name="dcterms.date" content="2025-10-02">
 
-<title>Exercise 1: Bonus problems – BIOC13 Statistics</title>
+<title>More statistics exercises (extra) – BIOC13 Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -104,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Exercise 1: Bonus problems – BIOC13 Statistics">
-<meta property="og:description" content="Materials for the Statistics section of BIOC13, VT25">
+<meta property="og:title" content="More statistics exercises (extra) – BIOC13 Statistics">
 <meta property="og:site_name" content="BIOC13 Statistics">
 </head>
 
@@ -118,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference_extra.html">Exercises (extra)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/computational_statistics.html">Computational statistics (Day 2)</a></li><li class="breadcrumb-item"><a href="../exercises/04_statistics_extra.html">Exercises (extra)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link active">
+  <a href="../exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises (extra)</span></a>
   </div>
 </li>
@@ -218,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/04_statistics_extra.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/04_statistics_extra.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exercises (extra)</span></a>
   </div>
 </li>
@@ -251,10 +216,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link active" data-scroll-target="#plotting">Plotting</a>
+  <li><a href="#get-rstudio-setup" id="toc-get-rstudio-setup" class="nav-link active" data-scroll-target="#get-rstudio-setup">Get RStudio setup</a></li>
+  <li><a href="#how-does-diet-and-temperature-influence-tobacco-hornworms" id="toc-how-does-diet-and-temperature-influence-tobacco-hornworms" class="nav-link" data-scroll-target="#how-does-diet-and-temperature-influence-tobacco-hornworms"><strong>How does diet and temperature influence tobacco hornworms</strong></a>
   <ul class="collapse">
-  <li><a href="#the-grammer-of-graphics" id="toc-the-grammer-of-graphics" class="nav-link" data-scroll-target="#the-grammer-of-graphics">The grammer of graphics</a></li>
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The dataset</a></li>
+  <li><a href="#loading-the-data-into-r" id="toc-loading-the-data-into-r" class="nav-link" data-scroll-target="#loading-the-data-into-r">Loading the data into R</a></li>
+  <li><a href="#explore-the-dataset" id="toc-explore-the-dataset" class="nav-link" data-scroll-target="#explore-the-dataset">Explore the dataset</a></li>
+  <li><a href="#the-research-question" id="toc-the-research-question" class="nav-link" data-scroll-target="#the-research-question">The research question</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -262,9 +231,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/intro_to_inference.html">Introduction to inference (Day 1)</a></li><li class="breadcrumb-item"><a href="../exercises/03_inference_extra.html">Exercises (extra)</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../slides/computational_statistics.html">Computational statistics (Day 2)</a></li><li class="breadcrumb-item"><a href="../exercises/04_statistics_extra.html">Exercises (extra)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercise 1: Bonus problems</h1>
+<h1 class="title">More statistics exercises (extra)</h1>
 </div>
 
 
@@ -278,6 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 2, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -287,88 +262,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>All the exercises below use the <code>tephritis_phenotype.csv</code> dataset from the main exercise. This exercise is not mandatory, but will allow you to practise what we covered in the first exercise.</p>
-<section id="plotting" class="level1">
-<h1>Plotting</h1>
-<section id="the-grammer-of-graphics" class="level2">
-<h2 class="anchored" data-anchor-id="the-grammer-of-graphics">The grammer of graphics</h2>
-<p>The grammer of graphics gives us a way to describe any plot.</p>
-<p>A <code>ggplot2</code> plot has three essential components:</p>
-<ul>
-<li><code>data</code>: the dataset that contains the variables you want to plot</li>
-<li><code>geom</code>: the geometric object you want to use to display your data:
-<ul>
-<li><code>geom_point()</code></li>
-<li><code>geom_jitter()</code></li>
-<li><code>geom_boxplot()</code></li>
-<li><code>geom_violin()</code></li>
-<li><code>geom_bar()</code></li>
-<li><code>geom_col()</code></li>
-</ul></li>
-<li><code>aes</code>: aesthetic attributes that you want to map to your geometric object:
-<ul>
-<li><code>x</code></li>
-<li><code>y</code></li>
-<li><code>fill</code></li>
-<li><code>colour</code></li>
-<li><code>shape</code></li>
-<li><code>size</code></li>
-</ul></li>
-</ul>
-<p><code>ggplot2</code> uses a layered approach to the grammer of graphics. This makes it easy to start contructing plots by putting together a “recipe” step-by-step.</p>
-<p>To find out what a function does do, try using them, or search the helpfiles in the <em>Outputs</em> panel. You can also, for any function, search for the helpfile by writing <code>?function_name</code>. E.g., if you wanted to know what <code>geom_jitter()</code> does, you could run the command <code>?geom_jitter</code>, and the helpfile will open.</p>
-<p>You can also consult the <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf"><code>ggplot2</code> “cheatsheet”</a> for help.</p>
-<p><code>ggplot2</code> allows for extensive customisation of your plots. For example, you might want to change the labels of the axis, or give your plot a title. You can do that using the <code>labs()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Name of my x variable"</span>, <span class="at">y =</span> <span class="st">"Name of my Y variable"</span>, <span class="at">title =</span> <span class="st">"My awesome plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You can also change the <code>theme</code> of your plot. <code>ggplot2</code> has many built in themes. A full list can be found <a href="https://ggplot2-book.org/themes#sec-themes">here</a>. For my fake example, I could change the theme to <code>theme_classic()</code> like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_data, <span class="fu">aes</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_points</span>() <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Try it out on your plots. What theme do you prefer best?</p>
-<p>In general, <code>ggplot2</code> is a very widely used plotting package, so finding examples of what you want to do will not be hard. Use search engines, AI tools, the <a href="https://ggplot2-book.org"><code>ggplot2</code> book</a>, etc. If you see it on your plot, you can probably change it.</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<section id="get-rstudio-setup" class="level1">
+<h1>Get RStudio setup</h1>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Problems
+Each time you start a new exercise, you should:
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Make a graph that shows the variable <code>body_length_mm</code> for each <code>sex</code> using a box plot.</li>
-<li>Make a graph that shows the relationship between <code>body_length_mm</code> and <code>wing_length_mm</code>. Change the colour to show <code>sex</code>.</li>
-<li>Make a graph that uses violin plots to show <code>melanized_percent</code> for each <code>region</code>.</li>
-<li>Use a bar chart to show the number of flies from each side of the <code>baltic</code>. Split each bar by <code>host_plant</code>.</li>
+<li>Make a new folder in your course folder for the exercise (e.g.&nbsp;<code>bioc13/day_2_extra</code>)</li>
+<li>Open RStudio
+<ul>
+<li>If you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.</li>
+</ul></li>
+<li>Set your working directory by going to <em>Session</em> -&gt; <em>Set working directory</em> -&gt; <em>Choose directory</em>, then navigate to the folder you just made for this exercise.</li>
+<li>Create a new Rmarkdown document (<em>File</em> -&gt; <em>New file</em> -&gt; <em>R markdown..</em>). Give it a clear title.</li>
+<li>Create a new code cell, and load the <code>tidyverse</code> and <code>infer</code> packages using <code>library()</code>.</li>
 </ol>
 </div>
 </div>
 </section>
-<section id="statistics" class="level2">
-<h2 class="anchored" data-anchor-id="statistics">Statistics</h2>
-<p>Use what we covered in the lecture, exercise and the <a href="help.qmd">help files</a> to investigate the following questions:</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<section id="how-does-diet-and-temperature-influence-tobacco-hornworms" class="level1">
+<h1><strong>How does diet and temperature influence tobacco hornworms</strong></h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tobacco_Hornworm_1.jpg/1080px-Tobacco_Hornworm_1.jpg" class="img-fluid figure-img"></p>
+<figcaption>By Daniel Schwen - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=11470387">https://commons.wikimedia.org/w/index.php?curid=11470387</a></figcaption>
+</figure>
+</div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Insect colouration mediated by melanization can assist in dealing with environmental temperatures. However, melanin synthesis can be costly and depends on the ability of insects to acquire enough energy and nutrients from their diets. Due to the increased plant C:N ratio associated with elevated CO2 concentrations, insect herbivores’ melanization could be limited by the amount of nitrogen they acquire from their host plants.</p>
+<p>To investigate how diet C:N impacts the potential colour response to temperature, the authors used <em>Manduca sexta</em> caterpillars reared at different combinations of temperatures and diet C:N ratios, and measured pupal mass and development time (performance metrics) and colour morphology.</p>
+<p>Soon after eclosion, <em>Manduca sexta</em> larvae were reared under two <code>temperature</code> conditions (<code>"18C"</code>, <code>"27C"</code>) and two <code>diet_quality</code> treatments (<code>"low"</code> or <code>"high"</code> nitrogen content). The authors measured <code>pupal_mass_g</code> and <code>development_time</code> as performance metrics. They also photographed the 5th instar larvae before the wandering stage and measured color as mean colour (<code>red_mean</code>, <code>blue_mean</code>, <code>green_mean</code>) and luminance (<code>luminance_mean</code>) values across the larvae. The experiment was repeated over two different <code>year</code>s.</p>
+</section>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The dataset</h2>
+<p>The results of the experiment are stored in a <code>csv</code> file here: <a href="https://github.com/irmoodie/teaching_datasets/blob/main/tobacco_hornworms/tobacco_hornworms.csv">Link to data.</a></p>
+<p>Once downloaded, you should move it to your <em>working directory</em> folder for this exercise before continuing.</p>
+</section>
+<section id="loading-the-data-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data-into-r">Loading the data into R</h2>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Research questions
+Load the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a new code cell, use <code>read_csv()</code> to load the data into R. Assign it to an object.</p>
+</div>
+</div>
+</section>
+<section id="explore-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-dataset">Explore the dataset</h2>
+<p>To get a better understanding of the dataset before you continue, use functions from previous exercises to explore the dataset, calculate summary statistics and make quick and basic plots.</p>
+</section>
+<section id="the-research-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-research-question">The research question</h2>
+<p>In this exercise, you need to address the research question:</p>
+<ul>
+<li>How do <code>diet_quality</code> and <code>temperature</code> influence performance and colouration in <em>Manduca sexta</em>.</li>
+</ul>
+<p>By the end, you need to be able to answer the following questions:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questions
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>In many insect species, females are on average larger than males. Is this also the case in <em>Tephritis conura</em>? Use a null hypothesis test to answer this question.</li>
-<li>Is there a difference in the amount of melanization on the wings between the two host races?</li>
-<li>Is there a difference in the proportion of flies that utilize the <em>Cirsium heterophyllum</em> host plant on each side of the Baltic sea?</li>
+<li>What effect did <code>temperature</code> have on performance and colouration in <em>Manduca sexta</em>?</li>
+<li>What effect did <code>diet_quality</code> have on performance and colouration in <em>Manduca sexta</em>?</li>
+<li>Was the effect of <code>temperature</code> and <code>diet_quality</code> additive, or do they interact?</li>
 </ol>
+</div>
+</div>
+<p>You must use statistical methods in the <code>infer</code> package to answer these questions. Both null hypothesis testing and confidence intervals are applicable methods.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To analyze the data, consider using the <code>fit()</code> function from the <code>infer</code> package. Use the examples from the <code>infer</code> website and find ones that fits what you want to do.</p>
+</div>
 </div>
 </div>
 
