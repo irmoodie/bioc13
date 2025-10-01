@@ -319,7 +319,7 @@
     "href": "exercises/04_statistics.html",
     "title": "Computational methods of inference",
     "section": "",
-    "text": "Each time you start a new exercise, you should:\n\nMake a new folder in your course folder for the exercise (e.g. bioc13/exercise_2)\nOpen RStudio\n\nIf you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.\n\nSet your working directory by going to Session -&gt; Set working directory -&gt; Choose directory, then navigate to the folder you just made for this exercise.\nCreate a new Rmarkdown document (File -&gt; New file -&gt; R markdown..). Give it a clear title.\n\nPlease ensure you have followed the step above before you start!",
+    "text": "!!! These will be updated on 2nd October, so hold off until then !!*",
     "crumbs": [
       "Computational statistics (Day 2)",
       "Exercises"
