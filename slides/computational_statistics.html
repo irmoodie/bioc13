@@ -777,6 +777,7 @@ Explanatory: host_plant (factor)
 <li>Difference between &gt;2 groups in a continuous variable</li>
 <li>Are two (or more) distributions different?</li>
 <li>Is there a linear relationship between two variables?</li>
+<li>Do two groups differ in their relationship between two variables?</li>
 </ul>
 </section></section>
 <section>
@@ -950,7 +951,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <ul>
 <li>Is the mean <code>ovipositor_length_mm</code> in the <code>heterophyllum</code> host race different from 1.78 mm?</li>
 </ul>
-<div id="timer_4095296676fe1be7455f05bde3a65435c55a9894" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
+<div id="timer_22f3a18e234b7860b72114c2a2f7b903796f4eeb" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -1695,7 +1696,7 @@ Explanatory: body_length_mm (numeric)
 <section id="correlation-15" class="slide level2">
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-hyp.-test-1">Do two continuous variables covary? (Hyp. test)</h3>
-<div id="timer_4095296676fe1be7455f05bde3a65435c55a9894" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
+<div id="timer_22f3a18e234b7860b72114c2a2f7b903796f4eeb" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -1733,7 +1734,321 @@ Explanatory: body_length_mm (numeric)
 <span id="cb63-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-74-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-74-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<section>
+<section id="regression" class="title-slide slide level1 center" data-background-color="#61599d">
+<h1>Regression</h1>
+
+</section>
+<section id="regression-1" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x">How does variable Y depend on variable X</h3>
+<ul>
+<li>A mathmatical function describing the relationship between two continuous variables</li>
+<li>Y is dependant on X (the)</li>
+<li>Y is a function of X</li>
+<li>Predictive model</li>
+<li>Very powerful framework</li>
+</ul>
+</section>
+<section id="regression-2" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-1">How does variable Y depend on variable X</h3>
+<p><span class="math display">\[
+y = \text{Slope}\times x + \text{Intercept}
+\]</span></p>
+<p><span class="math display">\[
+y = mx+c
+\]</span></p>
+<p><span class="math display">\[
+y = \beta_1x+\beta_0
+\]</span></p>
+<p><span class="math display">\[
+y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
+\]</span></p>
+</section>
+<section id="regression-3" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-2">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-75-1.png" width="960" class="r-stretch"></section>
+<section id="regression-4" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-3">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-76-1.png" width="960" class="r-stretch"></section>
+<section id="regression-5" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-4">How does variable Y depend on variable X</h3>
+<ul>
+<li>Example: For sexual selection to operate, an increase in mating success (number of mates) must result in an increase in reproductive success (number of offspring).</li>
+</ul>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-77-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="regression-6" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-5">How does variable Y depend on variable X</h3>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[
+y = \beta_1x+\beta_0
+\]</span></p>
+<p><span class="math display">\[
+y = 3.83x-0.68
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta_1\)</span> = strength of sexual selection</li>
+<li>For each additional mate, an individual (on average) gains <span class="math inline">\(\beta_1\)</span> additional offspring</li>
+<li>For 5 mates (<span class="math inline">\(x=5\)</span>):
+<ul>
+<li><span class="math inline">\(y = 3.83\times5-0.68\)</span></li>
+<li><span class="math inline">\(y = 18.47\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-78-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="regression-7" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-6">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-79-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="regression-8" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-7">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-80-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="regression-9" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-8">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-81-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="regression-10" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-9">How does variable Y depend on variable X</h3>
+
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-82-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
+<section id="regression-11" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-10">How does variable Y depend on variable X</h3>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-83-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li>Fit by solving to minimise the sum of the squared residuals (SSR)
+<ul>
+<li>Find <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_0\)</span> that minimise the SSR</li>
+<li>Called a “loss function”</li>
+<li>Many approaches to do this!</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="regression-12" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-does-variable-y-depend-on-variable-x-11">How does variable Y depend on variable X</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/3dhcmeOTZ_Q?start=0" width="1050" height="591" title="Regression animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</section>
+<section id="regression-13" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-to-fit-in-r">How to fit in R?</h3>
+<p>Base R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="fu">lm</span>(<span class="at">data =</span> mating_data, reproductive_success <span class="sc">~</span> mating_success)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = reproductive_success ~ mating_success, data = mating_data)
+
+Coefficients:
+   (Intercept)  mating_success  
+       -0.6844          3.8344  </code></pre>
+</div>
+</div>
+</section>
+<section id="regression-14" class="slide level2">
+<h2>Regression</h2>
+<h3 id="how-to-fit-in-r-1">How to fit in R?</h3>
+<p>With <code>infer</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>observed_fit <span class="ot">&lt;-</span></span>
+<span id="cb66-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
+<span id="cb66-4"><a></a>  <span class="fu">fit</span>()</span>
+<span id="cb66-5"><a></a></span>
+<span id="cb66-6"><a></a>observed_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  term           estimate
+  &lt;chr&gt;             &lt;dbl&gt;
+1 intercept        -0.684
+2 mating_success    3.83 </code></pre>
+</div>
+</div>
+</section>
+<section id="regression-15" class="slide level2">
+<h2>Regression</h2>
+<h3 id="confidence-intervals-4">Confidence intervals</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
+<span id="cb68-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
+<span id="cb68-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
+<span id="cb68-4"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb68-5"><a></a>  <span class="fu">fit</span>()</span>
+<span id="cb68-6"><a></a></span>
+<span id="cb68-7"><a></a>boot_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,000 × 3
+# Groups:   replicate [1,000]
+   replicate term           estimate
+       &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1         1 intercept        -3.75 
+ 2         1 mating_success    4.32 
+ 3         2 intercept        -4.96 
+ 4         2 mating_success    4.73 
+ 5         3 intercept        -0.267
+ 6         3 mating_success    3.80 
+ 7         4 intercept         6.72 
+ 8         4 mating_success    2.84 
+ 9         5 intercept        -1.08 
+10         5 mating_success    3.96 
+# ℹ 1,990 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-16" class="slide level2">
+<h2>Regression</h2>
+<h3 id="confidence-intervals-5">Confidence intervals</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>conf_ints <span class="ot">&lt;-</span> </span>
+<span id="cb70-2"><a></a>  <span class="fu">get_confidence_interval</span>(</span>
+<span id="cb70-3"><a></a>    boot_dist, </span>
+<span id="cb70-4"><a></a>    <span class="at">level =</span> .<span class="dv">95</span>, </span>
+<span id="cb70-5"><a></a>    <span class="at">point_estimate =</span> observed_fit</span>
+<span id="cb70-6"><a></a>  )</span>
+<span id="cb70-7"><a></a></span>
+<span id="cb70-8"><a></a>conf_ints</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  term           lower_ci upper_ci
+  &lt;chr&gt;             &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept         -5.33     4.36
+2 mating_success     2.99     4.66</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-17" class="slide level2">
+<h2>Regression</h2>
+<h3 id="confidence-intervals-6">Confidence intervals</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
+<span id="cb72-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_ints)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-88-1.png" width="480" class="r-stretch"></section>
+<section id="regression-18" class="slide level2">
+<h2>Regression</h2>
+<h3 id="hypothesis-test">Hypothesis test</h3>
+<ul>
+<li>Null hypothesis:
+<ul>
+<li>Slope = 0</li>
+</ul></li>
+<li>Alternative hypothesis:
+<ul>
+<li>Slope <span class="math inline">\(\neq\)</span> 0</li>
+<li>Slope &lt; 0</li>
+<li>Slope &gt; 0</li>
+</ul></li>
+</ul>
+</section>
+<section id="regression-19" class="slide level2">
+<h2>Regression</h2>
+<h3 id="hypothesis-test-1">Hypothesis test</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<span id="cb73-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
+<span id="cb73-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
+<span id="cb73-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb73-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb73-6"><a></a>  <span class="fu">fit</span>()</span>
+<span id="cb73-7"><a></a></span>
+<span id="cb73-8"><a></a>null_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,000 × 3
+# Groups:   replicate [1,000]
+   replicate term           estimate
+       &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1         1 intercept       20.3   
+ 2         1 mating_success   0.0382
+ 3         2 intercept       23.9   
+ 4         2 mating_success  -0.603 
+ 5         3 intercept       25.8   
+ 6         3 mating_success  -0.951 
+ 7         4 intercept       23.7   
+ 8         4 mating_success  -0.570 
+ 9         5 intercept       27.2   
+10         5 mating_success  -1.20  
+# ℹ 1,990 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-20" class="slide level2">
+<h2>Regression</h2>
+<h3 id="hypothesis-test-2">Hypothesis test</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb75-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-90-1.png" width="480" class="r-stretch"></section>
+<section id="regression-21" class="slide level2">
+<h2>Regression</h2>
+<h3 id="hypothesis-test-3">Hypothesis test</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb76-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  term           p_value
+  &lt;chr&gt;            &lt;dbl&gt;
+1 intercept            0
+2 mating_success       0</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-22" class="slide level2">
+<h2>Regression</h2>
+<h3 id="multiple-regression">Multiple regression</h3>
+<p><span class="math display">\[
+y = \beta_1x+\beta_0
+\]</span></p>
+<p><span class="math display">\[
+y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>data <span class="sc">|&gt;</span></span>
+<span id="cb78-2"><a></a><span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success <span class="sc">+</span> sex <span class="sc">+</span> feather_colour) ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="take-away-points" class="slide level2">
 <h2>Take-away points</h2>
 <ul>
@@ -1742,11 +2057,12 @@ Explanatory: body_length_mm (numeric)
 <li><code>"permute"</code></li>
 <li><code>"draw"</code></li>
 </ul></li>
-<li>Introduced three new statistics
+<li>Introduced four new statistics
 <ul>
 <li><code>"F-statistic"</code> (compare variances to infer if means differ)</li>
 <li><code>"Chi-sq"</code> (compare distributions of categorical data)</li>
 <li><code>"correlation"</code> (do two variables covary linearly?)</li>
+<li>Regression coefficients (via <code>fit()</code>)</li>
 </ul></li>
 </ul>
 </section></section>
