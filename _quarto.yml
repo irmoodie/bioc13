@@ -39,6 +39,8 @@ website:
             text: "Slides"
           - href: exercises/04_statistics.qmd
             text: "Exercises"
+          - href: exercises/04_statistics_extra.qmd
+            text: "Exercises (extra)"
       - section: "Help beyond the exercises"
         contents:
           - href: help.qmd
