@@ -792,7 +792,7 @@ visualise(null_dist) +
 ```{r}
 #| echo: false
 #| eval: true
-animal_pref <- tibble(preference = sample(c(rep("dog", 11), rep("cat", 10))))
+animal_pref <- tibble(preference = sample(c(rep("dog", 14), rep("cat", 11))))
 
 animal_pref_se <- tibble(preference = sample(c(rep("dog", 2000/100*58), rep("cat", 2000/100*(100-58)))))
 ```
