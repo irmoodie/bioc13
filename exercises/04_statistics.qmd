@@ -13,6 +13,8 @@ execute:
   eval: false
 ---
 
+**!!! These will be updated on 2nd October, so hold off until then !!***
+
 # Get RStudio setup
 
 Each time you start a new exercise, you should:
