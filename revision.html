@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Additional resources – BIOC13 Statistics</title>
+<title>Revision questions – BIOC13 Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Additional resources – BIOC13 Statistics">
+<meta property="og:title" content="Revision questions – BIOC13 Statistics">
 <meta property="og:description" content="Materials for the Statistics section of BIOC13, VT25">
 <meta property="og:site_name" content="BIOC13 Statistics">
 </head>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./revision.html">Revision questions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -199,13 +199,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./help.html" class="sidebar-item-text sidebar-link active">
+  <a href="./help.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./revision.html" class="sidebar-item-text sidebar-link">
+  <a href="./revision.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Revision questions</span></a>
   </div>
 </li>
@@ -221,20 +221,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#help-with-implementing-your-statistical-methods" id="toc-help-with-implementing-your-statistical-methods" class="nav-link active" data-scroll-target="#help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</a></li>
-  <li><a href="#help-with-understanding-the-statistical-methods" id="toc-help-with-understanding-the-statistical-methods" class="nav-link" data-scroll-target="#help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</a></li>
-  <li><a href="#help-with-general-working-with-data-in-r" id="toc-help-with-general-working-with-data-in-r" class="nav-link" data-scroll-target="#help-with-general-working-with-data-in-r">Help with general working with data in R</a></li>
-  <li><a href="#advice-for-using-ai-tools-to-generate-code" id="toc-advice-for-using-ai-tools-to-generate-code" class="nav-link" data-scroll-target="#advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</a></li>
-  <li><a href="#access-to-biob11-materials" id="toc-access-to-biob11-materials" class="nav-link" data-scroll-target="#access-to-biob11-materials">Access to BIOB11 materials</a></li>
+  <li><a href="#general" id="toc-general" class="nav-link active" data-scroll-target="#general">General</a></li>
+  <li><a href="#test-statistics" id="toc-test-statistics" class="nav-link" data-scroll-target="#test-statistics">Test statistics</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence intervals</a></li>
+  <li><a href="#null-hypothesis-testing" id="toc-null-hypothesis-testing" class="nav-link" data-scroll-target="#null-hypothesis-testing">Null hypothesis testing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./help.html">Useful resources</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./help.html">Help beyond the exercises</a></li><li class="breadcrumb-item"><a href="./revision.html">Revision questions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Additional resources</h1>
+<h1 class="title">Revision questions</h1>
 </div>
 
 
@@ -251,58 +250,46 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this section of the course, we have been using an R package called <code>infer</code> to perform randomisation and resampling based statisitcs. Since we have only had two days, we have not had a chance to go through examples of every sort of analysis you might want to do. However, the framework you have been using for calculating confidence intervals and hypothesis testing can be applied extrememly broadly, and you can likely use them to answer any ecological question you come up with on this course.</p>
-<p>Below I have linked you to some materials which should help with that.</p>
-<hr>
-<section id="help-with-implementing-your-statistical-methods" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-implementing-your-statistical-methods">Help with implementing your statistical methods</h3>
-<ul>
-<li>The <a href="https://infer.tidymodels.org/articles/infer.html">getting to know <code>infer</code> vignette</a></li>
-<li>This contains a walk through of some examples using <code>infer</code> with commentary, explaining things in detail.</li>
-<li>The <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html">full <code>infer</code> pipeline examples vignette</a>
-<ul>
-<li>This contains examples of almost every possible analysis with <code>infer</code>, but with limited commentary. If you know what you want to do, but can’t quite make it work, check this page.</li>
-</ul></li>
-<li>There are also <a href="https://infer.tidymodels.org/articles/">other articles on the <code>infer</code> website</a> that contain helpful examples.</li>
-</ul>
+<p>In preperation for the practise exam and the real exam, you can use the following questions to guide your revision. Remember, we spent a total of 2 days on this topic, and for some of you, this was your first exposure to statistics. The exam questions will be set accordingly.</p>
+<p>The real exam questions will be mostly multiple choice, with 1-2 short answer questions. However to prepare for these, I think its best you try and write answers to the following questions using sources from the course.</p>
+<section id="general" class="level1">
+<h1>General</h1>
+<ol type="1">
+<li>In statisitics, what do we mean when we talk about a population and a sample? Give an example in your answer.</li>
+<li>In ecology, we often collect both continuous data and categorical data. What do these terms mean? Give an example of each.</li>
+<li>What is meant by a “sampling distribution”? Why is it such an important idea in statistics.</li>
+</ol>
 </section>
-<section id="help-with-understanding-the-statistical-methods" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-understanding-the-statistical-methods">Help with understanding the statistical methods</h3>
-<ul>
-<li>The <a href="https://moderndive.com/v2/index.html">Statistical Inference with infer section of ModernDive (Ch. 7-10)</a> is a beginner friendly text that follows the style of statistical analysis we have been doing in this part of the course.</li>
-</ul>
+<section id="test-statistics" class="level1">
+<h1>Test statistics</h1>
+<p>For each of the following scenarios, name or describe a test statistic that could be used to capture the research question of interest:</p>
+<ol type="1">
+<li>You are studying the relationship between the amount of fertilizer (in mg per week) a plant receives and its growth rate (in cm per week). Is there a relationship between these two variables?</li>
+<li>You record the heights of shrubs in forests and open grasslands. Do they differ on average in height?</li>
+<li>The proportion of nestlings that survive is recorded in urban and forest environments. Is there a difference in survival rates between these two environments?</li>
+<li>Classrooms in the Department of Biology, Physics and Chemistry are polled on their preference of 3 ice cream flavours. Is there an association between department and ice cream preference?</li>
+<li>You measure the egg masses of birds in three different habitat types: forests, grasslands, and wetlands. Is there a difference in the average egg mass among the three habitat types?</li>
+</ol>
 </section>
-<section id="help-with-general-working-with-data-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="help-with-general-working-with-data-in-r">Help with general working with data in R</h3>
-<ul>
-<li>For help with importing, data handling and basic plotting, the <a href="https://moderndive.com/v2/index.html">Data Science with tidyverse section of ModernDive</a> is a beginner friendly text that will have examples for most things you will want to do.
-<ul>
-<li>If something is not covered, check out <a href="https://r4ds.hadley.nz/">R for Data Science</a>.</li>
-</ul></li>
-</ul>
+<section id="confidence-intervals" class="level1">
+<h1>Confidence intervals</h1>
+<ol type="1">
+<li>What information does a confidence interval provide? Provide both a strict definition and a defintion that you could use to explain the idea to a non-scientist friend.</li>
+<li>Describe a method to calculate a 95% confidence interval that we have used in this course. You can refer to the diagrams used in the slides and exercise.</li>
+<li>How would this method change if you wanted to calculate a 99% confidence interval?</li>
+</ol>
 </section>
-<section id="advice-for-using-ai-tools-to-generate-code" class="level3">
-<h3 class="anchored" data-anchor-id="advice-for-using-ai-tools-to-generate-code">Advice for using AI tools to generate code</h3>
-<p>AI tools (ChatGPT, Gemini, Deepseek, etc) are going to be both extremely helpful and extremely confusing if you prompt them to provide code. For the output to be more helpful considering what we have covered in this section, at the end of your question, paste the following text:</p>
-<blockquote class="blockquote">
-<p>Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.</p>
-</blockquote>
-<p>For example, if I prompt ChatGPT with:</p>
-<blockquote class="blockquote">
-<p>How do I do an anova in R?</p>
-</blockquote>
-<p>I get this: <a href="https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be">https://chatgpt.com/share/68da6440-b3e4-8009-875a-c268999f45be</a></p>
-<p>But if I add the prompt text above and instead use:</p>
-<blockquote class="blockquote">
-<p>How do I do an anova in R? Use the tidyverse package and style of coding. Use the base R pipe. Use the infer package for all statistics, and use resampling and/or randomisation approaches.</p>
-</blockquote>
-<p>I get this: <a href="https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5">https://chatgpt.com/share/68da6458-4184-8009-8889-448b68f72ed5</a></p>
-<p>The second answer is much more helpful for this course.</p>
-<p>For general statistics help, include the terms “randomisation based inference” or “resampling based inference” or “computational statistics”. These are the methods we have covered here, as opposed to more mathematical based inference methods.</p>
-</section>
-<section id="access-to-biob11-materials" class="level3">
-<h3 class="anchored" data-anchor-id="access-to-biob11-materials">Access to BIOB11 materials</h3>
-<p>BIOB11 materials can be accessed <a href="https://irmoodie.com/biob11">here</a>.</p>
+<section id="null-hypothesis-testing" class="level1">
+<h1>Null hypothesis testing</h1>
+<ol type="1">
+<li>What is a null hypothesis? What do we learn by testing against a null hypothesis? Again, imagine you were explaining this to a non-scientist friend. How could you help them understand this idea?</li>
+<li>What is a null distribution?</li>
+<li>When testing for an association/relationship/correlation between two variables, we used a process called “permuation” to generate a null distribution. Describe this process, and why it is an appropriate way to generate a null distribution.</li>
+<li>What is a p-value? Provide both a strict definition and a defintion that you could use to explain the idea to a non-scientist friend.</li>
+<li>Describe how we calculated a p-value in this course? Why did we sometimes recover p-values that were 0?</li>
+<li>On what criteria should you <em>reject</em> or <em>fail to reject</em> a null hypothesis?</li>
+<li>Compare and contrast the sorts of information that confidence intervals and null hypothesis testing provide. What questions do they each answer? Again, try to explain this like you were speaking to a non-scientist friend.</li>
+</ol>
 
 
 </section>
