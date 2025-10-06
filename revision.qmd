@@ -20,6 +20,7 @@ For each of the following scenarios, name or describe a test statistic that coul
 2. You record the heights of shrubs in forests and open grasslands. Do they differ on average in height?
 3. The proportion of nestlings that survive is recorded in urban and forest environments. Is there a difference in survival rates between these two environments?
 4. Classrooms in the Department of Biology, Physics and Chemistry are polled on their preference of 3 ice cream flavours. Is there an association between department and ice cream preference?
+5. You measure the egg masses of birds in three different habitat types: forests, grasslands, and wetlands. Is there a difference in the average egg mass among the three habitat types?
 
 # Confidence intervals
 
