@@ -28,9 +28,6 @@ execute:
 
 :::
 
-
-
-
 # **How does diet and temperature influence tobacco hornworms**
 
 ![By Daniel Schwen - Own work, CC BY-SA 4.0, [https://commons.wikimedia.org/w/index.php?curid=11470387](https://commons.wikimedia.org/w/index.php?curid=11470387)](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tobacco_Hornworm_1.jpg/1080px-Tobacco_Hornworm_1.jpg)

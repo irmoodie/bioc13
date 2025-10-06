@@ -1,0 +1,38 @@
+---
+title: Revision questions
+---
+
+In preperation for the practise exam and the real exam, you can use the following questions to guide your revision. Remember, we spent a total of 2 days on this topic, and for some of you, this was your first exposure to statistics. The exam questions will be set accordingly.
+
+The real exam questions will be mostly multiple choice, with 1-2 short answer questions. However to prepare for these, I think its best you try and write answers to the following questions using sources from the course.
+
+# General
+
+1. In statisitics, what do we mean when we talk about a population and a sample? Give an example in your answer.
+2. In ecology, we often collect both continuous data and categorical data. What do these terms mean? Give an example of each.
+3. What is meant by a "sampling distribution"? Why is it such an important idea in statistics.
+
+# Test statistics
+
+For each of the following scenarios, name or describe a test statistic that could be used to capture the research question of interest:
+
+1. You are studying the relationship between the amount of fertilizer (in mg per week) a plant receives and its growth rate (in cm per week). Is there a relationship between these two variables?
+2. You record the heights of shrubs in forests and open grasslands. Do they differ on average in height?
+3. The proportion of nestlings that survive is recorded in urban and forest environments. Is there a difference in survival rates between these two environments?
+4. Classrooms in the Department of Biology, Physics and Chemistry are polled on their preference of 3 ice cream flavours. Is there an association between department and ice cream preference?
+
+# Confidence intervals
+
+1. What information does a confidence interval provide? Provide both a strict definition and a defintion that you could use to explain the idea to a non-scientist friend.
+2. Describe a method to calculate a 95% confidence interval that we have used in this course. You can refer to the diagrams used in the slides and exercise.
+3. How would this method change if you wanted to calculate a 99% confidence interval?
+
+# Null hypothesis testing
+
+1. What is a null hypothesis? What do we learn by testing against a null hypothesis? Again, imagine you were explaining this to a non-scientist friend. How could you help them understand this idea?
+2. What is a null distribution?
+3. When testing for an association/relationship/correlation between two variables, we used a process called "permuation" to generate a null distribution. Describe this process, and why it is an appropriate way to generate a null distribution.
+4. What is a p-value? Provide both a strict definition and a defintion that you could use to explain the idea to a non-scientist friend.
+5. Describe how we calculated a p-value in this course? Why did we sometimes recover p-values that were 0?
+6. On what criteria should you *reject* or *fail to reject* a null hypothesis?
+7. Compare and contrast the sorts of information that confidence intervals and null hypothesis testing provide. What questions do they each answer? Again, try to explain this like you were speaking to a non-scientist friend.

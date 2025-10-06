@@ -45,6 +45,8 @@ website:
         contents:
           - href: help.qmd
             text: Useful resources
+          - href: revision.qmd
+            text: Revision questions
 
 format:
   html:
