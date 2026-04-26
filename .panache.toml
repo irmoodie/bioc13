@@ -1,0 +1,21 @@
+flavor = "quarto"
+line-width = 80
+
+[format]
+wrap = "reflow"
+blank-lines = "collapse"
+math-delimiter-style = "dollars"
+math-indent = 0
+tab-stops = "normalize"
+tab-width = 2
+
+[extensions]
+citations = true
+
+emoji = false
+
+[formatters]
+r = "air"
+
+[linters]
+r = "jarl"

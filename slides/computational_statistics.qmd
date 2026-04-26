@@ -1,6 +1,6 @@
 ---
 title: "Computational statistics"
-draft: false
+draft: true
 date: 2025-04-25
 subtitle: "Lecture 2"
 ---
@@ -11,6 +11,7 @@ subtitle: "Lecture 2"
 #| echo: false
 #| warning: false
 #| eval: true
+
 library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 library(patchwork, quietly = TRUE)
@@ -27,32 +28,39 @@ tephritis_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_
 ```
 
 ## Review
+
 ### Populations and Samples
 
 ![](images/pop_samp_stat.svg){fig-align="center"}
 
 ## Review
+
 ### Populations and Samples
 
 ```{r}
 #| echo: true
 #| eval: false
+
 tephritis_data
 ```
 
 ```{r}
 #| echo: false
 #| eval: true
+
 head(tephritis_data) |> knitr::kable()
 ```
 
 ## Review
+
 ### Populations and Samples
+
 ```{r}
 #| echo: false
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 set.seed(123)
 ggplot( 
   data = tephritis_data |> drop_na(ovipositor_length_mm),
@@ -62,7 +70,9 @@ ggplot(
 ```
 
 ## Review
+
 ### Populations and Samples
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -79,12 +89,15 @@ ggplot(
 ```
 
 ## Review
+
 ### Populations and Samples
+
 ```{r}
 #| echo: false
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 set.seed(123)
 ggplot( 
   data = tephritis_data |> drop_na(ovipositor_length_mm),
@@ -96,12 +109,15 @@ ggplot(
 ```
 
 ## Review
+
 ### Populations and Samples
+
 ```{r}
 #| echo: false
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 set.seed(123)
 ggplot( 
   data = tephritis_data |> drop_na(ovipositor_length_mm),
@@ -114,17 +130,21 @@ ggplot(
 ```
 
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
 
 ## Review
+
 ### Observed statistic
 
 ```{r}
 #| echo: true
 #| eval: true
 #| warning: false
+
 obs_stat <-
   tephritis_data |> 
   specify(response = ovipositor_length_mm, explanatory = host_plant) |> 
@@ -135,12 +155,14 @@ obs_stat
 
 - Was this just luck? What would happen if I measured another 600 flies?
 
-## Review 
+## Review
+
 ### The sampling distribution
 
 ![](images/pop_samplingdist.svg){fig-align="center" fig-align="middle"}
 
-## Review 
+## Review
+
 ### The sampling distribution
 
 - Problem: we (usually) only collect one sample
@@ -154,21 +176,24 @@ obs_stat
 obs_stat |> ggplot(aes(x = stat)) + geom_histogram(binwidth = 0.05, bins = 30) +xlim(c(-0.5, 0.5)) + xlab("Diff in means")
 ```
 
+## Review
 
-## Review 
 ### The sampling distribution
 
 - Problem: we (usually) only collect one sample
-- One (of many) solutions: resample our sample (*with replacement*) to generate more samples
-  - **Bootstrap** resampling 
+- One (of many) solutions: resample our sample (*with replacement*) to generate
+  more samples
+  - **Bootstrap** resampling
   - Assumes that our sample is representative of the population!
 
-## Review 
+## Review
+
 ### The bootstrap sampling distibution
 
 ![](images/bootstrap.svg){fig-align="center"}
 
-## Review 
+## Review
+
 ### The bootstrap sampling distibution
 
 Example in R for a difference in means:
@@ -186,12 +211,14 @@ boot_dist <-
   generate(reps = 10000, type = "bootstrap") |> #<3>
   calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum")) #<4>
 ```
+
 1. Name of the dataset we are working with.
 2. `specify` which variables we are interested in.
 3. `generate` new samples with bootstrap resampling.
 4. `calculate` the chosen statistic for each new sample generated.
 
-## Review 
+## Review
+
 ### The bootstrap sampling distibution
 
 ```{r}
@@ -199,56 +226,68 @@ boot_dist <-
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 visualize(boot_dist)
 ```
 
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
 
 ```{r}
 #| echo: true
 #| eval: true
+
 obs_stat
 ```
 
 - What would happen if we sampled again?
 
 ## Review
+
 ### Confidence intervals
 
 ![](images/CI.svg){fig-align="center"}
 
 ## Review
+
 ### Confidence intervals
 
-- If we collected another sample of the same size, how much would our test statistic be likely to vary?
-- **Percentile method** 
+- If we collected another sample of the same size, how much would our test
+  statistic be likely to vary?
+- **Percentile method**
   - middle X% of sampling distribution
 
 ## Review
+
 ### Confidence intervals
 
-Example in  R:
+Example in R:
 
 ```{r}
 #| echo: true
 #| eval: true
+
 percentile_ci <-
   boot_dist |> #<1>
   get_confidence_interval(level = 0.95, type = "percentile") #<2>
 ```
+
 1. The bootstrap sampling distribution
 2. Function from `infer` to calculate a 95% CI with `"percentile"` method
 
 ```{r}
 #| echo: true
 #| eval: true
+
 percentile_ci
 ```
 
 ## Review
+
 ### Confidence intervals
 
 ```{r}
@@ -256,19 +295,22 @@ percentile_ci
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 visualize(boot_dist) +
   shade_confidence_interval(endpoints = percentile_ci)
 ```
 
-
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
 
 ```{r}
 #| echo: true
 #| eval: true
+
 obs_stat
 ```
 
@@ -278,70 +320,89 @@ obs_stat
 ```{r}
 #| echo: true
 #| eval: true
+
 percentile_ci
 ```
 
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
   - Observed difference in means: 0.108
   - 95% confidence interval: 0.074 - 0.141
 
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
   - Observed difference in means: 0.108
   - 95% confidence interval: 0.074 - 0.141
-
-
 - Could we have observed this if there was truly no difference?
 
 ## Review
+
 ### Hypothesis testing
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Review
+
 ### Hypothesis testing
 
 - Null hypothesis
-  - There is no difference in `ovipositor_length_mm` between flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant`.
-
-
+  - There is no difference in `ovipositor_length_mm` between flies that use
+    `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a
+    `host_plant`.
 - Alternative hypothesis
-  - There is difference in `ovipositor_length_mm` between flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant`.
+  - There is difference in `ovipositor_length_mm` between flies that use
+    `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a
+    `host_plant`.
 
 ## Review
+
 ### Hypothesis testing
 
 - Null hypothesis
-  - There is no difference in `ovipositor_length_mm` between flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant`.
-- We test to see if our sample allows us to **reject the null hypothesis** with sufficient confidence.
+  - There is no difference in `ovipositor_length_mm` between flies that use
+    `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a
+    `host_plant`.
+- We test to see if our sample allows us to **reject the null hypothesis** with
+  sufficient confidence.
 
 ## Review
+
 ### Hypothesis testing
 
-- Need to know what sort of differences we could observe **if** the null hypothesis was true
-- Need to generate a **null distribution** which we will then compare our **observed statistic** against.
+- Need to know what sort of differences we could observe **if** the null
+  hypothesis was true
+- Need to generate a **null distribution** which we will then compare our
+  **observed statistic** against.
 
 ## Review
+
 ### Hypothesis testing
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Review
+
 ### Hypothesis testing
 
 - If null hypothesis is true:
   - `host_plant` variable has *no* predictive value for `ovipositor_length_mm`
-  - Randomly shuffling (**permuting**) `host_plant` should produce samples *similar* to observed sample
+  - Randomly shuffling (**permuting**) `host_plant` should produce samples
+    *similar* to observed sample
 - If null hypothesis is false:
   - `host_plant` variable has predictive value for `ovipositor_length_mm`
-  - Randomly shuffling (**permuting**) `host_plant` should produce samples *different* to observed sample
+  - Randomly shuffling (**permuting**) `host_plant` should produce samples
+    *different* to observed sample
 
 ## Review
+
 ### Hypothesis testing
 
 ```{r}
@@ -356,10 +417,14 @@ null_dist <-
   generate(reps = 10000, type = "permute") |> #<2>
   calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
 ```
-1. We declare our null hypothesis to be that the `response` and `explanatory` variables are independent of each other.
-2. We generate 10000 permutated datasets under this hypothesis, and calculate the statistic for each dataset
+
+1. We declare our null hypothesis to be that the `response` and `explanatory`
+   variables are independent of each other.
+2. We generate 10000 permutated datasets under this hypothesis, and calculate
+   the statistic for each dataset
 
 ## Review
+
 ### Hypothesis testing
 
 ```{r}
@@ -367,10 +432,12 @@ null_dist <-
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 visualize(null_dist)
 ```
 
 ## Review
+
 ### Hypothesis testing
 
 ```{r}
@@ -378,24 +445,29 @@ visualize(null_dist)
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 visualize(null_dist) +
   shade_p_value(obs_stat, direction = "both")
 ```
 
 ## Review
+
 ### Hypothesis testing
 
 ```{r}
 #| echo: true
 #| eval: true
+
 null_dist |>
   get_p_value(obs_stat, direction = "both")
 ```
 
 ## Review
+
 ### Research question
 
-- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
+- Do flies that use `"heterophyllum"` as a `host_plant` and flies that use
+  `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
   - Observed difference in means: 0.108
   - 95% confidence interval: 0.074 - 0.141
 - Could we have observed this if there was truly no difference?
@@ -404,6 +476,7 @@ null_dist |>
 # How to address other research questions {background-color="#61599d"}
 
 ## Other research questions
+
 ### Already covered
 
 - Difference between two groups in a continuous variable
@@ -411,6 +484,7 @@ null_dist |>
   - Can be applied to any other difference
 
 ## Other research questions
+
 ### Today
 
 - Does an observed statistic differ from a hypothesised value?
@@ -424,6 +498,7 @@ null_dist |>
 # Difference between >2 groups in a continuous variable {background-color="#61599d"}
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 ```{r}
@@ -431,6 +506,7 @@ null_dist |>
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 tephritis_data_edit <- tephritis_data |>
   bind_rows(
     tephritis_data |>
@@ -448,6 +524,7 @@ tephritis_data |>
 ```
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 ```{r}
@@ -472,6 +549,7 @@ tephritis_data_edit2 |>
 ```
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 ```{r}
@@ -487,18 +565,21 @@ tephritis_data_edit |>
 ```
 
 ## Comparing means between >2 groups
+
 ### The ratio of variances (F-statistic)
 
 $$
 F = \frac{\text{Variance 1}}{\text{Variance 2}}
 $$
 
-- Can (in general) be used to test if the variances are equal between sources of variance
+- Can (in general) be used to test if the variances are equal between sources of
+  variance
   - $F=1$ if variances are equal
   - $F$ is very low if variance 1 < variance 2
   - $F$ is very high if variance 1 > variance 2
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 $$
@@ -508,6 +589,7 @@ $$
 - If $F$ is very big, more likely that means are different
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 - If you want to know if >2 groups differ in their means, use F-statistic
@@ -518,6 +600,7 @@ $$
   - The means of at least one group differ from the global mean
 
 ## Comparing means between >2 groups
+
 ### Analysis of Variance (ANOVA)
 
 ![](images/hyptest.svg){fig-align="center"}
@@ -525,13 +608,16 @@ $$
 # Different from a hypothesised value? {background-color="#61599d"}
 
 ## Different from a hypothesised value?
+
 ### Continuous variable
 
-- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different from 1.78 mm?
+- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different
+  from 1.78 mm?
 - Confidence interval approach
 - Hypothesis testing approach
 
 ## Different from a hypothesised value?
+
 ### Continuous variable
 
 Observed difference:
@@ -539,6 +625,7 @@ Observed difference:
 ```{r}
 #| echo: true
 #| eval: true
+
 het_data <-
   tephritis_data |> 
   filter(host_plant == "heterophyllum" & sex == "female")
@@ -552,11 +639,13 @@ obs_stat
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (confidence interval approach)
 
 ![](images/CI.svg){fig-align="center"}
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (confidence interval approach)
 
 ```{r}
@@ -574,8 +663,8 @@ boot_dist <-
 visualise(boot_dist)
 ```
 
-
 ## Different from a hypothesised value?
+
 ### Continuous variable (confidence interval approach)
 
 ```{r}
@@ -583,6 +672,7 @@ visualise(boot_dist)
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 conf_int <-
   boot_dist |>
   get_confidence_interval(level = 0.95, type = "percentile")
@@ -592,6 +682,7 @@ visualise(boot_dist) +
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (confidence interval approach)
 
 ```{r}
@@ -606,9 +697,11 @@ visualise(boot_dist) +
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (confidence interval approach)
 
-- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different from 1.78 mm?
+- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different
+  from 1.78 mm?
   - Observed: 1.764 mm
   - 95% confidence interval: 1.74 - 1.79 mm
   - True mean is likely in this range
@@ -616,29 +709,35 @@ visualise(boot_dist) +
   - We are not so confident that the true mean is not 1.78 mm
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
-- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different from 1.78 mm?
+- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different
+  from 1.78 mm?
 
 {{< countdown minutes=1.5 top=0 right=0 font-size="5rem" >}}
 
 ::: {.callout-important icon="false"}
 ## Think 30 sec, discuss 60 sec
+
 What is our null and alternative hypothesis?
 :::
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 - How do we get a null distribution?
   - Permuting is not an option here
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ```{r}
@@ -657,6 +756,7 @@ theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ```{r}
@@ -676,6 +776,7 @@ theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ```{r}
@@ -696,14 +797,17 @@ theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
-- Bootstrap resample from our new dataset that is compatible with the null hypothesis
+- Bootstrap resample from our new dataset that is compatible with the null
+  hypothesis
 
 ```{r}
 #| echo: true
@@ -721,9 +825,11 @@ null_dist <-
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
-- Bootstrap resample from our new dataset that is compatible with the null hypothesis
+- Bootstrap resample from our new dataset that is compatible with the null
+  hypothesis
 
 ```{r}
 #| echo: true
@@ -735,6 +841,7 @@ visualise(null_dist)
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 - Compare with observed value
@@ -750,6 +857,7 @@ visualise(null_dist) +
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
 ```{r}
@@ -762,11 +870,14 @@ null_dist |> get_p_value(obs_stat, direction = "both")
 ```
 
 ## Different from a hypothesised value?
+
 ### Continuous variable (hypothesis testing approach)
 
-- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different from 1.78 mm?
+- Is the mean `ovipositor_length_mm` in the `heterophyllum` host race different
+  from 1.78 mm?
   - Observed: 1.764 mm
-  - If the true mean was 1.78 mm, probability to observe 1.764 mm or a value more extreme is 0.2 (20% chance)
+  - If the true mean was 1.78 mm, probability to observe 1.764 mm or a value
+    more extreme is 0.2 (20% chance)
 
 ```{r}
 #| echo: false
@@ -783,6 +894,7 @@ visualise(null_dist) +
 # Tests of proportion {background-color="#61599d"}
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value?
 
 - In Sweden, 58% prefer dogs (according to a survey of 2000 people by Folksam)
@@ -792,18 +904,21 @@ visualise(null_dist) +
 ```{r}
 #| echo: false
 #| eval: true
+
 animal_pref <- tibble(preference = sample(c(rep("dog", 14), rep("cat", 11))))
 
 animal_pref_se <- tibble(preference = sample(c(rep("dog", 2000/100*58), rep("cat", 2000/100*(100-58)))))
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value?
 
 ```{r}
 #| echo: false
 #| eval: true
 #| fig-align: center
+
 pref_bioc13 <-
   animal_pref |>
   ggplot(aes(x = preference)) +
@@ -814,6 +929,7 @@ pref_bioc13
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value?
 
 Calculate the test statistic:
@@ -833,11 +949,13 @@ obs_stat
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (CI)
 
 ![](images/CI.svg){fig-align="center"}
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (CI)
 
 ```{r}
@@ -856,6 +974,7 @@ visualise(boot_dist)
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (CI)
 
 ```{r}
@@ -863,6 +982,7 @@ visualise(boot_dist)
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 conf_int <-
   boot_dist |>
   get_confidence_interval(level = 0.95, type = "percentile")
@@ -872,11 +992,13 @@ visualise(boot_dist) +
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (Hyp. test)
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (Hyp. test)
 
 ```{r}
@@ -896,6 +1018,7 @@ visualise(null_dist)
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (Hyp. test)
 
 ```{r}
@@ -909,6 +1032,7 @@ visualise(null_dist) +
 ```
 
 ## Tests of proportion
+
 ### Is a proportion different from a hypothesised value? (Hyp. test)
 
 ```{r}
@@ -926,18 +1050,22 @@ null_dist |>
 # Are 2 or more distributions different? {background-color="#61599d"}
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
-- Exactly what we have just done, but we extend it beyond binary (yes/no, cat/dog) data
+- Exactly what we have just done, but we extend it beyond binary (yes/no,
+  cat/dog) data
 - Similar to how F-statistic allows for diff in means for many groups
 - $\chi^2$ allows for difference in proportions for many categories
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ![](images/mendel.jpg){fig-align="center"}
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -959,10 +1087,12 @@ mendelian_data <- tibble(
 ```{r}
 #| echo: false
 #| eval: true
+
 mendelian_data
 ```
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -970,12 +1100,14 @@ mendelian_data
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 ggplot(mendelian_data, aes(x = phenotype)) +
   geom_bar() +
   geom_hline(yintercept = c(9, 3, 1)/16*nrow(mendelian_data), linetype = "dashed", color = "red")
 ```
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 $$
@@ -983,11 +1115,13 @@ $$
 $$
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -995,6 +1129,7 @@ $$
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 obs_stat <- 
   mendelian_data |>
   specify(response = phenotype) |>
@@ -1011,6 +1146,7 @@ obs_stat <-
 ```
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 - Null hypothesis:
@@ -1020,8 +1156,8 @@ obs_stat <-
   - The sample came from a different distribution to the one hypothesised
   - The sample distribution is different from the hypothesised distribution
 
-
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -1029,6 +1165,7 @@ obs_stat <-
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 null_dist <- 
   mendelian_data |>
   specify(response = phenotype) |>
@@ -1046,6 +1183,7 @@ null_dist <-
 ```
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -1053,12 +1191,14 @@ null_dist <-
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 null_dist |>
   visualize() + 
   shade_p_value(obs_stat, direction = "greater")
 ```
 
 ## $\chi^2$ Goodness of fit
+
 ### Does the observed data differ from an expected distribution?
 
 ```{r}
@@ -1066,6 +1206,7 @@ null_dist |>
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 null_dist |>
   get_p_value(obs_stat = obs_stat, direction = "greater")
 ```
@@ -1073,6 +1214,7 @@ null_dist |>
 # Are two categorical variables associated with each other? {background-color="#61599d"}
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1080,6 +1222,7 @@ null_dist |>
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 germ_data <- tibble(
   treatment = rep(c("coating_a", "coating_b", "coating_c", "control"), each = 30),
   germination_success = c(
@@ -1096,6 +1239,7 @@ germ_data <- tibble(
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 germ_data |>
   ggplot(aes(x = treatment, fill = germination_success)) +
   geom_bar(position = "fill") +
@@ -1104,6 +1248,7 @@ germ_data |>
 ```
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1111,10 +1256,12 @@ germ_data |>
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 germ_data
 ```
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 - Null hypothesis:
@@ -1125,11 +1272,13 @@ germ_data
   - The two categorical variables are not independent
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1137,6 +1286,7 @@ germ_data
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 obs_stat <- 
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
@@ -1145,8 +1295,8 @@ obs_stat <-
 obs_stat
 ```
 
-
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1154,6 +1304,7 @@ obs_stat
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 null_dist <- 
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
@@ -1163,6 +1314,7 @@ null_dist <-
 ```
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1170,11 +1322,13 @@ null_dist <-
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 visualize(null_dist) +
   shade_p_value(obs_stat, direction = "greater")
 ```
 
 ## $\chi^2$ Test of independence
+
 ### Are two categorical variables associated with each other?
 
 ```{r}
@@ -1182,6 +1336,7 @@ visualize(null_dist) +
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 null_dist |>
   get_p_value(obs_stat = obs_stat, direction = "greater")
 ```
@@ -1189,17 +1344,20 @@ null_dist |>
 # Correlation {background-color="#61599d"}
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
-- Used to assess if two continuous variables are independent, or if they covary (linearly)
+- Used to assess if two continuous variables are independent, or if they covary
+  (linearly)
 - We do not express one variable as a function of another:
   - No "response" and "explanatory"
-- Usually assumed that both variables are "effects of a common cause" [@sokal1995]
+- Usually assumed that both variables are "effects of a common cause"
+  [@sokal1995]
 - "Correlation does not mean causation"
   - But you can measure a correlation between a cause and effect
 
-
 ## Correlation
+
 ### Do two continuous variables covary?
 
 Correlation coefficient (Pearson):
@@ -1217,6 +1375,7 @@ r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ```{r}
@@ -1224,6 +1383,7 @@ $$
 #| eval: true
 #| fig-align: center
 #| fig-width: 10
+
 set.seed(122)
 data <- tibble(
   x = rnorm(100, mean = 50, sd = 10),
@@ -1267,25 +1427,27 @@ data |>
 ```
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 #| echo: false
 #| eval: true
+
 scatterplot
 ```
-:::
+:::::
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
@@ -1299,25 +1461,28 @@ $$
 ```{r}
 #| echo: true
 #| eval: true
+
 data |>
   observe(response = x, stat = "sd")
 ```
 
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 #| echo: false
 #| eval: true
+
 x_plot
 ```
-:::
+:::::
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
@@ -1331,25 +1496,28 @@ $$
 ```{r}
 #| echo: true
 #| eval: true
+
 data |>
   observe(response = y, stat = "sd")
 ```
 
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 #| echo: false
 #| eval: true
+
 y_plot
 ```
-:::
+:::::
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
@@ -1363,26 +1531,29 @@ $$
 ```{r}
 #| echo: true
 #| eval: true
+
 data |>
   cov()
 ```
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 #| echo: false
 #| eval: true
+
 scatterplot + 
 geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
 geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed")
 ```
-:::
+:::::
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 $$
@@ -1390,26 +1561,30 @@ $$
 ```{r}
 #| echo: true
 #| eval: true
+
 data |>
   specify(x ~ y) |>
   calculate(stat = "correlation")
 ```
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 #| echo: false
 #| eval: true
+
 scatterplot
 ```
-:::
+:::::
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ![](images/cor.svg){fig-align="center"}
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ```{r}
@@ -1425,6 +1600,7 @@ tephritis_data |>
 ```
 
 ## Correlation
+
 ### Do two continuous variables covary?
 
 ```{r}
@@ -1433,6 +1609,7 @@ tephritis_data |>
 #| fig-align: center
 #| fig-width: 10
 #| warning: false
+
 obs_stat <-
   tephritis_data |>
   specify(ovipositor_length_mm ~ body_length_mm) |>
@@ -1442,11 +1619,13 @@ obs_stat
 ```
 
 ## Correlation
+
 ### Do two continuous variables covary? (CI)
 
 ![](images/CI.svg){fig-align="center"}
 
 ## Correlation
+
 ### Do two continuous variables covary? (CI)
 
 ```{r}
@@ -1455,6 +1634,7 @@ obs_stat
 #| fig-align: center
 #| fig-width: 10
 #| warning: false
+
 boot_dist <-
   tephritis_data |>
   specify(ovipositor_length_mm ~ body_length_mm) |>
@@ -1465,6 +1645,7 @@ visualise(boot_dist)
 ```
 
 ## Correlation
+
 ### Do two continuous variables covary? (CI)
 
 ```{r}
@@ -1473,6 +1654,7 @@ visualise(boot_dist)
 #| fig-align: center
 #| fig-width: 10
 #| warning: false
+
 conf_int <- 
   boot_dist |>
   get_confidence_interval(level = 0.95, type = "percentile")
@@ -1482,21 +1664,26 @@ visualise(boot_dist) +
 ```
 
 ## Correlation
+
 ### Do two continuous variables covary? (Hyp. test)
 
 ![](images/hyptest.svg){fig-align="center"}
 
 ## Correlation
+
 ### Do two continuous variables covary? (Hyp. test)
 
 {{< countdown minutes=2 top=0 right=0 font-size="5rem" >}}
 
 ::: {.callout-important icon="false"}
 ## Think 30 sec, discuss 90 sec
-What is our null and alternative hypothesis? How could we generate data compatible with the null?
+
+What is our null and alternative hypothesis? How could we generate data
+compatible with the null?
 :::
 
 ## Correlation
+
 ### Do two continuous variables covary? (Hyp. test)
 
 ```{r}
@@ -1505,6 +1692,7 @@ What is our null and alternative hypothesis? How could we generate data compatib
 #| fig-align: center
 #| fig-width: 10
 #| warning: false
+
 null_dist <-
   tephritis_data |>
   specify(ovipositor_length_mm ~ body_length_mm) |>
@@ -1514,6 +1702,7 @@ null_dist <-
 ```
 
 ## Correlation
+
 ### Do two continuous variables covary? (Hyp. test)
 
 ```{r}
@@ -1522,6 +1711,7 @@ null_dist <-
 #| fig-align: center
 #| fig-width: 10
 #| warning: false
+
 visualize(null_dist) +
   shade_p_value(obs_stat = obs_stat, direction = "both")
 ```
@@ -1529,15 +1719,18 @@ visualize(null_dist) +
 # Regression {background-color="#61599d"}
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
-- A mathmatical function describing the relationship between two continuous variables
+- A mathmatical function describing the relationship between two continuous
+  variables
 - Y is dependant on X (the)
 - Y is a function of X
 - Predictive model
 - Very powerful framework
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 $$
@@ -1557,10 +1750,12 @@ y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
 $$
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ```{r}
 #| fig-width: 10
+
 # Generate a range of intercept and slope values
 intercepts <- seq(-10, 10, by = 5)
 slopes <- 1
@@ -1628,6 +1823,7 @@ intercept_plot + slope_plot
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ```{r}
@@ -1683,12 +1879,16 @@ data_combined |>
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
-- Example: For sexual selection to operate, an increase in mating success (number of mates) must result in an increase in reproductive success (number of offspring).
+- Example: For sexual selection to operate, an increase in mating success
+  (number of mates) must result in an increase in reproductive success (number
+  of offspring).
 
 ```{r}
 #| fig-align: center
+
 set.seed(123)
 # Generate two positively correlated variables
 x <- rlnorm(100, meanlog = log(5), sdlog = log(1.5))
@@ -1713,10 +1913,11 @@ mating_data <- mating_data |> rename(mating_success = x, reproductive_success = 
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ::: {.columns}
-::: {.column}
+::::: {.column}
 $$
 y = \beta_1x+\beta_0
 $$
@@ -1726,25 +1927,26 @@ y = 3.83x-0.68
 $$
 
 - $\beta_1$ = strength of sexual selection
-- For each additional mate, an individual (on average) gains $\beta_1$ additional offspring
-- For 5 mates ($x=5$): 
+- For each additional mate, an individual (on average) gains $\beta_1$
+  additional offspring
+- For 5 mates ($x=5$):
   - $y = 3.83\times5-0.68$
   - $y = 18.47$
-:::
-::: {.column}
+:::::
+::::: {.column}
 ```{r}
 sex_plot
 ```
+:::::
 :::
-:::
-
-
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ```{r}
 #| fig-align: center
+
 # Fit a linear model
 data1 <- slice_sample(data1, n = 20)
 # Create a second dataset with a poorly fitting line
@@ -1782,10 +1984,12 @@ data_with_residuals1 |>
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ```{r}
 #| fig-align: center
+
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
@@ -1795,10 +1999,12 @@ data_with_residuals1 |>
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
 
 ```{r}
 #| fig-align: center
+
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
@@ -1814,9 +2020,12 @@ data_with_residuals1 |>
 ```
 
 ## Regression
+
 ### How does variable Y depend on variable X
+
 ```{r}
 #| fig-align: center
+
 data_with_residuals2 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
@@ -1831,9 +2040,9 @@ data_with_residuals2 |>
 ```
 
 ## Regression
-### How does variable Y depend on variable X
+
 ::: {.columns}
-::: {.column}
+::::: {.column}
 ```{r}
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
@@ -1848,44 +2057,46 @@ data_with_residuals1 |>
   coord_cartesian(xlim=c(20,80), ylim=c(20,80))
 
 ```
-:::
-::: {.column}
+:::::
+::::: {.column}
 - Fit by solving to minimise the sum of the squared residuals (SSR)
   - Find $\beta_1$ and $\beta_0$ that minimise the SSR
   - Called a "loss function"
   - Many approaches to do this!
-:::
+:::::
 :::
 
+###
+
+How does variable Y depend on variable X
+
 ## Regression
+
 ### How does variable Y depend on variable X
 
-{{< video https://www.youtube.com/embed/3dhcmeOTZ_Q
-    title="Regression animation"
-    start="0"
-    width="1050"
-    aspect-ratio="16x9"
-    align="center"
->}}
-
+{{< video https://www.youtube.com/embed/3dhcmeOTZ_Q title="Regression animation" start="0" width="1050" aspect-ratio="16x9" align="center" >}}
 
 ## Regression
+
 ### How to fit in R?
 
 Base R:
 
 ```{r}
 #| echo: true
+
 lm(data = mating_data, reproductive_success ~ mating_success)
 ```
 
 ## Regression
+
 ### How to fit in R?
 
 With `infer`:
 
 ```{r}
 #| echo: true
+
 observed_fit <-
   mating_data |>
   specify(reproductive_success ~ mating_success) |>
@@ -1894,12 +2105,13 @@ observed_fit <-
 observed_fit
 ```
 
-
 ## Regression
+
 ### Confidence intervals
 
 ```{r}
 #| echo: true
+
 boot_dist <-
   mating_data |>
   specify(reproductive_success ~ mating_success) |>
@@ -1910,10 +2122,12 @@ boot_dist
 ```
 
 ## Regression
+
 ### Confidence intervals
 
 ```{r}
 #| echo: true
+
 conf_ints <- 
   get_confidence_interval(
     boot_dist, 
@@ -1925,15 +2139,18 @@ conf_ints
 ```
 
 ## Regression
+
 ### Confidence intervals
 
 ```{r}
 #| echo: true
+
 visualize(boot_dist) +
   shade_confidence_interval(endpoints = conf_ints)
 ```
 
 ## Regression
+
 ### Hypothesis test
 
 - Null hypothesis:
@@ -1944,10 +2161,12 @@ visualize(boot_dist) +
   - Slope > 0
 
 ## Regression
+
 ### Hypothesis test
 
 ```{r}
 #| echo: true
+
 null_dist <-
   mating_data |>
   specify(reproductive_success ~ mating_success) |>
@@ -1959,24 +2178,29 @@ null_dist
 ```
 
 ## Regression
+
 ### Hypothesis test
 
 ```{r}
 #| echo: true
+
 visualize(null_dist) +
   shade_p_value(obs_stat = observed_fit, direction = "two-sided")
 ```
 
 ## Regression
+
 ### Hypothesis test
 
 ```{r}
 #| echo: true
+
 null_dist |>
   get_p_value(obs_stat = observed_fit, direction = "two-sided")
 ```
 
 ## Regression
+
 ### Multiple regression
 
 $$
@@ -2009,4 +2233,4 @@ specify(reproductive_success ~ mating_success + sex + feather_colour) ...
 
 # Exercises {background-color="#61599d"}
 
-## References 
+## References
