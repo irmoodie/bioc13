@@ -1,4 +1,6 @@
-My teaching materials for the statisitcs section of *BIOC13: Ekologi* at Lund University (both autumn and spring version), organised as a quarto website. At the end of each semester, the site is archived via GitHub releases.
+<p align="left" href="https://doi.org/10.5281/zenodo.19782118"><img src="https://zenodo.org/badge/971224551.svg" alt="DOI"></p>
+
+My teaching materials for the statisitcs section of *BIOC13: Ekologi* at Lund University (both autumn and spring version), organised as a quarto website. At the end of each semester, the site is archived via a GitHub release, which is then mirrored to Zenodo.
 
 This quarto site uses [R for WebAssembly](https://github.com/r-wasm) to enable interactive teaching examples in a static website framework.
 
