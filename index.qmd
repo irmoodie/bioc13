@@ -1,6 +1,6 @@
 ---
 title: "Statistical inference for Ecologists"
-subtitle: "BIOC13 Spring 2026 (VT 25)"
+subtitle: "BIOC13 Spring 2026 (VT 26)"
 ---
 
 [![](https://zenodo.org/badge/971224551.svg)](https://doi.org/10.5281/zenodo.19782118)
