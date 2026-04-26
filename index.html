@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Statistical inference for Ecologists – BIOC13 Statistics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -35,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-723b771237f1900da4361526b46ab816.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c49174f99ad0c5b7c4ce2edafc3bef43.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Statistical inference for Ecologists – BIOC13 Statistics">
-<meta property="og:description" content="BIOC13 Autumn 2025 (HT 25)">
+<meta property="og:description" content="BIOC13 Spring 2026 (VT 25)">
 <meta property="og:site_name" content="BIOC13 Statistics">
 </head>
 
@@ -141,24 +144,6 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./slides/intro_to_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./exercises/03_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./exercises/03_inference_extra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises (extra)</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -170,24 +155,6 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./slides/computational_statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./exercises/04_statistics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./exercises/04_statistics_extra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises (extra)</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -199,18 +166,6 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Useful resources</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./revision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Revision questions</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -227,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Statistical inference for Ecologists</h1>
-<p class="subtitle lead">BIOC13 Autumn 2025 (HT 25)</p>
+<p class="subtitle lead">BIOC13 Spring 2026 (VT 25)</p>
 </div>
 
 
@@ -244,9 +199,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><a href="https://doi.org/10.5281/zenodo.19782118"><img src="https://zenodo.org/badge/971224551.svg" class="img-fluid"></a></p>
 <p>Here you will find all the materials required for the statistics section of BIOC13.</p>
 <p>All course communication should take place on <a href="https://canvas.education.lu.se/courses/36302">LU Canvas</a>.</p>
-<p>For access to materials from previous semesters, see the <a href="https://github.com/irmoodie/bioc13">releases on GitHub</a>.</p>
+<p>For access to materials from previous semesters, see the <a href="https://github.com/irmoodie/bioc13">releases on GitHub</a> or <a href="https://doi.org/10.5281/zenodo.19782118">Zenodo</a>.</p>
 
 
 
@@ -302,13 +258,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

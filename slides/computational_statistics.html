@@ -6,12 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/countdown-0.5.0/countdown.js"></script>
 <link href="../site_libs/quarto-contrib/countdown-0.5.0/countdown.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.29">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Iain R. Moodie">
   <meta name="dcterms.date" content="2025-04-25">
@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -103,7 +106,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -120,7 +122,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-a24e6f8a7e8b9afff228b902f4f79784.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-8aad128234d36b82a316ad103c9edec7.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -256,7 +258,7 @@ Iain R. Moodie
 <h2>Review</h2>
 <h3 id="populations-and-samples-1">Populations and Samples</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>tephritis_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>tephritis_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -396,12 +398,12 @@ Iain R. Moodie
 <h2>Review</h2>
 <h3 id="observed-statistic">Observed statistic</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>obs_stat <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>obs_stat <span class="ot">&lt;-</span></span>
 <span id="cb2-2"><a></a>  tephritis_data <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span> </span>
 <span id="cb2-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span>
 <span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: ovipositor_length_mm (numeric)
 Explanatory: host_plant (factor)
@@ -450,13 +452,13 @@ Explanatory: host_plant (factor)
 <h3 id="the-bootstrap-sampling-distibution-1">The bootstrap sampling distibution</h3>
 <p>Example in R for a difference in means:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(infer)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(infer)</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a></span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a>boot_dist <span class="ot">&lt;-</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4"></a>  tephritis_data <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
@@ -483,7 +485,7 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="the-bootstrap-sampling-distibution-2">The bootstrap sampling distibution</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">visualize</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">visualize</span>(boot_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -494,7 +496,7 @@ Explanatory: host_plant (factor)
 <li>Do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: ovipositor_length_mm (numeric)
 Explanatory: host_plant (factor)
@@ -529,9 +531,9 @@ Explanatory: host_plant (factor)
 <h3 id="confidence-intervals-2">Confidence intervals</h3>
 <p>Example in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>percentile_ci <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>percentile_ci <span class="ot">&lt;-</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2"></a>  boot_dist <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
@@ -546,7 +548,7 @@ Explanatory: host_plant (factor)
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>percentile_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>percentile_ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   lower_ci upper_ci
@@ -559,8 +561,8 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="confidence-intervals-3">Confidence intervals</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> percentile_ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> percentile_ci)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -571,7 +573,7 @@ Explanatory: host_plant (factor)
 <li>Do flies that use <code>"heterophyllum"</code> as a <code>host_plant</code> and flies that use <code>"oleraceum"</code> as a <code>host_plant</code> differ in their <code>ovipositor_length_mm</code>?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: ovipositor_length_mm (numeric)
 Explanatory: host_plant (factor)
@@ -588,7 +590,7 @@ Explanatory: host_plant (factor)
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>percentile_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>percentile_ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   lower_ci upper_ci
@@ -683,12 +685,12 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="hypothesis-testing-6">Hypothesis testing</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a>null_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1"></a>null_dist <span class="ot">&lt;-</span></span>
 <span id="annotated-cell-11-2"><a href="#annotated-cell-11-2"></a>  tephritis_data <span class="sc">|&gt;</span> </span>
 <span id="annotated-cell-11-3"><a href="#annotated-cell-11-3"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm, <span class="at">explanatory =</span> host_plant) <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4"></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"heterophyllum"</span>, <span class="st">"oleraceum"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
@@ -707,7 +709,7 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="hypothesis-testing-7">Hypothesis testing</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">visualize</span>(null_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">visualize</span>(null_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -715,8 +717,8 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="hypothesis-testing-8">Hypothesis testing</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -724,8 +726,8 @@ Explanatory: host_plant (factor)
 <h2>Review</h2>
 <h3 id="hypothesis-testing-9">Hypothesis testing</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">get_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">get_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -865,7 +867,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h3 id="continuous-variable-1">Continuous variable</h3>
 <p>Observed difference:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>het_data <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>het_data <span class="ot">&lt;-</span></span>
 <span id="cb18-2"><a></a>  tephritis_data <span class="sc">|&gt;</span> </span>
 <span id="cb18-3"><a></a>  <span class="fu">filter</span>(host_plant <span class="sc">==</span> <span class="st">"heterophyllum"</span> <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">"female"</span>)</span>
 <span id="cb18-4"><a></a></span>
@@ -874,7 +876,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <span id="cb18-7"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb18-8"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
 <span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: ovipositor_length_mm (numeric)
 # A tibble: 1 × 1
@@ -893,13 +895,13 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Different from a hypothesised value?</h2>
 <h3 id="continuous-variable-confidence-interval-approach-1">Continuous variable (confidence interval approach)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
 <span id="cb20-2"><a></a>  het_data <span class="sc">|&gt;</span></span>
 <span id="cb20-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb20-4"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb20-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
 <span id="cb20-6"><a></a></span>
-<span id="cb20-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -907,12 +909,12 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Different from a hypothesised value?</h2>
 <h3 id="continuous-variable-confidence-interval-approach-2">Continuous variable (confidence interval approach)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>conf_int <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>conf_int <span class="ot">&lt;-</span></span>
 <span id="cb21-2"><a></a>  boot_dist <span class="sc">|&gt;</span></span>
 <span id="cb21-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span>
 <span id="cb21-4"><a></a></span>
 <span id="cb21-5"><a></a><span class="fu">visualise</span>(boot_dist) <span class="sc">+</span></span>
-<span id="cb21-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -920,9 +922,9 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Different from a hypothesised value?</h2>
 <h3 id="continuous-variable-confidence-interval-approach-3">Continuous variable (confidence interval approach)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">visualise</span>(boot_dist) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">visualise</span>(boot_dist) <span class="sc">+</span></span>
 <span id="cb22-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int) <span class="sc">+</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.78</span>, <span class="at">colour =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">1.78</span>, <span class="at">colour =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -951,7 +953,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <ul>
 <li>Is the mean <code>ovipositor_length_mm</code> in the <code>heterophyllum</code> host race different from 1.78 mm?</li>
 </ul>
-<div id="timer_165df7a4a6d56913f8f5ab63c465822dc9ec67a6" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
+<div id="timer_2d60fda6a660cdd4218d0feabffb952502a40b66" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -1006,13 +1008,13 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <li>Bootstrap resample from our new dataset that is compatible with the null hypothesis</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb23-2"><a></a>null_dist <span class="ot">&lt;-</span></span>
 <span id="cb23-3"><a></a>  het_data <span class="sc">|&gt;</span></span>
 <span id="cb23-4"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> ovipositor_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb23-5"><a></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="fl">1.78</span>) <span class="sc">|&gt;</span></span>
 <span id="cb23-6"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-7"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="different-from-a-hypothesised-value-16" class="slide level2">
@@ -1022,7 +1024,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <li>Bootstrap resample from our new dataset that is compatible with the null hypothesis</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">visualise</span>(null_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">visualise</span>(null_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1033,8 +1035,8 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <li>Compare with observed value</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">visualise</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">visualise</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1042,7 +1044,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Different from a hypothesised value?</h2>
 <h3 id="continuous-variable-hypothesis-testing-approach-10">Continuous variable (hypothesis testing approach)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>null_dist <span class="sc">|&gt;</span> <span class="fu">get_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>null_dist <span class="sc">|&gt;</span> <span class="fu">get_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -1094,12 +1096,12 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-2">Is a proportion different from a hypothesised value?</h3>
 <p>Calculate the test statistic:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
 <span id="cb28-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
 <span id="cb28-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb28-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
 <span id="cb28-5"><a></a></span>
-<span id="cb28-6"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-6"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: preference (factor)
 # A tibble: 1 × 1
@@ -1118,13 +1120,13 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Tests of proportion</h2>
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-ci-1">Is a proportion different from a hypothesised value? (CI)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
 <span id="cb30-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
 <span id="cb30-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb30-4"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb30-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
 <span id="cb30-6"><a></a></span>
-<span id="cb30-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1132,12 +1134,12 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Tests of proportion</h2>
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-ci-2">Is a proportion different from a hypothesised value? (CI)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>conf_int <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>conf_int <span class="ot">&lt;-</span></span>
 <span id="cb31-2"><a></a>  boot_dist <span class="sc">|&gt;</span></span>
 <span id="cb31-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span>
 <span id="cb31-4"><a></a></span>
 <span id="cb31-5"><a></a><span class="fu">visualise</span>(boot_dist) <span class="sc">+</span></span>
-<span id="cb31-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1150,14 +1152,14 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Tests of proportion</h2>
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-hyp.-test-1">Is a proportion different from a hypothesised value? (Hyp. test)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
 <span id="cb32-2"><a></a>  animal_pref <span class="sc">|&gt;</span></span>
 <span id="cb32-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> preference, <span class="at">success =</span> <span class="st">"dog"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb32-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fl">0.58</span>) <span class="sc">|&gt;</span></span>
 <span id="cb32-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb32-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
 <span id="cb32-7"><a></a></span>
-<span id="cb32-8"><a></a><span class="fu">visualise</span>(null_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-8"><a></a><span class="fu">visualise</span>(null_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1165,8 +1167,8 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Tests of proportion</h2>
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-hyp.-test-2">Is a proportion different from a hypothesised value? (Hyp. test)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">visualise</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb33-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">visualise</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1174,8 +1176,8 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2>Tests of proportion</h2>
 <h3 id="is-a-proportion-different-from-a-hypothesised-value-hyp.-test-3">Is a proportion different from a hypothesised value? (Hyp. test)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -1251,7 +1253,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-6">Does the observed data differ from an expected distribution?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
 <span id="cb37-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
 <span id="cb37-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
 <span id="cb37-4"><a></a>  <span class="fu">hypothesize</span>(</span>
@@ -1263,7 +1265,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <span id="cb37-10"><a></a>      <span class="st">"aabb"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">16</span></span>
 <span id="cb37-11"><a></a>    )</span>
 <span id="cb37-12"><a></a>   ) <span class="sc">|&gt;</span></span>
-<span id="cb37-13"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-13"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="chi2-goodness-of-fit-7" class="slide level2">
@@ -1286,7 +1288,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-8">Does the observed data differ from an expected distribution?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
 <span id="cb38-2"><a></a>  mendelian_data <span class="sc">|&gt;</span></span>
 <span id="cb38-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> phenotype) <span class="sc">|&gt;</span></span>
 <span id="cb38-4"><a></a>  <span class="fu">hypothesize</span>(</span>
@@ -1299,16 +1301,16 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <span id="cb38-11"><a></a>    )</span>
 <span id="cb38-12"><a></a>   ) <span class="sc">|&gt;</span></span>
 <span id="cb38-13"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-14"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-14"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="chi2-goodness-of-fit-9" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-9">Does the observed data differ from an expected distribution?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
 <span id="cb39-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
-<span id="cb39-3"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-3"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1316,8 +1318,8 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2><span class="math inline">\(\chi^2\)</span> Goodness of fit</h2>
 <h3 id="does-the-observed-data-differ-from-an-expected-distribution-10">Does the observed data differ from an expected distribution?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -1340,7 +1342,7 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-2">Are two categorical variables associated with each other?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>germ_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>germ_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 2
    treatment germination_success
@@ -1384,12 +1386,12 @@ F = \frac{\text{Mean variance between-group}}{\text{Mean variance within-group}}
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-5">Are two categorical variables associated with each other?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>obs_stat <span class="ot">&lt;-</span> </span>
 <span id="cb44-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
 <span id="cb44-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
 <span id="cb44-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span>
 <span id="cb44-5"><a></a></span>
-<span id="cb44-6"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-6"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: germination_success (factor)
 Explanatory: treatment (factor)
@@ -1404,20 +1406,20 @@ Explanatory: treatment (factor)
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-6">Are two categorical variables associated with each other?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>null_dist <span class="ot">&lt;-</span> </span>
 <span id="cb46-2"><a></a>  germ_data <span class="sc">|&gt;</span></span>
 <span id="cb46-3"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> germination_success, <span class="at">explanatory =</span> treatment) <span class="sc">|&gt;</span></span>
 <span id="cb46-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb46-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb46-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="chi2-test-of-independence-6" class="slide level2">
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-7">Are two categorical variables associated with each other?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb47-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb47-2"><a></a>  <span class="fu">shade_p_value</span>(obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-57-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1425,8 +1427,8 @@ Explanatory: treatment (factor)
 <h2><span class="math inline">\(\chi^2\)</span> Test of independence</h2>
 <h3 id="are-two-categorical-variables-associated-with-each-other-8">Are two categorical variables associated with each other?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -1503,8 +1505,8 @@ r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 \sigma_x = \sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>data <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a></a>  <span class="fu">observe</span>(<span class="at">response =</span> x, <span class="at">stat =</span> <span class="st">"sd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>data <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a></a>  <span class="fu">observe</span>(<span class="at">response =</span> x, <span class="at">stat =</span> <span class="st">"sd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: x (numeric)
 # A tibble: 1 × 1
@@ -1538,8 +1540,8 @@ r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 \sigma_y = \sqrt{\sum_{i=1}^n (y_i - \bar{y})^2}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>data <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a></a>  <span class="fu">observe</span>(<span class="at">response =</span> y, <span class="at">stat =</span> <span class="st">"sd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>data <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a></a>  <span class="fu">observe</span>(<span class="at">response =</span> y, <span class="at">stat =</span> <span class="st">"sd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: y (numeric)
 # A tibble: 1 × 1
@@ -1573,8 +1575,8 @@ r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 Cov(x,y) = \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>data <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a></a>  <span class="fu">cov</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>data <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a></a>  <span class="fu">cov</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          x        y
 x 118.23297 33.87468
@@ -1602,9 +1604,9 @@ y  33.87468 12.31625</code></pre>
 r = \frac{\text{Cov}(x,y)}{\sigma_x \sigma_y}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>data <span class="sc">|&gt;</span></span>
 <span id="cb56-2"><a></a>  <span class="fu">specify</span>(x <span class="sc">~</span> y) <span class="sc">|&gt;</span></span>
-<span id="cb56-3"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-3"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: x (numeric)
 Explanatory: y (numeric)
@@ -1640,12 +1642,12 @@ Explanatory: y (numeric)
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-9">Do two continuous variables covary?</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>obs_stat <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>obs_stat <span class="ot">&lt;-</span></span>
 <span id="cb58-2"><a></a>  tephritis_data <span class="sc">|&gt;</span></span>
 <span id="cb58-3"><a></a>  <span class="fu">specify</span>(ovipositor_length_mm <span class="sc">~</span> body_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb58-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span>
 <span id="cb58-5"><a></a></span>
-<span id="cb58-6"><a></a>obs_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb58-6"><a></a>obs_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: ovipositor_length_mm (numeric)
 Explanatory: body_length_mm (numeric)
@@ -1665,13 +1667,13 @@ Explanatory: body_length_mm (numeric)
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-ci-1">Do two continuous variables covary? (CI)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
 <span id="cb60-2"><a></a>  tephritis_data <span class="sc">|&gt;</span></span>
 <span id="cb60-3"><a></a>  <span class="fu">specify</span>(ovipositor_length_mm <span class="sc">~</span> body_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb60-4"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb60-5"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span>
 <span id="cb60-6"><a></a></span>
-<span id="cb60-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-7"><a></a><span class="fu">visualise</span>(boot_dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-71-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1679,12 +1681,12 @@ Explanatory: body_length_mm (numeric)
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-ci-2">Do two continuous variables covary? (CI)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>conf_int <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>conf_int <span class="ot">&lt;-</span> </span>
 <span id="cb61-2"><a></a>  boot_dist <span class="sc">|&gt;</span></span>
 <span id="cb61-3"><a></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">type =</span> <span class="st">"percentile"</span>)</span>
 <span id="cb61-4"><a></a></span>
 <span id="cb61-5"><a></a><span class="fu">visualise</span>(boot_dist) <span class="sc">+</span></span>
-<span id="cb61-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb61-6"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-72-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1696,7 +1698,7 @@ Explanatory: body_length_mm (numeric)
 <section id="correlation-15" class="slide level2">
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-hyp.-test-1">Do two continuous variables covary? (Hyp. test)</h3>
-<div id="timer_165df7a4a6d56913f8f5ab63c465822dc9ec67a6" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
+<div id="timer_2d60fda6a660cdd4218d0feabffb952502a40b66" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: 0;right: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -1718,20 +1720,20 @@ Explanatory: body_length_mm (numeric)
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-hyp.-test-2">Do two continuous variables covary? (Hyp. test)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
 <span id="cb62-2"><a></a>  tephritis_data <span class="sc">|&gt;</span></span>
 <span id="cb62-3"><a></a>  <span class="fu">specify</span>(ovipositor_length_mm <span class="sc">~</span> body_length_mm) <span class="sc">|&gt;</span></span>
 <span id="cb62-4"><a></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb62-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb62-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb62-6"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"correlation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="correlation-17" class="slide level2">
 <h2>Correlation</h2>
 <h3 id="do-two-continuous-variables-covary-hyp.-test-3">Do two continuous variables covary? (Hyp. test)</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb63-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb63-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_stat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-74-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
@@ -1839,7 +1841,6 @@ y = 3.83x-0.68
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-82-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="regression-11" class="slide level2">
 <h2>Regression</h2>
-<h3 id="how-does-variable-y-depend-on-variable-x-10">How does variable Y depend on variable X</h3>
 <div class="columns">
 <div class="column">
 <div class="cell">
@@ -1861,10 +1862,12 @@ y = 3.83x-0.68
 </ul></li>
 </ul>
 </div></div>
+<h3 id="section"></h3>
+<p>How does variable Y depend on variable X</p>
 </section>
 <section id="regression-12" class="slide level2">
 <h2>Regression</h2>
-<h3 id="how-does-variable-y-depend-on-variable-x-11">How does variable Y depend on variable X</h3>
+<h3 id="how-does-variable-y-depend-on-variable-x-10">How does variable Y depend on variable X</h3>
 <iframe data-external="1" src="https://www.youtube.com/embed/3dhcmeOTZ_Q?start=0" width="1050" height="591" title="Regression animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </section>
 <section id="regression-13" class="slide level2">
@@ -1872,7 +1875,7 @@ y = 3.83x-0.68
 <h3 id="how-to-fit-in-r">How to fit in R?</h3>
 <p>Base R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="fu">lm</span>(<span class="at">data =</span> mating_data, reproductive_success <span class="sc">~</span> mating_success)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="fu">lm</span>(<span class="at">data =</span> mating_data, reproductive_success <span class="sc">~</span> mating_success)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1889,12 +1892,12 @@ Coefficients:
 <h3 id="how-to-fit-in-r-1">How to fit in R?</h3>
 <p>With <code>infer</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>observed_fit <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>observed_fit <span class="ot">&lt;-</span></span>
 <span id="cb66-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
 <span id="cb66-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
 <span id="cb66-4"><a></a>  <span class="fu">fit</span>()</span>
 <span id="cb66-5"><a></a></span>
-<span id="cb66-6"><a></a>observed_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-6"><a></a>observed_fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   term           estimate
@@ -1908,13 +1911,13 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="confidence-intervals-4">Confidence intervals</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>boot_dist <span class="ot">&lt;-</span></span>
 <span id="cb68-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
 <span id="cb68-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
 <span id="cb68-4"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb68-5"><a></a>  <span class="fu">fit</span>()</span>
 <span id="cb68-6"><a></a></span>
-<span id="cb68-7"><a></a>boot_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb68-7"><a></a>boot_dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,000 × 3
 # Groups:   replicate [1,000]
@@ -1938,14 +1941,14 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="confidence-intervals-5">Confidence intervals</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>conf_ints <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>conf_ints <span class="ot">&lt;-</span> </span>
 <span id="cb70-2"><a></a>  <span class="fu">get_confidence_interval</span>(</span>
 <span id="cb70-3"><a></a>    boot_dist, </span>
 <span id="cb70-4"><a></a>    <span class="at">level =</span> .<span class="dv">95</span>, </span>
 <span id="cb70-5"><a></a>    <span class="at">point_estimate =</span> observed_fit</span>
 <span id="cb70-6"><a></a>  )</span>
 <span id="cb70-7"><a></a></span>
-<span id="cb70-8"><a></a>conf_ints</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb70-8"><a></a>conf_ints</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   term           lower_ci upper_ci
@@ -1959,8 +1962,8 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="confidence-intervals-6">Confidence intervals</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
-<span id="cb72-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_ints)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">visualize</span>(boot_dist) <span class="sc">+</span></span>
+<span id="cb72-2"><a></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> conf_ints)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-88-1.png" width="480" class="r-stretch"></section>
@@ -1984,14 +1987,14 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="hypothesis-test-1">Hypothesis test</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>null_dist <span class="ot">&lt;-</span></span>
 <span id="cb73-2"><a></a>  mating_data <span class="sc">|&gt;</span></span>
 <span id="cb73-3"><a></a>  <span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success) <span class="sc">|&gt;</span></span>
 <span id="cb73-4"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb73-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb73-6"><a></a>  <span class="fu">fit</span>()</span>
 <span id="cb73-7"><a></a></span>
-<span id="cb73-8"><a></a>null_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb73-8"><a></a>null_dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,000 × 3
 # Groups:   replicate [1,000]
@@ -2015,8 +2018,8 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="hypothesis-test-2">Hypothesis test</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb75-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb75-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="computational_statistics_files/figure-revealjs/unnamed-chunk-90-1.png" width="480" class="r-stretch"></section>
@@ -2024,8 +2027,8 @@ Coefficients:
 <h2>Regression</h2>
 <h3 id="hypothesis-test-3">Hypothesis test</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb76-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb76-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_fit, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   term           p_value
@@ -2045,8 +2048,8 @@ y = \beta_1x+\beta_0
 y = \beta_0+\beta_1x+\beta_2x_2+\beta_3x_3+\beta_4x_4+\beta_5x_5
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>data <span class="sc">|&gt;</span></span>
-<span id="cb78-2"><a></a><span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success <span class="sc">+</span> sex <span class="sc">+</span> feather_colour) ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>data <span class="sc">|&gt;</span></span>
+<span id="cb78-2"><a></a><span class="fu">specify</span>(reproductive_success <span class="sc">~</span> mating_success <span class="sc">+</span> sex <span class="sc">+</span> feather_colour) ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="take-away-points" class="slide level2">
@@ -2089,7 +2092,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-sokal1995" class="csl-entry" role="listitem">
 Sokal, R. R., and F. J. Rohlf. 1995. <em>Biometry</em>. <a href="https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=2483009">https://lubcat.lub.lu.se/cgi-bin/koha/opac-detail.pl?biblionumber=2483009</a>.
 </div>
@@ -2284,7 +2287,7 @@ Sokal, R. R., and F. J. Rohlf. 1995. <em>Biometry</em>. <a href="https://lubcat.
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2407,13 +2410,14 @@ Sokal, R. R., and F. J. Rohlf. 1995. <em>Biometry</em>. <a href="https://lubcat.
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
