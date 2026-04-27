@@ -56,12 +56,11 @@ theme_set(theme_bw(base_size = 20) + theme(aspect.ratio = 1))
 - A single number that captures a quality we are interested in of some data
 
 - Central tendancy (average):
-  - Mean, median..
+  - Mean, median...
 - Spread:
   - IQR, variance, standard deviation
 - Difference between two groups:
   - Difference in means?
-- Etc
 
 # Populations and Samples {background-color="#61599d"}
 
