@@ -1,6 +1,6 @@
 ---
 title: Revision questions
-draft: true
+draft: false
 ---
 
 In preperation for the practise exam and the real exam, you can use the

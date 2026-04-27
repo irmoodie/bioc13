@@ -10,7 +10,7 @@ format:
 execute:
   echo: true
   eval: false
-draft: true
+draft: false
 ---
 
 All the exercises below use the `tephritis_phenotype.csv` dataset from the main
@@ -98,8 +98,8 @@ you can probably change it.
 
 ## Statistics
 
-Use what we covered in the lecture, exercise and the [help files](help.qmd) to
-investigate the following questions:
+Use what we covered in the lecture, exercise and the [Useful
+Resources](../help.qmd) to investigate the following questions:
 
 ::: {.callout-tip icon="false"}
 

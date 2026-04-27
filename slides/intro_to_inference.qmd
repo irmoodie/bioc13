@@ -1,7 +1,7 @@
 ---
 title: "Introduction to statistical inference"
-draft: true
-date: 2025-09-30
+draft: false
+date: 2026-04-27
 subtitle: "Lecture 1"
 webr:
   packages:
@@ -46,8 +46,22 @@ theme_set(theme_bw(base_size = 20) + theme(aspect.ratio = 1))
 
 ### Your focus should be on
 
-- The broad ideas ~~specific formulae~~
+- The broad ideas
 - Statistics as a tool to answer interesting ecological questions
+
+# What is a statistic? {background-color="#61599d"}
+
+## What is a statistic?
+
+- A single number that captures a quality we are interested in of some data
+
+- Central tendancy (average):
+  - Mean, median..
+- Spread:
+  - IQR, variance, standard deviation
+- Difference between two groups:
+  - Difference in means?
+- Etc
 
 # Populations and Samples {background-color="#61599d"}
 

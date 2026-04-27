@@ -25,7 +25,7 @@ website:
             text: "Getting familiar with R"
           - href: exercises/01_local_r.qmd
             text: "Installation guide"
-      - section: "Introduction to inference (Day 1)"
+      - section: "Day 1"
         contents:
           - href: slides/intro_to_inference.qmd
             text: "Slides"
@@ -33,7 +33,7 @@ website:
             text: "Exercises"
           - href: exercises/03_inference_extra.qmd
             text: "Exercises (extra)"
-      - section: "Computational statistics (Day 2)"
+      - section: "Day 2"
         contents:
           - href: slides/computational_statistics.qmd
             text: "Slides"
@@ -59,5 +59,3 @@ format:
     link-external-filter: ^(?:http:|https:)\\/\\/irmoodie\\.com\\/custom
 execute:
   freeze: auto
-
-# "#61599d" "#c36377" "#f2af4a"

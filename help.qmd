@@ -1,6 +1,6 @@
 ---
-title: Additional resources
-draft: true
+title: Useful resources
+draft: false
 ---
 
 In this section of the course, we have been using an R package called `infer` to
@@ -32,19 +32,16 @@ Below I have linked you to some materials which should help with that.
 
 ### Help with understanding the statistical methods
 
-- The [Statistical Inference with infer section of ModernDive (Ch.
-  7-10)](https://moderndive.com/v2/index.html) is a beginner friendly text that
-  follows the style of statistical analysis we have been doing in this part of
-  the course.
+- [Introduction to Modern Statistics, 2nd ed,. Çetinkaya-Rundel & Hardin
+  (2024)](https://openintro-ims.netlify.app/){target="_blank"} is the book used
+  in BIOB11.
+- You can also access all the materials from BIOB11
+  [here](https://irmoodie.com/biob11).
 
 ### Help with general working with data in R
 
-- For help with importing, data handling and basic plotting, the [Data Science
-  with tidyverse section of ModernDive](https://moderndive.com/v2/index.html) is
-  a beginner friendly text that will have examples for most things you will want
-  to do.
-  - If something is not covered, check out [R for Data
-    Science](https://r4ds.hadley.nz/).
+- [R for Data Science](https://r4ds.hadley.nz/) is a complete guide for using
+  tidyverse.
 
 ### Advice for using AI tools to generate code
 
@@ -79,7 +76,3 @@ For general statistics help, include the terms "randomisation based inference"
 or "resampling based inference" or "computational statistics". These are the
 methods we have covered here, as opposed to more mathematical based inference
 methods.
-
-### Access to BIOB11 materials
-
-BIOB11 materials can be accessed [here](https://irmoodie.com/biob11).
