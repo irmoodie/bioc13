@@ -11,6 +11,259 @@
     ]
   },
   {
+    "objectID": "exercises/04_statistics.html",
+    "href": "exercises/04_statistics.html",
+    "title": "Exercise 2",
+    "section": "",
+    "text": "Note✅ Task\n\n\n\nEach time you start a new exercise, you should:\n\nMake a new folder in your course folder for the exercise (e.g. bioc13/exercise_2)\nOpen RStudio\n\nIf you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.\n\nSet your working directory by going to Session -&gt; Set working directory -&gt; Choose directory, then navigate to the folder you just made for this exercise.\nCreate a new Rmarkdown document (File -&gt; New file -&gt; R markdown..). Give it a clear title.\n\n\n\nPlease ensure you have followed the step above before you start!\n\n\nIf you installed the R packages from the last session, you do not need to reinstall them, only load them into our current R environment. We use the library() function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed “top to bottom”, so this bit of code should come right at the start.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nMake a code cell and use the library() function to load the tidyverse and infer packages:\n\nlibrary(tidyverse)\nlibrary(infer)\n\n\n\nYou are now ready for today’s exercise!",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#loading-r-packages",
+    "href": "exercises/04_statistics.html#loading-r-packages",
+    "title": "Exercise 2",
+    "section": "",
+    "text": "If you installed the R packages from the last session, you do not need to reinstall them, only load them into our current R environment. We use the library() function to do that. Since we need this code to run every time we come back to this RMarkdown document, we should write it in the document. R code should always be executed “top to bottom”, so this bit of code should come right at the start.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nMake a code cell and use the library() function to load the tidyverse and infer packages:\n\nlibrary(tidyverse)\nlibrary(infer)\n\n\n\nYou are now ready for today’s exercise!",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#import-the-data",
+    "href": "exercises/04_statistics.html#import-the-data",
+    "title": "Exercise 2",
+    "section": "Import the data",
+    "text": "Import the data\nWe will now import the crop_growth.csv dataset.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nMake another code cell. Load the crop_growth.csv data file using the read_csv() function and assign it to an object named crop_data.\n\ncrop_data &lt;- read_csv(\"crop_growth.csv\")",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#explore-the-data",
+    "href": "exercises/04_statistics.html#explore-the-data",
+    "title": "Exercise 2",
+    "section": "Explore the data",
+    "text": "Explore the data\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nHow many rows of data are in the dataset?\nWhat is the unit of observation in this dataset? In other words, what does each row represent?\nWhat sort of variables are in the dataset (continuous, discrete, nominal, ordinal)?\nWhat is the minimum and maximum dry_mass_g the researchers recorded?",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#plot-the-data",
+    "href": "exercises/04_statistics.html#plot-the-data",
+    "title": "Exercise 2",
+    "section": "Plot the data",
+    "text": "Plot the data\nBelow I have provided you with the base ggplot() function, but you need to add a geom_ to it.\n\ncrop_data |&gt;\n1  ggplot(aes(x = treatment, y = dry_mass_g))\n\n\n1\n\nTo add some geometry add a + to the end of this line, then copy the geom_ onto the next line\n\n\n\n\nSome examples geometries could be:\n\ngeom_boxplot()\n\n\ngeom_violin()\n\n\ngeom_jitter(width = 0.1)\n\n\n\n\n\n\n\nNote✅ Task\n\n\n\nTry each of the geom_s out, and decide which you think is best. You can also add more than one geom_ to a plot, just add a + at the end of a line, then put the second geom_ on the next line.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#calculating-the-observed-statistic",
+    "href": "exercises/04_statistics.html#calculating-the-observed-statistic",
+    "title": "Exercise 2",
+    "section": "Calculating the observed statistic",
+    "text": "Calculating the observed statistic\n\nOur research question is:\n\nIs there a difference in mean dry_mass_g between treatment groups?\n\nSince we have more than two groups, this sort of analysis is called an ANOVA (ANalysis Of VAriance). Specifically, it is a one-way ANOVA, as we are interested in the effect of one categorical variable (with &gt;2 groups) on a continuous variable.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nState the null and alternative hypothesis.\nWhat is the test statistic we use in an ANOVA?\n\nIn a new code cell, calculate the observed test statistic\n\nobs_f &lt;-\n1  ______ |&gt;\n2  specify(response = ______, explanatory = ______) |&gt;\n3  calculate(stat = \"______\")\n\n4obs_f\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response and explanatory variable.\n\n3\n\nCalculate the observed statistic. To see the possible names you can use, write ?calculate to open the help files for that function.\n\n4\n\nPrint the observe statistic to the console.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#confidence-interval-approach",
+    "href": "exercises/04_statistics.html#confidence-interval-approach",
+    "title": "Exercise 2",
+    "section": "Confidence interval approach",
+    "text": "Confidence interval approach\nSince the statistic used in an ANOVA unitless ratio (always greater than 0), a confidence interval is not a very helpful in this case.\nIf you wanted to use a confidence interval for this question, you could calculate a confidence interval for the mean of each group, and then compare them.\nIf you want to do that, some code is below, but feel free to move onto the hypothesis test, which is more useful here.\n\n\n\n\n\n\nNoteConfidence interval around the mean of each group\n\n\n\n\n\nFirst split the treatments into their own datasets with filter():\n\ncontrol_data &lt;-\n   crop_data |&gt;\n   filter(treatment == \"control\")\n\nferta_data &lt;-\n   crop_data |&gt;\n   filter(treatment == \"fertilizer_a\")\n\nfertb_data &lt;-\n   crop_data |&gt;\n   filter(treatment == \"fertilizer_b\")\n\nfertc_data &lt;-\n   crop_data |&gt;\n   filter(treatment == \"fertilizer_c\")\n\nObserve mean for each treatment:\n\ncontrol_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   calculate(stat = \"mean\")\n\nferta_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   calculate(stat = \"mean\")\n\nfertb_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   calculate(stat = \"mean\")\n\nfertc_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   calculate(stat = \"mean\")\n\n95% confidence interval around mean for each dataset:\n\ncontrol_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   generate(reps = 10000, type = \"bootstrap\") |&gt;\n   calculate(stat = \"mean\") |&gt;\n   get_ci(type = \"percentile\", level = 0.95)\n\nferta_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   generate(reps = 10000, type = \"bootstrap\") |&gt;\n   calculate(stat = \"mean\") |&gt;\n   get_ci(type = \"percentile\", level = 0.95)\n\nfertb_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   generate(reps = 10000, type = \"bootstrap\") |&gt;\n   calculate(stat = \"mean\") |&gt;\n   get_ci(type = \"percentile\", level = 0.95)\n\nfertc_data |&gt;\n   specify(response = dry_mass_g) |&gt;\n   generate(reps = 10000, type = \"bootstrap\") |&gt;\n   calculate(stat = \"mean\") |&gt;\n   get_ci(type = \"percentile\", level = 0.95)",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#null-hypothesis-testing-approach",
+    "href": "exercises/04_statistics.html#null-hypothesis-testing-approach",
+    "title": "Exercise 2",
+    "section": "Null hypothesis testing approach",
+    "text": "Null hypothesis testing approach\n\n\n\nA general approach to hypothesis testing\n\n\n\nGenerating a null distribution\nSince our null hypothesis is that there is no relationship between two variables (i.e., dry_mass_g and treatment are independent), we can use permuation (shuffling one of the columns) to simulate a null distribution.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, generate a null distribution using the code below:\n\nnull_dist_f &lt;-\n1  ______ |&gt;\n2  specify(response = ______, explanatory = ______) |&gt;\n3  hypothesize(null = \"independence\") |&gt;\n4  generate(reps = 10000, type = \"permute\") |&gt;\n5  calculate(stat = \"______\")\n\n\n1\n\nThe name of the dataset (I called mine crop_data).\n\n2\n\nSpecify which is your response and explanatory variable.\n\n3\n\nOur hypothesis is that our response variable is independant of our explanatory variable.\n\n4\n\nSimulate data using permuations. This may take a few seconds depending on your computer.\n\n5\n\nFrom each of our simulated permutation samples, calculate the test statistic.\n\n\n\n\n\n\n\n\nCompare your observed against the null\nIn order to see if our statistic could have been observed due to chance, we should now compare the observed statistic to the null distribution.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, plot the null distribution and the observed statistic using the code below:\n\nnull_dist_f |&gt;\n1  visualise() +\n2  shade_p_value(obs_stat = obs_f, direction = \"greater\") +\n3  labs(x = \"______ statistic\")\n\n\n1\n\nPipe your null_dist object into visualise().\n\n2\n\nPlot your observed_stat, and specify that the direction should be \"greater\". Our statistic is naturally bounded at 0, so we are not interested in the left side of the distribution.\n\n3\n\nYou can change the axis labels to make the plot more clear.\n\n\n\n\n\n\n\n\nCalculate a p-value\nLet’s count up the number of simulations in our null distribution that produced statistics as or more extreme than our observed statistic, to get a p-value.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, use your null distribution to calculate a p-value:\n\nnull_dist_f |&gt;\n  get_p_value(obs_stat = obs_f, direction = \"greater\")",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#did-the-fertilizers-affect-the-growth-of-the-crops",
+    "href": "exercises/04_statistics.html#did-the-fertilizers-affect-the-growth-of-the-crops",
+    "title": "Exercise 2",
+    "section": "Did the fertilizers affect the growth of the crops?",
+    "text": "Did the fertilizers affect the growth of the crops?\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the last code cell, answer the following question:\nWhat are your conclusions? State them both clearly in terms of the research question and null hypothesis. How would you describe them to someone who does not know much about statistics? Make reference to your p-value and your figure.\n\n\nSave your work! Take a break! Then move on to the next question when you’re ready.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#import-the-data-1",
+    "href": "exercises/04_statistics.html#import-the-data-1",
+    "title": "Exercise 2",
+    "section": "Import the data",
+    "text": "Import the data\nWe will now import the benthic_species.csv dataset.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nMake another code cell. Load the benthic_species.csv data file using the read_csv() function and assign it to an object named benthic_data.\n\nbenthic_data &lt;- read_csv(\"benthic_species.csv\")",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#explore-the-data-1",
+    "href": "exercises/04_statistics.html#explore-the-data-1",
+    "title": "Exercise 2",
+    "section": "Explore the data",
+    "text": "Explore the data\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nHow many rows of data are in the dataset?\nWhat is the unit of observation in this dataset? In other words, what does each row represent?\nWhat sort of variables are in the dataset (continuous, discrete, nominal, ordinal)?",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#plot-the-data-1",
+    "href": "exercises/04_statistics.html#plot-the-data-1",
+    "title": "Exercise 2",
+    "section": "Plot the data",
+    "text": "Plot the data\nHere’s some code to help you make a bar plot, which is a nice way to display categorical data:\n\nbenthic_data |&gt;\n1  ggplot(aes(x = ______, fill = ______)) +\n  geom_bar()\n\n\n1\n\nThis will display one of the variables on the x axis, and the other by filling the bar with colour\n\n\n\n\n\n\n\n\n\n\nNote✅ Task\n\n\n\nUse the code above to make a plot. Try swapping which variable is mapped to x and which is mapped to fill. Which do you think is clearer?",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#calculating-the-observed-statistic-1",
+    "href": "exercises/04_statistics.html#calculating-the-observed-statistic-1",
+    "title": "Exercise 2",
+    "section": "Calculating the observed statistic",
+    "text": "Calculating the observed statistic\n\nThe researchers want to know if the community compositions of the habitats are the same or different. In other words, are some species more likely to be found in one habitat than the another, or are they randomly spread across the bay.\nTo do that, we will use a \\(\\chi^2\\) statistic. Recall that a \\(\\chi^2\\) statistic measures how different an observed distribution is from an expected distribution. In this case, how different the observed distribution of species is in each habitat from the “null” expected distribution of equally split between habitats (each species is found 50% of the time in each of the two habitats).\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nState the null and alternative hypothesis.\n\nIn a new code cell, calculate the observed \\(\\chi^2\\) test statistic. Since the \\(\\chi^2\\) statistic itself includes a null hypothesis (as in we need to supply the expected value), we need to use hypothesise() here when calculating it:\n\nobs_chi2 &lt;-\n1  ______ |&gt;\n2  specify(response = ______, explanatory = ______) |&gt;\n  hypothesise(null = \"independence\") |&gt;\n3  calculate(stat = \"______\")\n\n4obs_chi2\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response and explanatory variable.\n\n3\n\nCalculate the observed statistic. To see the possible names you can use, write ?calculate to open the help files for that function.\n\n4\n\nPrint the observe statistic to the console.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#confidence-interval-approach-1",
+    "href": "exercises/04_statistics.html#confidence-interval-approach-1",
+    "title": "Exercise 2",
+    "section": "Confidence interval approach",
+    "text": "Confidence interval approach\nLike the \\(F\\) statistic in an ANOVA, \\(\\chi^2\\) is unitless ratio (always greater than 0), so a confidence interval is not a very helpful in this case.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#null-hypothesis-testing-approach-1",
+    "href": "exercises/04_statistics.html#null-hypothesis-testing-approach-1",
+    "title": "Exercise 2",
+    "section": "Null hypothesis testing approach",
+    "text": "Null hypothesis testing approach\n\n\n\nA general approach to hypothesis testing\n\n\n\nGenerating a null distribution\nSince our null hypothesis is that there is no relationship between two variables (i.e., species and habitat are independent), we could use permuation (shuffling one of the columns) to simulate a null distribution.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, generate a null distribution using the code below:\n\nnull_dist_chi2 &lt;-\n1   ______ |&gt;\n2   specify(response = ______, explanatory = ______) |&gt;\n3   hypothesize(null = \"independence\") |&gt;\n4   generate(reps = 10000, type = \"permute\") |&gt;\n5   calculate(stat = \"______\")\n\n\n1\n\nThe name of the dataset.\n\n2\n\nSpecify which is your response and explanatory variable. In this case, it doesn’t matter for the statistic, but you might have a preference depending on what you think is causing the relationship.\n\n3\n\nOur hypothesis is that our response variable is independant of our explanatory variable.\n\n4\n\nSimulate data using permuations. This may take a few seconds depending on your computer.\n\n5\n\nFrom each of our simulated permutation samples, calculate the test statistic.\n\n\n\n\n\n\n\n\nCompare your observed against the null\nIn order to see if our statistic could have been observed due to chance, we should now compare the observed statistic to the null distribution.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, plot the null distribution and the observed statistic using the code below:\n\nnull_dist_chi2 |&gt;\n1  visualise() +\n2  shade_p_value(obs_stat = obs_chi2, direction = \"greater\") +\n3  labs(x = \"______ statistic\")\n\n\n1\n\nPipe your null_dist object into visualise().\n\n2\n\nPlot your observed_stat, and specify that the direction should be \"greater\". Our statistic is naturally bounded at 0, so we are not interested in the left side of the distribution.\n\n3\n\nYou can change the axis labels to make the plot more clear.\n\n\n\n\n\n\n\n\nCalculate a p-value\nLet’s count up the number of simulations in our null distribution that produced statistics as or more extreme than our observed statistic, to get a p-value.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, use your null distribution to calculate a p-value:\n\nnull_dist_chi2 |&gt;\n  get_p_value(obs_stat = obs_chi2, direction = \"greater\")",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#are-the-community-compositions-of-the-habitats-different",
+    "href": "exercises/04_statistics.html#are-the-community-compositions-of-the-habitats-different",
+    "title": "Exercise 2",
+    "section": "Are the community compositions of the habitats different?",
+    "text": "Are the community compositions of the habitats different?\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the last code cell, answer the following question:\nWhat are your conclusions? State them both clearly in terms of the research question and null hypothesis. How would you describe them to someone who does not know much about statistics? Make reference to your p-value and your figure.\n\n\nSave your work! Take a break! Then move on to the next question when you’re ready.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#import-the-data-2",
+    "href": "exercises/04_statistics.html#import-the-data-2",
+    "title": "Exercise 2",
+    "section": "Import the data",
+    "text": "Import the data\nWe will now import the pie_crab.csv dataset.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nMake another code cell. Load the pie_crab.csv data file using the read_csv() function and assign it to an object named pie_crab.\n\npie_crab &lt;- read_csv(\"pie_crab.csv\")",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#explore-the-data-2",
+    "href": "exercises/04_statistics.html#explore-the-data-2",
+    "title": "Exercise 2",
+    "section": "Explore the data",
+    "text": "Explore the data\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nHow many rows of data are in the dataset?\nWhat is the unit of observation in this dataset? In other words, what does each row represent?\nWhat populations (statistical use of the word) could we make inferences about using this data?",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#plot-the-data-2",
+    "href": "exercises/04_statistics.html#plot-the-data-2",
+    "title": "Exercise 2",
+    "section": "Plot the data",
+    "text": "Plot the data\n\n\n\n\n\n\nNote✅ Task\n\n\n\nTry and figure out how you would use ggplot() and geom_point() to plot latitude on the x axis and size on the y axis.\nCopy some code you used in previous questions and edit it.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#calculating-the-observed-statistic-2",
+    "href": "exercises/04_statistics.html#calculating-the-observed-statistic-2",
+    "title": "Exercise 2",
+    "section": "Calculating the observed statistic",
+    "text": "Calculating the observed statistic\n\nThe research question is:\n\nDoes Minuca pugnax follow Bergmann’s rule?\n\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following questions:\n\nUse the slides to help you decide what statistic would help you answer this question. What test statistic will you use? Why?\n\nIn a new code cell, calculate the observed test statistic:\n\nobs_stat &lt;-\n1  ______ |&gt;\n  specify(response = ______, explanatory = ______) |&gt;\n3  calculate(stat = \"______\")\n\nobs_stat\n\n\n1\n\nThe name of the dataset.\n\n3\n\nPrint the observe statistic to the console.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#confidence-interval-approach-2",
+    "href": "exercises/04_statistics.html#confidence-interval-approach-2",
+    "title": "Exercise 2",
+    "section": "Confidence interval approach",
+    "text": "Confidence interval approach\n\n\n\nA general approach to bootstrapping confidence intervals\n\n\nThis statistic lends itself well to an interpretable confidence interval, so let’s use one!\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, calculate the 95% CI for the statistic by first simulating a sampling distribution using bootstrap resampling.\n\nsamp_dist &lt;-\n1  ______ |&gt;\n  specify(response = ______, explanatory = ______) |&gt;\n2  generate(reps = ______, type = \"______\") |&gt;\n3  calculate(stat = \"______\")\n\npercentile_ci &lt;-\n   samp_dist |&gt;\n4   get_ci(type = \"percentile\", level = ______)\n\n5percentile_ci\n\n\n1\n\nThe name of the dataset.\n\n2\n\nDecide how you will generate a datasets to use in your sampling distribution.\n\n3\n\nCalculate the statistic for each sample to make a sampling distribution.\n\n4\n\nSet the level to 0.95 for a 95% CI\n\n5\n\nPrint the CI\n\n\n\n\n\n\nYou can also visualise the simulated sampling distribution and confidence interval.\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn a new code cell, visualise the 95% CI on the sampling distribution:\n\nsamp_dist |&gt;\n   visualise() |&gt;\n   shade_ci(endpoints = percentile_ci)",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#hypothesis-testing-approach",
+    "href": "exercises/04_statistics.html#hypothesis-testing-approach",
+    "title": "Exercise 2",
+    "section": "Hypothesis testing approach",
+    "text": "Hypothesis testing approach\nThis question could also be answered using a hypothesis test, but we’ve already done enough of these. Try to use the confidence interval to answer your conclusion.",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics.html#does-m.-pugnax-follow-bergmanns-rule",
+    "href": "exercises/04_statistics.html#does-m.-pugnax-follow-bergmanns-rule",
+    "title": "Exercise 2",
+    "section": "Does M. pugnax follow Bergmann’s rule?",
+    "text": "Does M. pugnax follow Bergmann’s rule?\n\n\n\n\n\n\nNote✅ Task\n\n\n\nIn your RMarkdown document, using text below the code cell, answer the following question:\nWhat are your conclusions? How do you use the confidence interval to support your conclusion?",
+    "crumbs": [
+      "Day 2",
+      "Exercises"
+    ]
+  },
+  {
     "objectID": "exercises/03_inference_extra.html",
     "href": "exercises/03_inference_extra.html",
     "title": "Exercise 1: Bonus problems",
@@ -115,6 +368,72 @@
     "title": "Statistical inference for Ecologists",
     "section": "",
     "text": "Here you will find all the materials required for the statistics section of BIOC13.\nAll course communication should take place on LU Canvas.\nFor access to materials from previous semesters, see the releases on GitHub or Zenodo."
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html",
+    "href": "exercises/04_statistics_extra.html",
+    "title": "More statistics exercises (extra)",
+    "section": "",
+    "text": "NoteEach time you start a new exercise, you should:\n\n\n\n\nMake a new folder in your course folder for the exercise (e.g. bioc13/day_2_extra)\nOpen RStudio\n\nIf you haven’t closed RStudio since the last exercise, I recommend you close it and then re-open it. If it asks if you want to save your R Session data, choose no.\n\nSet your working directory by going to Session -&gt; Set working directory -&gt; Choose directory, then navigate to the folder you just made for this exercise.\nCreate a new Rmarkdown document (File -&gt; New file -&gt; R markdown..). Give it a clear title.\nCreate a new code cell, and load the tidyverse and infer packages using library().",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html#background",
+    "href": "exercises/04_statistics_extra.html#background",
+    "title": "More statistics exercises (extra)",
+    "section": "Background",
+    "text": "Background\nInsect colouration mediated by melanization can assist in dealing with environmental temperatures. However, melanin synthesis can be costly and depends on the ability of insects to acquire enough energy and nutrients from their diets. Due to the increased plant C:N ratio associated with elevated CO2 concentrations, insect herbivores’ melanization could be limited by the amount of nitrogen they acquire from their host plants.\nTo investigate how diet C:N impacts the potential colour response to temperature, the authors used Manduca sexta caterpillars reared at different combinations of temperatures and diet C:N ratios, and measured pupal mass and development time (performance metrics) and colour morphology.\nSoon after eclosion, Manduca sexta larvae were reared under two temperature conditions (\"18C\", \"27C\") and two diet_quality treatments (\"low\" or \"high\" nitrogen content). The authors measured pupal_mass_g and development_time as performance metrics. They also photographed the 5th instar larvae before the wandering stage and measured color as mean colour (red_mean, blue_mean, green_mean) and luminance (luminance_mean) values across the larvae. The experiment was repeated over two different years.",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html#the-dataset",
+    "href": "exercises/04_statistics_extra.html#the-dataset",
+    "title": "More statistics exercises (extra)",
+    "section": "The dataset",
+    "text": "The dataset\nThe results of the experiment are stored in a csv file here: Link to data.\nOnce downloaded, you should move it to your working directory folder for this exercise before continuing.",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html#loading-the-data-into-r",
+    "href": "exercises/04_statistics_extra.html#loading-the-data-into-r",
+    "title": "More statistics exercises (extra)",
+    "section": "Loading the data into R",
+    "text": "Loading the data into R\n\n\n\n\n\n\nNoteLoad the data\n\n\n\nIn a new code cell, use read_csv() to load the data into R. Assign it to an object.",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html#explore-the-dataset",
+    "href": "exercises/04_statistics_extra.html#explore-the-dataset",
+    "title": "More statistics exercises (extra)",
+    "section": "Explore the dataset",
+    "text": "Explore the dataset\nTo get a better understanding of the dataset before you continue, use functions from previous exercises to explore the dataset, calculate summary statistics and make quick and basic plots.",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
+  },
+  {
+    "objectID": "exercises/04_statistics_extra.html#the-research-question",
+    "href": "exercises/04_statistics_extra.html#the-research-question",
+    "title": "More statistics exercises (extra)",
+    "section": "The research question",
+    "text": "The research question\nIn this exercise, you need to address the research question:\n\nHow do diet_quality and temperature influence performance and colouration in Manduca sexta.\n\nBy the end, you need to be able to answer the following questions:\n\n\n\n\n\n\nTipQuestions\n\n\n\n\nWhat effect did temperature have on performance and colouration in Manduca sexta?\nWhat effect did diet_quality have on performance and colouration in Manduca sexta?\nWas the effect of temperature and diet_quality additive, or do they interact?\n\nFor each question, refer to the at least one statistical method, and a plot that shows the variables of interest.\n\n\nYou must use statistical methods in the infer package to answer these questions. Both null hypothesis testing and confidence intervals are applicable methods.\n\n\n\n\n\n\nNoteHint\n\n\n\n\n\nTo analyze the data, consider using the fit() function from the infer package. Use the examples from the infer website and find ones that fits what you want to do.",
+    "crumbs": [
+      "Day 2",
+      "Exercises (extra)"
+    ]
   },
   {
     "objectID": "exercises/02_intro_to_r.html",
