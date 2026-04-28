@@ -10,7 +10,7 @@ format:
 execute:
   echo: true
   eval: false
-draft: true
+draft: false
 ---
 
 # Get RStudio setup

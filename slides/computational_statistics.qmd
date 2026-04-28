@@ -1,6 +1,6 @@
 ---
 title: "Computational statistics"
-draft: true
+draft: false
 date: 2026-04-28
 subtitle: "Lecture 2"
 ---
