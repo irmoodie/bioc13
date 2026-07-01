@@ -42,7 +42,8 @@ button.
 
 R, like most programming languages, can perform arithmetic operations. It
 follows the order of operations used in mathematics. If you want to review that,
-you can do so [in Chapter 1 of
+you can do so
+[in Chapter 1 of
 @duthie2025](https://bradduthie.github.io/stats/Chapter_1.html#order-of-operations).
 
 You can use the following operators to write equations in R:
@@ -550,10 +551,10 @@ look for the next bit of code on the next line if nothing comes after it:
 #| echo: true
 #| eval: false
 
-my_data_final <- 
-  my_data |> 
-  function_1() |> 
-  function_2() |> 
+my_data_final <-
+  my_data |>
+  function_1() |>
+  function_2() |>
   function_3()
 ```
 
@@ -574,7 +575,7 @@ mean(trees)
 
 ::: { .solution exercise="ex_pipes_1" }
 ```r
-trees |> mean()                                 #<1>
+trees |> mean() #<1>
 ```
 1. Take the `trees` vector, and then pipe`|>` it into the `mean()` function.
 :::
@@ -590,9 +591,9 @@ mean(log(trees))
 
 ::: { .solution exercise="ex_pipes_2" }
 ```r
-trees |>                                  #<1>
+trees |> #<1>
   log() |>
-  mean() 
+  mean()
 ```
 1. Take the `trees` vector, and then pipe`|>` it into the `log()` function, then
    into the `mean()` function.
@@ -666,7 +667,7 @@ iris |>
 
 ::: { .solution exercise="ex_packages_1" }
 ```r
-library(ggplot2)                                  #<1>
+library(ggplot2) #<1>
 iris |>
   ggplot(aes(x = Sepal.Length, y = Sepal.Width, colour = Species)) +
   geom_point()

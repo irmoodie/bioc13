@@ -16,7 +16,6 @@ draft: false
 # Get RStudio setup
 
 ::: {.callout-note appearance="default"}
-
 ## Each time you start a new exercise, you should:
 
 1. Make a new folder in your course folder for the exercise (e.g.
@@ -32,7 +31,6 @@ draft: false
    Give it a clear title.
 5. Create a new code cell, and load the `tidyverse` and `infer` packages using
    `library()`.
-
 :::
 
 # **How does diet and temperature influence tobacco hornworms**
@@ -72,12 +70,10 @@ exercise before continuing.
 ## Loading the data into R
 
 ::: {.callout-note appearance="default"}
-
 ## Load the data
 
 In a new code cell, use `read_csv()` to load the data into R. Assign it to an
 object.
-
 :::
 
 ## Explore the dataset
@@ -96,7 +92,6 @@ In this exercise, you need to address the research question:
 By the end, you need to be able to answer the following questions:
 
 ::: {.callout-tip}
-
 ## Questions
 
 1. What effect did `temperature` have on performance and colouration in *Manduca
@@ -108,7 +103,6 @@ By the end, you need to be able to answer the following questions:
 
 For each question, refer to the at least one statistical method, and a plot that
 shows the variables of interest.
-
 :::
 
 You must use statistical methods in the `infer` package to answer these
@@ -116,11 +110,9 @@ questions. Both null hypothesis testing and confidence intervals are applicable
 methods.
 
 ::: {.callout-note collapse="true"}
-
 ## Hint
 
 To analyze the data, consider using the `fit()` function from the `infer`
 package. Use the examples from the `infer` website and find ones that fits what
 you want to do.
-
 :::

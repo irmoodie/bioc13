@@ -31,7 +31,6 @@ Each time you start a new exercise, you should:
    exercise.
 4. Create a new Rmarkdown document (*File* -> *New file* -> *R markdown..*).
    Give it a clear title.
-
 :::
 
 Please ensure you have followed the step above before you start!
@@ -55,7 +54,6 @@ Make a code cell and use the `library()` function to load the `tidyverse` and
 library(tidyverse)
 library(infer)
 ```
-
 :::
 
 You are now ready for today's exercise!
@@ -89,7 +87,6 @@ Download the dataset.
 
 Once downloaded, you should move it to your *working directory* folder for this
 exercise before continuing.
-
 :::
 
 ## Import the data
@@ -105,7 +102,6 @@ Make another code cell. Load the `crop_growth.csv` data file using the
 ```{r}
 crop_data <- read_csv("crop_growth.csv")
 ```
-
 :::
 
 ## Explore the data
@@ -122,7 +118,6 @@ questions:
 3. What sort of variables are in the dataset (continuous, discrete, nominal,
    ordinal)?
 4. What is the minimum and maximum `dry_mass_g` the researchers recorded?
-
 :::
 
 ## Plot the data
@@ -158,7 +153,6 @@ geom_jitter(width = 0.1)
 Try each of the `geom_`s out, and decide which you think is best. You can also
 add more than one `geom_` to a plot, just add a `+` at the end of a line, then
 put the second `geom_` on the next line.
-
 :::
 
 ## Calculating the observed statistic
@@ -198,7 +192,6 @@ obs_f #<4>
 3. Calculate the observed statistic. To see the possible names you can use,
    write `?calculate` to open the help files for that function.
 4. Print the observe statistic to the console.
-
 :::
 
 ## Confidence interval approach
@@ -219,77 +212,70 @@ hypothesis test, which is more useful here.
 First split the treatments into their own datasets with `filter()`:
 
 ```{r}
-
 control_data <-
-   crop_data |>
-   filter(treatment == "control")
+  crop_data |>
+  filter(treatment == "control")
 
 ferta_data <-
-   crop_data |>
-   filter(treatment == "fertilizer_a")
+  crop_data |>
+  filter(treatment == "fertilizer_a")
 
 fertb_data <-
-   crop_data |>
-   filter(treatment == "fertilizer_b")
+  crop_data |>
+  filter(treatment == "fertilizer_b")
 
 fertc_data <-
-   crop_data |>
-   filter(treatment == "fertilizer_c")
-
+  crop_data |>
+  filter(treatment == "fertilizer_c")
 ```
 
 Observe mean for each `treatment`:
 
 ```{r}
-
 control_data |>
-   specify(response = dry_mass_g) |>
-   calculate(stat = "mean")
+  specify(response = dry_mass_g) |>
+  calculate(stat = "mean")
 
 ferta_data |>
-   specify(response = dry_mass_g) |>
-   calculate(stat = "mean")
+  specify(response = dry_mass_g) |>
+  calculate(stat = "mean")
 
 fertb_data |>
-   specify(response = dry_mass_g) |>
-   calculate(stat = "mean")
+  specify(response = dry_mass_g) |>
+  calculate(stat = "mean")
 
 fertc_data |>
-   specify(response = dry_mass_g) |>
-   calculate(stat = "mean")
-
+  specify(response = dry_mass_g) |>
+  calculate(stat = "mean")
 ```
 
 95% confidence interval around mean for each dataset:
 
 ```{r}
-
 control_data |>
-   specify(response = dry_mass_g) |>
-   generate(reps = 10000, type = "bootstrap") |>
-   calculate(stat = "mean") |>
-   get_ci(type = "percentile", level = 0.95)
+  specify(response = dry_mass_g) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_ci(type = "percentile", level = 0.95)
 
 ferta_data |>
-   specify(response = dry_mass_g) |>
-   generate(reps = 10000, type = "bootstrap") |>
-   calculate(stat = "mean") |>
-   get_ci(type = "percentile", level = 0.95)
+  specify(response = dry_mass_g) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_ci(type = "percentile", level = 0.95)
 
 fertb_data |>
-   specify(response = dry_mass_g) |>
-   generate(reps = 10000, type = "bootstrap") |>
-   calculate(stat = "mean") |>
-   get_ci(type = "percentile", level = 0.95)
+  specify(response = dry_mass_g) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_ci(type = "percentile", level = 0.95)
 
 fertc_data |>
-   specify(response = dry_mass_g) |>
-   generate(reps = 10000, type = "bootstrap") |>
-   calculate(stat = "mean") |>
-   get_ci(type = "percentile", level = 0.95)
-
+  specify(response = dry_mass_g) |>
+  generate(reps = 10000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_ci(type = "percentile", level = 0.95)
 ```
-
 :::
 
 ## Null hypothesis testing approach
@@ -323,7 +309,6 @@ null_dist_f <-
 4. Simulate data using permuations. This may take a few seconds depending on
    your computer.
 5. From each of our simulated permutation samples, calculate the test statistic.
-
 :::
 
 ### Compare your observed against the null
@@ -349,7 +334,6 @@ null_dist_f |>
    `"greater"`. Our statistic is naturally bounded at 0, so we are not
    interested in the left side of the distribution.
 3. You can change the axis labels to make the plot more clear.
-
 :::
 
 ### Calculate a p-value
@@ -366,7 +350,6 @@ In a new code cell, use your null distribution to calculate a p-value:
 null_dist_f |>
   get_p_value(obs_stat = obs_f, direction = "greater")
 ```
-
 :::
 
 ## Did the fertilizers affect the growth of the crops?
@@ -380,7 +363,6 @@ following question:
 What are your conclusions? State them both clearly in terms of the research
 question and null hypothesis. How would you describe them to someone who does
 not know much about statistics? Make reference to your p-value and your figure.
-
 :::
 
 Save your work! Take a break! Then move on to the next question when you're
@@ -410,7 +392,6 @@ Download the dataset.
 
 Once downloaded, you should move it to your *working directory* folder for this
 exercise before continuing.
-
 :::
 
 ## Import the data
@@ -426,7 +407,6 @@ Make another code cell. Load the `benthic_species.csv` data file using the
 ```{r}
 benthic_data <- read_csv("benthic_species.csv")
 ```
-
 :::
 
 ## Explore the data
@@ -442,7 +422,6 @@ questions:
    each row represent?
 3. What sort of variables are in the dataset (continuous, discrete, nominal,
    ordinal)?
-
 :::
 
 ## Plot the data
@@ -464,7 +443,6 @@ benthic_data |>
 
 Use the code above to make a plot. Try swapping which variable is mapped to `x`
 and which is mapped to `fill`. Which do you think is clearer?
-
 :::
 
 ## Calculating the observed statistic
@@ -509,7 +487,6 @@ obs_chi2 #<4>
 3. Calculate the observed statistic. To see the possible names you can use,
    write `?calculate` to open the help files for that function.
 4. Print the observe statistic to the console.
-
 :::
 
 ## Confidence interval approach
@@ -534,11 +511,11 @@ In a new code cell, generate a null distribution using the code below:
 
 ```{r}
 null_dist_chi2 <-
-   ______ |> #<1>
-   specify(response = ______, explanatory = ______) |> #<2>
-   hypothesize(null = "independence") |> #<3>
-   generate(reps = 10000, type = "permute") |> #<4>
-   calculate(stat = "______") #<5>
+  ______ |> #<1>
+  specify(response = ______, explanatory = ______) |> #<2>
+  hypothesize(null = "independence") |> #<3>
+  generate(reps = 10000, type = "permute") |> #<4>
+  calculate(stat = "______") #<5>
 ```
 
 1. The name of the dataset.
@@ -550,7 +527,6 @@ null_dist_chi2 <-
 4. Simulate data using permuations. This may take a few seconds depending on
    your computer.
 5. From each of our simulated permutation samples, calculate the test statistic.
-
 :::
 
 ### Compare your observed against the null
@@ -576,7 +552,6 @@ null_dist_chi2 |>
    `"greater"`. Our statistic is naturally bounded at 0, so we are not
    interested in the left side of the distribution.
 3. You can change the axis labels to make the plot more clear.
-
 :::
 
 ### Calculate a p-value
@@ -593,7 +568,6 @@ In a new code cell, use your null distribution to calculate a p-value:
 null_dist_chi2 |>
   get_p_value(obs_stat = obs_chi2, direction = "greater")
 ```
-
 :::
 
 ## Are the community compositions of the habitats different?
@@ -607,7 +581,6 @@ following question:
 What are your conclusions? State them both clearly in terms of the research
 question and null hypothesis. How would you describe them to someone who does
 not know much about statistics? Make reference to your p-value and your figure.
-
 :::
 
 Save your work! Take a break! Then move on to the next question when you're
@@ -653,7 +626,6 @@ Download the dataset.
 
 Once downloaded, you should move it to your *working directory* folder for this
 exercise before continuing.
-
 :::
 
 ## Import the data
@@ -669,7 +641,6 @@ function and assign it to an object named `pie_crab`.
 ```{r}
 pie_crab <- read_csv("pie_crab.csv")
 ```
-
 :::
 
 ## Explore the data
@@ -685,7 +656,6 @@ questions:
    each row represent?
 3. What populations (statistical use of the word) could we make inferences about
    using this data?
-
 :::
 
 ## Plot the data
@@ -730,7 +700,6 @@ obs_stat #<4>
 1. The name of the dataset.
 2. Calculate the observed statistic.
 3. Print the observe statistic to the console.
-
 :::
 
 ## Confidence interval approach
@@ -748,14 +717,14 @@ sampling distribution using bootstrap resampling.
 
 ```{r}
 samp_dist <-
-  ______ |>  #<1>
+  ______ |> #<1>
   specify(response = ______, explanatory = ______) |>
   generate(reps = ______, type = "______") |> #<2>
   calculate(stat = "______") #<3>
 
 percentile_ci <-
-   samp_dist |>
-   get_ci(type = "percentile", level = ______) #<4>
+  samp_dist |>
+  get_ci(type = "percentile", level = ______) #<4>
 
 percentile_ci #<5>
 ```
@@ -765,7 +734,6 @@ percentile_ci #<5>
 3. Calculate the statistic for each sample to make a sampling distribution.
 4. Set the level to `0.95` for a 95% CI
 5. Print the CI
-
 :::
 
 You can also visualise the simulated sampling distribution and confidence
@@ -778,10 +746,9 @@ In a new code cell, visualise the 95% CI on the sampling distribution:
 
 ```{r}
 samp_dist |>
-   visualise() |>
-   shade_ci(endpoints = percentile_ci)
+  visualise() |>
+  shade_ci(endpoints = percentile_ci)
 ```
-
 :::
 
 ## Hypothesis testing approach
@@ -800,7 +767,6 @@ question:
 
 What are your conclusions? How do you use the confidence interval to support
 your conclusion?
-
 :::
 
 # Submit your work!
@@ -817,5 +783,4 @@ It will have been saved next to wherever your `.Rmd` file is saved.
 
 Upload your `.html` file as your [assignment for this exercise in
 Canvas](https://canvas.education.lu.se/courses/39437/assignments/275274).
-
 :::

@@ -26,7 +26,6 @@ time, submit what you have done. You will recieve feedback on your work.
 ## ✅ Task
 
 Launch RStudio.
-
 :::
 
 It should detect your R installation automatically, but if not, a window will
@@ -112,7 +111,6 @@ Go to *Tools* -> *Global Settings*, then:
    ii) Set "*Save workspace to RData on exit:*" to *Never*.
 2. Go to the *Code* tab
    i) **Tick** "*Use native pipe operator, l> (requires R 4.1+)*"
-
 :::
 
 While we are here, if you wanted to change the font size or theme, you can do
@@ -146,7 +144,6 @@ executed and where files are read from or written to unless specified otherwise.
 To set the working directory using RStudio, go to *Session* -> *Set working
 directory* -> *Choose directory*, then navigate to the folder you just made for
 this exercise. You should do this at the start of each exercise.
-
 :::
 
 Notice that now in your *Output* pane, in the *files* tab, you can see the
@@ -206,7 +203,6 @@ demo the features. We want to remove that before continuing.
 Delete all the code and text that RStudio automatically generated, except the
 YAML header (the text at the start between the `---`). You can do that as you
 would expect in any other text editor.
-
 :::
 
 ## Creating code cells
@@ -218,7 +214,6 @@ write normal text outside these sections.
 ## ✅ Task
 
 In your *Source* panel, in the RMarkdown document, add a R code cell.
-
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
@@ -260,7 +255,6 @@ Along side normal text, you can structure an RMarkdown document using headings.
 ## ✅ Task
 
 Add a heading *above* the code cell you just made titled "Packages".
-
 :::
 
 ::: {.callout-note collapse="true" icon="false"}
@@ -369,7 +363,6 @@ of the ovipositor (`ovipositor_length_mm`).
 If the GitHub download doesn't work (sometimes the university gets rate
 limited), you can also download it from
 [Canvas](https://canvas.education.lu.se/courses/39437).
-
 :::
 
 ## Importing data
@@ -397,7 +390,6 @@ wide variety of programs, as everything is stored as plain text.
 2. Make a new code cell.
 3. Load the `tephritis_phenotype.csv` data file using the `read_csv()` function
    and assign it to an object named `tephritis_data`.
-
 :::
 
 ::: {.callout-note icon="false" collapse="true"}
@@ -422,7 +414,6 @@ that the object `tephritis_data` has also appeared in the *Environment* panel.
 ## ✅ Task
 
 Click on the object `tephritis_data` in the *Environment* panel with your mouse.
-
 :::
 
 This will open the dataset using the RStudio function `View()` (which if you
@@ -455,7 +446,6 @@ in your RMarkdown document, answer the following questions:
    - `baltic`\
 4. Are there any `NA` values in the dataset? In which variable(s) and why might
    this be?
-
 :::
 
 ## The research question
@@ -483,13 +473,12 @@ Make a new code cell, and write the following:
 
 ```{r}
 female_data <- #<1>
-  tephritis_data |> 
+  tephritis_data |>
   filter(sex == "female") #<2>
 ```
 1. I assigned the new dataset to a new object, called `female_data`.
 2. Inside the `filter()` function, I say which rows should be allowed through
    the filter.
-
 :::
 
 Notice that a new object appeared in your *Environment* tab called
@@ -507,7 +496,6 @@ plots. It is based in a data visualisation theory known as *the grammer of
 graphics* [@wilkinsonGrammarGraphics2013].
 
 ::: {.callout-note appearance="default"}
-
 ## The grammer of graphics
 
 The grammer of graphics gives us a way to describe any plot.
@@ -532,10 +520,10 @@ One example might be a boxplot:
 ![A description of a standard boxplot](images/boxplot_explanation.png)
 
 ```{r}
-ggplot( 
+ggplot(
   data = female_data, #<1>
   mapping = aes(x = host_plant, y = ovipositor_length_mm) #<2>
-  ) + #<3>
+) + #<3>
   geom_boxplot() #<4>
 ```
 1. Inside the `ggplot()` function, I specify the dataset as `female_data`
@@ -554,7 +542,6 @@ and reproduce the graph using the code above.
 
 - What does the graph tell you? Is there a difference between the host races?
   Write your answer in your RMarkdown document.
-
 :::
 
 ## Calculating the observed statistic
@@ -619,7 +606,6 @@ obs_stat
 2. Does it make sense given the graph you made earlier?
 
 Write your answer in your RMarkdown document.
-
 :::
 
 ## Quantifying uncertainty
@@ -651,7 +637,7 @@ To do that in code, we write the following:
 
 ```{r}
 sampling_dist <- #<2>
-  female_data |> 
+  female_data |>
   specify(response = ovipositor_length_mm, explanatory = host_plant) |>
   generate(reps = 10000, type = "bootstrap") |> #<1>
   calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
@@ -683,7 +669,6 @@ visualize(sampling_dist)
    describe it to a friend who is not in this class?
 
 Write your answer in your RMarkdown document.
-
 :::
 
 ### Confidence intervals
@@ -722,7 +707,6 @@ Using our original research question:
 
 Write a statement to address our original research question using your observed
 statistic and confidence intervals.
-
 :::
 
 ## Testing a hypothesis
@@ -738,7 +722,6 @@ than is expected by chance.
 To do that we need to construct a null and alternative hypothesis.
 
 ::: {.callout-note appearance="default"}
-
 ## Constructing a null hypothesis
 
 A null hypothesis posits that the explanatory variable we test does NOT affect
@@ -747,16 +730,13 @@ hypothesis such that we can reject it.
 
 A null hypothesis does not have be defined by a "zero effect". For example, it
 could be that
-
 :::
 
 ::: {.callout-note appearance="default"}
-
 ## Constructing an alternative hypothesis
 
 Opposite of the Null hypothesis (the explanatory variable affects our data). We
 normally think in terms of an alternative hypothesis.
-
 :::
 
 ::: {.callout-note icon="false"}
@@ -768,7 +748,6 @@ Using our original research question:
 > `"oleraceum"` as a `host_plant` differ in their `ovipositor_length_mm`?
 
 Write a null and alternative hypotheses in your document in text.
-
 :::
 
 ### Generating data assuming the null hypothesis is true
@@ -780,7 +759,7 @@ To do that with `infer`, the code looks like this:
 
 ```{r}
 null_dist <- #<3>
-  female_data |> 
+  female_data |>
   specify(response = ovipositor_length_mm, explanatory = host_plant) |>
   hypothesise(null = "independence") |> #<1>
   generate(reps = 10000, type = "permute") |> #<2>
@@ -816,7 +795,6 @@ Answer these questions in your document:
 
 Answer in a way that an ecology student who is not in this class could
 understand.
-
 :::
 
 ### P-value
@@ -869,7 +847,6 @@ With reference to your null and alternative hypotheses:
    approach?
 3. Summarise the difference in the type of question being answered when
    performing a null hypothesis test, vs using a confidence interval.
-
 :::
 
 **When you get to this stage, let the teacher know so that we can discuss your
@@ -889,5 +866,4 @@ It will have been saved next to wherever your `.Rmd` file is saved.
 
 Upload your `.html` file as your [assignment for this exercise in
 Canvas](https://canvas.education.lu.se/courses/39437/assignments/275273).
-
 :::
