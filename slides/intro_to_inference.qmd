@@ -1,7 +1,7 @@
 ---
 title: "Introduction to statistical inference"
 draft: false
-date: 2026-04-27
+date: 2026-09-15
 subtitle: "Lecture 1"
 webr:
   packages:
@@ -22,7 +22,10 @@ library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 library(patchwork, quietly = TRUE)
 
-theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
 ```
 
 ```{webr}
@@ -57,8 +60,10 @@ theme_set(theme_bw(base_size = 20) + theme(aspect.ratio = 1))
 
 - Central tendancy (average):
   - Mean, median...
+
 - Spread:
   - IQR, variance, standard deviation
+
 - Difference between two groups:
   - Difference in means?
 
@@ -209,17 +214,34 @@ data <- tibble(
   diff_in_means = replicate(
     10000,
     {
-      males_sample <- sample(c(96, 98, 112, 101, 101, 114, 104, 93, 95, 106), 3, replace = FALSE)
-      females_sample <- sample(c(115, 104, 105, 101, 93, 121, 106, 77, 104, 94), 3, replace = FALSE)
+      males_sample <- sample(
+        c(96, 98, 112, 101, 101, 114, 104, 93, 95, 106),
+        3,
+        replace = FALSE
+      )
+      females_sample <- sample(
+        c(115, 104, 105, 101, 93, 121, 106, 77, 104, 94),
+        3,
+        replace = FALSE
+      )
       mean(males_sample) - mean(females_sample)
     }
   )
 )
 samp_dist <-
-ggplot(data, aes(x = diff_in_means)) +
-  geom_histogram(bins = 40, aes(y = ..density..), fill = "grey50", color = "black") +
+  ggplot(data, aes(x = diff_in_means)) +
+  geom_histogram(
+    bins = 40,
+    aes(y = ..density..),
+    fill = "grey50",
+    color = "black"
+  ) +
   geom_density(color = "red", size = 1) +
-  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 
 samp_dist
 ```
@@ -243,7 +265,7 @@ samp_dist
 #| fig-align: center
 
 samp_dist +
-geom_vline(xintercept = 0, colour = "red", size = 1)
+  geom_vline(xintercept = 0, colour = "red", size = 1)
 ```
 
 ## Inference
@@ -260,7 +282,7 @@ geom_vline(xintercept = 0, colour = "red", size = 1)
 ::::: {.column}
 ```{r}
 samp_dist +
-shade_confidence_interval(endpoints = get_confidence_interval(data))
+  shade_confidence_interval(endpoints = get_confidence_interval(data))
 ```
 :::::
 ::::: {.column}
@@ -279,15 +301,22 @@ shade_confidence_interval(endpoints = get_confidence_interval(data))
 ::::: {.column}
 ```{r}
 samp_dist +
- geom_vline(xintercept = 7.34, colour = "red", size = 2) +
-annotate("rect", xmin = 7.34, xmax = Inf, ymin = 0, ymax = Inf, alpha = 0.2, fill = "red")
+  geom_vline(xintercept = 7.34, colour = "red", size = 2) +
+  annotate(
+    "rect",
+    xmin = 7.34,
+    xmax = Inf,
+    ymin = 0,
+    ymax = Inf,
+    alpha = 0.2,
+    fill = "red"
+  )
 ```
 :::::
 ::::: {.column}
 **Hypothesis testing**
 
 - Is our result compatible with a specific hypothesis?
-
 :::::
 :::
 
@@ -367,7 +396,6 @@ ggplot(data, aes(x = male_mean)) +
 ::: {.columns}
 ::::: {.column}
 ```{r}
-
 sample_males <- tibble(body_length = c(96, 98, 112, 101, 114, 106))
 
 boot_dist <-
@@ -376,8 +404,9 @@ boot_dist <-
   generate(reps = 1000, type = "bootstrap") |>
   calculate(stat = "mean")
 
-visualize(boot_dist) + labs(x = "mean") +
-geom_vline(xintercept = 104.2, colour = "red", size = 2)
+visualize(boot_dist) +
+  labs(x = "mean") +
+  geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ```
 :::::
 ::::: {.column}
@@ -498,7 +527,6 @@ $$
 ::: {.columns}
 ::::: {.column}
 ```{r}
-
 sample_males <- tibble(body_length = c(96, 98, 112, 101, 114, 106))
 
 boot_dist2 <-
@@ -507,8 +535,9 @@ boot_dist2 <-
   generate(reps = 1000, type = "bootstrap") |>
   calculate(stat = "sd")
 
-visualize(boot_dist2) + labs(x = "mean") +
-geom_vline(xintercept = 7.43, colour = "red", size = 2)
+visualize(boot_dist2) +
+  labs(x = "mean") +
+  geom_vline(xintercept = 7.43, colour = "red", size = 2)
 ```
 :::::
 ::::: {.column}
@@ -548,9 +577,12 @@ statistic be likely to vary?
 ::: {.columns}
 ::::: {.column}
 ```{r}
-visualize(boot_dist) + labs(x = "mean") +
-shade_confidence_interval(endpoints = tibble(lower_ci = 104.2 - 1.465938, upper_ci = 104.2 + 1.465938)) +
-geom_vline(xintercept = 104.2, colour = "red", size = 2)
+visualize(boot_dist) +
+  labs(x = "mean") +
+  shade_confidence_interval(
+    endpoints = tibble(lower_ci = 104.2 - 1.465938, upper_ci = 104.2 + 1.465938)
+  ) +
+  geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ```
 :::::
 ::::: {.column}
@@ -570,9 +602,12 @@ geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ::: {.columns}
 ::::: {.column}
 ```{r}
-visualize(boot_dist) + labs(x = "mean") +
-shade_confidence_interval(endpoints = get_confidence_interval(boot_dist, level = 0.95)) +
-geom_vline(xintercept = 104.2, colour = "red", size = 2)
+visualize(boot_dist) +
+  labs(x = "mean") +
+  shade_confidence_interval(
+    endpoints = get_confidence_interval(boot_dist, level = 0.95)
+  ) +
+  geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ```
 :::::
 ::::: {.column}
@@ -591,9 +626,12 @@ geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ::: {.columns}
 ::::: {.column}
 ```{r}
-visualize(boot_dist) + labs(x = "mean") +
-shade_confidence_interval(endpoints = get_confidence_interval(boot_dist, level = 0.95)) +
-geom_vline(xintercept = 104.2, colour = "red", size = 2)
+visualize(boot_dist) +
+  labs(x = "mean") +
+  shade_confidence_interval(
+    endpoints = get_confidence_interval(boot_dist, level = 0.95)
+  ) +
+  geom_vline(xintercept = 104.2, colour = "red", size = 2)
 ```
 :::::
 ::::: {.column}
@@ -853,11 +891,11 @@ ggplot(null_dist, aes(x = diff_in_means)) +
 ```{r}
 #| fig-align: center
 
-sample_fish <- 
+sample_fish <-
   tibble(
     body_length = c(96, 112, 101, 101, 114, 104, 115, 104, 105, 101, 93, 121),
     sex = rep(c("male", "female"), each = 6)
-    )
+  )
 
 null_dist <-
   sample_fish |>
@@ -876,8 +914,9 @@ visualize(null_dist) + labs(x = "diff in mean")
 ```{r}
 #| fig-align: center
 
-visualize(null_dist) + labs(x = "diff in mean") +
-geom_vline(xintercept = -1.83, colour = "red", size = 2)
+visualize(null_dist) +
+  labs(x = "diff in mean") +
+  geom_vline(xintercept = -1.83, colour = "red", size = 2)
 ```
 
 ## Hypothesis testing
@@ -887,7 +926,8 @@ geom_vline(xintercept = -1.83, colour = "red", size = 2)
 ```{r}
 #| fig-align: center
 
-visualize(null_dist) + labs(x = "diff in mean") +
+visualize(null_dist) +
+  labs(x = "diff in mean") +
   shade_p_value(obs_stat = -1.83, direction = "less")
 ```
 
@@ -899,7 +939,8 @@ visualize(null_dist) + labs(x = "diff in mean") +
 ```{r}
 #| fig-align: center
 
-visualize(null_dist) + labs(x = "diff in mean") +
+visualize(null_dist) +
+  labs(x = "diff in mean") +
   shade_p_value(obs_stat = -1.83, direction = "less")
 ```
 :::::
@@ -915,7 +956,6 @@ visualize(null_dist) + labs(x = "diff in mean") +
 
 Think for 30 seconds, then discuss for 1 minute. What should my conclusion be?
 :::::::
-
 :::::
 :::
 

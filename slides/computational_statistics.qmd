@@ -1,7 +1,7 @@
 ---
 title: "Computational statistics"
 draft: false
-date: 2026-04-28
+date: 2026-09-16
 subtitle: "Lecture 2"
 ---
 
@@ -16,7 +16,10 @@ library(tidyverse, quietly = TRUE)
 library(infer, quietly = TRUE)
 library(patchwork, quietly = TRUE)
 
-theme_set(cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") + theme(aspect.ratio = 1, legend.position = "none"))
+theme_set(
+  cowplot::theme_cowplot(font_family = "Atkinson Hyperlegible") +
+    theme(aspect.ratio = 1, legend.position = "none")
+)
 
 set.seed(123)
 dataset_name <- tibble(
@@ -24,7 +27,9 @@ dataset_name <- tibble(
   variable_2 = rep(c("group_a", "group_b"), each = 20)
 )
 
-tephritis_data <- read_csv("https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/tephritis_phenotype_clean/tephritis_phenotype.csv")
+tephritis_data <- read_csv(
+  "https://raw.githubusercontent.com/irmoodie/teaching_datasets/refs/heads/main/tephritis_phenotype_clean/tephritis_phenotype.csv"
+)
 ```
 
 ## Review
@@ -62,10 +67,10 @@ head(tephritis_data) |> knitr::kable()
 #| fig-width: 10
 
 set.seed(123)
-ggplot( 
+ggplot(
   data = tephritis_data |> drop_na(ovipositor_length_mm),
   mapping = aes(x = host_plant, y = ovipositor_length_mm)
-  ) +
+) +
   geom_jitter(alpha = 0.3, width = 0.2)
 ```
 
@@ -80,10 +85,10 @@ ggplot(
 #| fig-width: 10
 
 set.seed(123)
-ggplot( 
+ggplot(
   data = tephritis_data |> drop_na(ovipositor_length_mm),
   mapping = aes(x = host_plant, y = ovipositor_length_mm)
-  ) +
+) +
   geom_boxplot(outliers = FALSE, width = 0.4) +
   geom_jitter(alpha = 0.3, width = 0.2)
 ```
@@ -99,13 +104,18 @@ ggplot(
 #| fig-width: 10
 
 set.seed(123)
-ggplot( 
+ggplot(
   data = tephritis_data |> drop_na(ovipositor_length_mm),
   mapping = aes(x = host_plant, y = ovipositor_length_mm)
-  ) +
+) +
   geom_jitter(alpha = 0.3, width = 0.2) +
-  stat_summary(fun = "mean", geom = "point", shape = 18, size = 5, color = "red")
-
+  stat_summary(
+    fun = "mean",
+    geom = "point",
+    shape = 18,
+    size = 5,
+    color = "red"
+  )
 ```
 
 ## Review
@@ -119,14 +129,25 @@ ggplot(
 #| fig-width: 10
 
 set.seed(123)
-ggplot( 
+ggplot(
   data = tephritis_data |> drop_na(ovipositor_length_mm),
   mapping = aes(x = host_plant, y = ovipositor_length_mm)
-  ) +
+) +
   geom_jitter(alpha = 0.3, width = 0.2) +
-  stat_summary(fun = "mean", geom = "line", aes(group = 1), color = "red", linetype = "dashed") +
-  stat_summary(fun = "mean", geom = "point", shape = 18, size = 5, color = "red")
-
+  stat_summary(
+    fun = "mean",
+    geom = "line",
+    aes(group = 1),
+    color = "red",
+    linetype = "dashed"
+  ) +
+  stat_summary(
+    fun = "mean",
+    geom = "point",
+    shape = 18,
+    size = 5,
+    color = "red"
+  )
 ```
 
 ## Review
@@ -146,8 +167,8 @@ ggplot(
 #| warning: false
 
 obs_stat <-
-  tephritis_data |> 
-  specify(response = ovipositor_length_mm, explanatory = host_plant) |> 
+  tephritis_data |>
+  specify(response = ovipositor_length_mm, explanatory = host_plant) |>
   calculate(stat = "diff in means", order = c("heterophyllum", "oleraceum"))
 
 obs_stat
@@ -173,7 +194,11 @@ obs_stat
 #| fig-align: center
 #| fig-width: 10
 
-obs_stat |> ggplot(aes(x = stat)) + geom_histogram(binwidth = 0.05, bins = 30) +xlim(c(-0.5, 0.5)) + xlab("Diff in means")
+obs_stat |>
+  ggplot(aes(x = stat)) +
+  geom_histogram(binwidth = 0.05, bins = 30) +
+  xlim(c(-0.5, 0.5)) +
+  xlab("Diff in means")
 ```
 
 ## Review
@@ -411,7 +436,7 @@ percentile_ci
 #| warning: false
 
 null_dist <-
-  tephritis_data |> 
+  tephritis_data |>
   specify(response = ovipositor_length_mm, explanatory = host_plant) |>
   hypothesise(null = "independence") |> #<1>
   generate(reps = 10000, type = "permute") |> #<2>
@@ -513,7 +538,9 @@ tephritis_data_edit <- tephritis_data |>
       filter(host_plant == "heterophyllum") |>
       mutate(
         host_plant = "imaginophyllum",
-        ovipositor_length_mm = ovipositor_length_mm - 0.2 + rnorm(n(), mean = 0, sd = 0.05)
+        ovipositor_length_mm = ovipositor_length_mm -
+          0.2 +
+          rnorm(n(), mean = 0, sd = 0.05)
       )
   )
 
@@ -533,11 +560,14 @@ tephritis_data |>
 #| fig-align: center
 #| fig-width: 10
 
-tephritis_data_edit2 <- tephritis_data |> drop_na(ovipositor_length_mm) |>
+tephritis_data_edit2 <- tephritis_data |>
+  drop_na(ovipositor_length_mm) |>
   mutate(
     ovipositor_length_mm = if_else(
       host_plant == "oleraceum",
-      ovipositor_length_mm - (mean(ovipositor_length_mm[host_plant == "oleraceum"]) - mean(ovipositor_length_mm[host_plant == "heterophyllum"])),
+      ovipositor_length_mm -
+        (mean(ovipositor_length_mm[host_plant == "oleraceum"]) -
+          mean(ovipositor_length_mm[host_plant == "heterophyllum"])),
       ovipositor_length_mm
     )
   )
@@ -627,7 +657,7 @@ Observed difference:
 #| eval: true
 
 het_data <-
-  tephritis_data |> 
+  tephritis_data |>
   filter(host_plant == "heterophyllum" & sex == "female")
 
 obs_stat <-
@@ -747,12 +777,17 @@ What is our null and alternative hypothesis?
 #| fig-width: 10
 
 het_data |>
-ggplot(aes(x = ovipositor_length_mm)) +
-geom_density(fill = "grey70", colour = "white") +
-geom_vline(xintercept = 1.764345) +
-labs(title = "Sample distribution (not sampling distribution!)") +
-xlim(1.3, 2.25) +
-theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+  ggplot(aes(x = ovipositor_length_mm)) +
+  geom_density(fill = "grey70", colour = "white") +
+  geom_vline(xintercept = 1.764345) +
+  labs(title = "Sample distribution (not sampling distribution!)") +
+  xlim(1.3, 2.25) +
+  theme(
+    aspect.ratio = 0.5,
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 ```
 
 ## Different from a hypothesised value?
@@ -766,13 +801,18 @@ theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_
 #| fig-width: 10
 
 het_data |>
-ggplot(aes(x = ovipositor_length_mm)) +
-geom_density(fill = "grey70", colour = "white") +
-geom_vline(xintercept = 1.764345) +
-geom_vline(xintercept = 1.78, colour = "red") +
-labs(title = "Sample distribution (not sampling distribution!)") +
-xlim(1.3, 2.25) +
-theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+  ggplot(aes(x = ovipositor_length_mm)) +
+  geom_density(fill = "grey70", colour = "white") +
+  geom_vline(xintercept = 1.764345) +
+  geom_vline(xintercept = 1.78, colour = "red") +
+  labs(title = "Sample distribution (not sampling distribution!)") +
+  xlim(1.3, 2.25) +
+  theme(
+    aspect.ratio = 0.5,
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 ```
 
 ## Different from a hypothesised value?
@@ -786,14 +826,24 @@ theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_
 #| fig-width: 10
 
 het_data |>
-ggplot(aes(x = ovipositor_length_mm)) +
-geom_density(fill = "grey70", colour = "white") +
-geom_density(aes(x = ovipositor_length_mm+0.015655), fill = "red", colour = "white", alpha = 0.3) +
-geom_vline(xintercept = 1.764345) +
-geom_vline(xintercept = 1.78, colour = "red") +
-labs(title = "Sample distribution (not sampling distribution!)") +
-xlim(1.3, 2.25) +
-theme(aspect.ratio = 0.5, axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+  ggplot(aes(x = ovipositor_length_mm)) +
+  geom_density(fill = "grey70", colour = "white") +
+  geom_density(
+    aes(x = ovipositor_length_mm + 0.015655),
+    fill = "red",
+    colour = "white",
+    alpha = 0.3
+  ) +
+  geom_vline(xintercept = 1.764345) +
+  geom_vline(xintercept = 1.78, colour = "red") +
+  labs(title = "Sample distribution (not sampling distribution!)") +
+  xlim(1.3, 2.25) +
+  theme(
+    aspect.ratio = 0.5,
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 ```
 
 ## Different from a hypothesised value?
@@ -907,7 +957,12 @@ visualise(null_dist) +
 
 animal_pref <- tibble(preference = sample(c(rep("dog", 14), rep("cat", 11))))
 
-animal_pref_se <- tibble(preference = sample(c(rep("dog", 2000/100*58), rep("cat", 2000/100*(100-58)))))
+animal_pref_se <- tibble(
+  preference = sample(c(
+    rep("dog", 2000 / 100 * 58),
+    rep("cat", 2000 / 100 * (100 - 58))
+  ))
+)
 ```
 
 ## Tests of proportion
@@ -940,7 +995,7 @@ Calculate the test statistic:
 #| fig-align: center
 #| fig-width: 10
 
-obs_stat <- 
+obs_stat <-
   animal_pref |>
   specify(response = preference, success = "dog") |>
   calculate(stat = "prop")
@@ -1080,7 +1135,10 @@ expected_proportions <- c(8.7, 2.5, 3.5, 1.3) / 16
 
 # Generate a dataset with 160 observations (to match proportions)
 mendelian_data <- tibble(
-  phenotype = rep(c("A-B-", "A-bb", "aaB-", "aabb"), times = round(expected_proportions * 120))
+  phenotype = rep(
+    c("A-B-", "A-bb", "aaB-", "aabb"),
+    times = round(expected_proportions * 120)
+  )
 )
 ```
 
@@ -1103,7 +1161,11 @@ mendelian_data
 
 ggplot(mendelian_data, aes(x = phenotype)) +
   geom_bar() +
-  geom_hline(yintercept = c(9, 3, 1)/16*nrow(mendelian_data), linetype = "dashed", color = "red")
+  geom_hline(
+    yintercept = c(9, 3, 1) / 16 * nrow(mendelian_data),
+    linetype = "dashed",
+    color = "red"
+  )
 ```
 
 ## $\chi^2$ Goodness of fit
@@ -1130,18 +1192,18 @@ $$
 #| fig-align: center
 #| fig-width: 10
 
-obs_stat <- 
+obs_stat <-
   mendelian_data |>
   specify(response = phenotype) |>
   hypothesize(
     null = "point",
     p = c(
-      "A-B-" = 9/16,
-      "A-bb" = 3/16,
-      "aaB-" = 3/16,
-      "aabb" = 1/16
+      "A-B-" = 9 / 16,
+      "A-bb" = 3 / 16,
+      "aaB-" = 3 / 16,
+      "aabb" = 1 / 16
     )
-   ) |>
+  ) |>
   calculate(stat = "Chisq")
 ```
 
@@ -1166,18 +1228,18 @@ obs_stat <-
 #| fig-align: center
 #| fig-width: 10
 
-null_dist <- 
+null_dist <-
   mendelian_data |>
   specify(response = phenotype) |>
   hypothesize(
     null = "point",
     p = c(
-      "A-B-" = 9/16,
-      "A-bb" = 3/16,
-      "aaB-" = 3/16,
-      "aabb" = 1/16
+      "A-B-" = 9 / 16,
+      "A-bb" = 3 / 16,
+      "aaB-" = 3 / 16,
+      "aabb" = 1 / 16
     )
-   ) |>
+  ) |>
   generate(reps = 10000, type = "draw") |>
   calculate(stat = "Chisq")
 ```
@@ -1193,7 +1255,7 @@ null_dist <-
 #| fig-width: 10
 
 null_dist |>
-  visualize() + 
+  visualize() +
   shade_p_value(obs_stat, direction = "greater")
 ```
 
@@ -1224,12 +1286,35 @@ null_dist |>
 #| fig-width: 10
 
 germ_data <- tibble(
-  treatment = rep(c("coating_a", "coating_b", "coating_c", "control"), each = 30),
+  treatment = rep(
+    c("coating_a", "coating_b", "coating_c", "control"),
+    each = 30
+  ),
   germination_success = c(
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.70, 0.30)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.72, 0.28)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.65, 0.35)),
-    sample(c("germinated", "failed_to_germinate"), size = 30, replace = TRUE, prob = c(0.68, 0.30))
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.70, 0.30)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.72, 0.28)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.65, 0.35)
+    ),
+    sample(
+      c("germinated", "failed_to_germinate"),
+      size = 30,
+      replace = TRUE,
+      prob = c(0.68, 0.30)
+    )
   )
 )
 ```
@@ -1287,7 +1372,7 @@ germ_data
 #| fig-align: center
 #| fig-width: 10
 
-obs_stat <- 
+obs_stat <-
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
   calculate(stat = "Chisq")
@@ -1305,7 +1390,7 @@ obs_stat
 #| fig-align: center
 #| fig-width: 10
 
-null_dist <- 
+null_dist <-
   germ_data |>
   specify(response = germination_success, explanatory = treatment) |>
   hypothesize(null = "independence") |>
@@ -1389,17 +1474,17 @@ data <- tibble(
   x = rnorm(100, mean = 50, sd = 10),
   y = x + rnorm(100, mean = 0, sd = 5)
 ) |>
-mutate(y = mean(y) - 0.3*(mean(y) - y))
+  mutate(y = mean(y) - 0.3 * (mean(y) - y))
 
 
 scatterplot <-
-data |>
+  data |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.5, size = 3) +
-  lims(x = c(20,80), y = c(20,80))
+  lims(x = c(20, 80), y = c(20, 80))
 
 x_plot <-
-data |>
+  data |>
   ggplot(aes(x = x, y = "1")) +
   geom_jitter(height = 0, alpha = 0.2, size = 3) +
   geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed") +
@@ -1409,10 +1494,10 @@ data |>
     axis.ticks.y = element_blank(),
     axis.line.y = element_blank()
   ) +
-  lims(x = c(20,80))
+  lims(x = c(20, 80))
 
 y_plot <-
-data |>
+  data |>
   ggplot(aes(x = "1", y = y)) +
   geom_jitter(width = 0, alpha = 0.2, size = 3) +
   geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
@@ -1422,8 +1507,7 @@ data |>
     axis.ticks.x = element_blank(),
     axis.line.x = element_blank()
   ) +
-  lims(y = c(20,80))
-
+  lims(y = c(20, 80))
 ```
 
 ::: {.columns}
@@ -1465,7 +1549,6 @@ $$
 data |>
   observe(response = x, stat = "sd")
 ```
-
 :::::
 ::::: {.column}
 ```{r}
@@ -1500,7 +1583,6 @@ $$
 data |>
   observe(response = y, stat = "sd")
 ```
-
 :::::
 ::::: {.column}
 ```{r}
@@ -1541,9 +1623,9 @@ data |>
 #| echo: false
 #| eval: true
 
-scatterplot + 
-geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
-geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed")
+scatterplot +
+  geom_hline(aes(yintercept = mean(y)), color = "red", linetype = "dashed") +
+  geom_vline(aes(xintercept = mean(x)), color = "red", linetype = "dashed")
 ```
 :::::
 :::
@@ -1655,7 +1737,7 @@ visualise(boot_dist)
 #| fig-width: 10
 #| warning: false
 
-conf_int <- 
+conf_int <-
   boot_dist |>
   get_confidence_interval(level = 0.95, type = "percentile")
 
@@ -1776,7 +1858,7 @@ abline_data <- abline_data |>
 
 # Plot the lines
 intercept_plot <-
-abline_data |>
+  abline_data |>
   ggplot(aes(x = x, y = y, color = as.factor(intercept))) +
   geom_line() +
   labs(
@@ -1807,7 +1889,7 @@ abline_data <- abline_data |>
 
 # Plot the lines
 slope_plot <-
-abline_data |>
+  abline_data |>
   ggplot(aes(x = x, y = y, color = as.factor(slope))) +
   geom_line() +
   labs(
@@ -1896,11 +1978,13 @@ y <- 4 * x + rnorm(100, mean = 0, sd = 10)
 
 
 # Combine into a tibble
-mating_data <- tibble(x = round(x, 0), y = round(y, 0)) |> mutate(y = if_else(x < 6, y - (y - 10) * 0.2, y)) |> mutate(y = if_else(y < 0, 0, y))
+mating_data <- tibble(x = round(x, 0), y = round(y, 0)) |>
+  mutate(y = if_else(x < 6, y - (y - 10) * 0.2, y)) |>
+  mutate(y = if_else(y < 0, 0, y))
 
 # Visualize the relationship
 sex_plot <-
-mating_data |>
+  mating_data |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.5, size = 3) +
   geom_smooth(method = "lm", se = FALSE) +
@@ -1908,8 +1992,8 @@ mating_data |>
 
 sex_plot
 
-mating_data <- mating_data |> rename(mating_success = x, reproductive_success = y)
-
+mating_data <- mating_data |>
+  rename(mating_success = x, reproductive_success = y)
 ```
 
 ## Regression
@@ -1977,10 +2061,15 @@ data_with_residuals2 <- data1 |>
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
-  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
-  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
-  #geom_segment(aes(xend = x, yend = fitted), color = "red", alpha = 0.5) 
-  #geom_point(aes(y = fitted + squared_residual), color = "purple", size = 2, alpha = 0.7) +
+  geom_line(
+    aes(y = fitted),
+    color = "blue",
+    linetype = "solid",
+    linewidth = 2
+  ) +
+  coord_cartesian(xlim = c(20, 80), ylim = c(20, 80))
+#geom_segment(aes(xend = x, yend = fitted), color = "red", alpha = 0.5)
+#geom_point(aes(y = fitted + squared_residual), color = "purple", size = 2, alpha = 0.7) +
 ```
 
 ## Regression
@@ -1993,9 +2082,14 @@ data_with_residuals1 |>
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
-  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
+  geom_line(
+    aes(y = fitted),
+    color = "blue",
+    linetype = "solid",
+    linewidth = 2
+  ) +
   geom_segment(aes(xend = x, yend = fitted), color = "red", alpha = 0.5) +
-  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+  coord_cartesian(xlim = c(20, 80), ylim = c(20, 80))
 ```
 
 ## Regression
@@ -2008,15 +2102,23 @@ data_with_residuals1 |>
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
-  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
-  geom_rect(aes(
-    xmin = x - sqrt(squared_residual) / 2,
-    xmax = x + sqrt(squared_residual) / 2,
-    ymin = pmin(y, fitted),
-    ymax = pmax(y, fitted)
-  ), fill = "red", alpha = 0.3) +
-  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
-
+  geom_line(
+    aes(y = fitted),
+    color = "blue",
+    linetype = "solid",
+    linewidth = 2
+  ) +
+  geom_rect(
+    aes(
+      xmin = x - sqrt(squared_residual) / 2,
+      xmax = x + sqrt(squared_residual) / 2,
+      ymin = pmin(y, fitted),
+      ymax = pmax(y, fitted)
+    ),
+    fill = "red",
+    alpha = 0.3
+  ) +
+  coord_cartesian(xlim = c(20, 80), ylim = c(20, 80))
 ```
 
 ## Regression
@@ -2029,14 +2131,23 @@ data_with_residuals1 |>
 data_with_residuals2 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
-  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
-  geom_rect(aes(
-    xmin = x - sqrt(squared_residual) / 2,
-    xmax = x + sqrt(squared_residual) / 2,
-    ymin = pmin(y, fitted),
-    ymax = pmax(y, fitted)
-  ), fill = "red", alpha = 0.3) +
-  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
+  geom_line(
+    aes(y = fitted),
+    color = "blue",
+    linetype = "solid",
+    linewidth = 2
+  ) +
+  geom_rect(
+    aes(
+      xmin = x - sqrt(squared_residual) / 2,
+      xmax = x + sqrt(squared_residual) / 2,
+      ymin = pmin(y, fitted),
+      ymax = pmax(y, fitted)
+    ),
+    fill = "red",
+    alpha = 0.3
+  ) +
+  coord_cartesian(xlim = c(20, 80), ylim = c(20, 80))
 ```
 
 ## Regression
@@ -2047,15 +2158,23 @@ data_with_residuals2 |>
 data_with_residuals1 |>
   ggplot(aes(x = x, y = y)) +
   geom_point(alpha = 0.7, size = 3) +
-  geom_line(aes(y = fitted), color = "blue", linetype = "solid", linewidth = 2) +
-  geom_rect(aes(
-    xmin = x - sqrt(squared_residual) / 2,
-    xmax = x + sqrt(squared_residual) / 2,
-    ymin = pmin(y, fitted),
-    ymax = pmax(y, fitted)
-  ), fill = "red", alpha = 0.3) +
-  coord_cartesian(xlim=c(20,80), ylim=c(20,80))
-
+  geom_line(
+    aes(y = fitted),
+    color = "blue",
+    linetype = "solid",
+    linewidth = 2
+  ) +
+  geom_rect(
+    aes(
+      xmin = x - sqrt(squared_residual) / 2,
+      xmax = x + sqrt(squared_residual) / 2,
+      ymin = pmin(y, fitted),
+      ymax = pmax(y, fitted)
+    ),
+    fill = "red",
+    alpha = 0.3
+  ) +
+  coord_cartesian(xlim = c(20, 80), ylim = c(20, 80))
 ```
 :::::
 ::::: {.column}
@@ -2128,10 +2247,10 @@ boot_dist
 ```{r}
 #| echo: true
 
-conf_ints <- 
+conf_ints <-
   get_confidence_interval(
-    boot_dist, 
-    level = .95, 
+    boot_dist,
+    level = .95,
     point_estimate = observed_fit
   )
 
@@ -2216,8 +2335,8 @@ $$
 #| echo: true
 
 data |>
-specify(reproductive_success ~ mating_success + sex + feather_colour) ...
-
+  specify(reproductive_success ~ mating_success + sex + feather_colour)
+...
 ```
 
 ## Take-away points
