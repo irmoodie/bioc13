@@ -16,7 +16,7 @@ draft: false
 To complete this exercise, work your way through this tutorial. Complete all
 sections marked as ✅ **Task**. As this component is mandatory, you need to
 complete the ✅ **Final Task** by submitting your work via the [Canvas
-assignment](https://canvas.education.lu.se/courses/39437/assignments/275273).
+assignment](https://canvas.education.lu.se/courses/42401/assignments/298433).
 The deadline is a suggestion. If you feel you can't get finished in the alloted
 time, submit what you have done. You will recieve feedback on your work.
 
@@ -865,5 +865,5 @@ text, code and the output of your code all in one document.
 It will have been saved next to wherever your `.Rmd` file is saved.
 
 Upload your `.html` file as your [assignment for this exercise in
-Canvas](https://canvas.education.lu.se/courses/39437/assignments/275273).
+Canvas](https://canvas.education.lu.se/courses/42401/assignments/298433).
 :::
