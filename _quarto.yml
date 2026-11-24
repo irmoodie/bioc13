@@ -8,7 +8,7 @@ website:
   open-graph: true
 
   page-footer: 
-    left: "Materials under a [CC-BY-SA-4.0 License](https://creativecommons.org/licenses/by-sa/4.0/deed.en)"
+    left: "Unless otherwise stated, all materials under a [CC BY-NC-SA 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
     right:  "Built by [Iain R. Moodie](https://irmoodie.com) with [Quarto](https://quarto.org/)."
 
   sidebar:
